@@ -1,0 +1,49 @@
+# Node.js
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Dependency lock files
+yarn.lock
+package-lock.json
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# User-specific files
+*.sublime-workspace
+*.suo
+*.user
+*.sln.docstates
+*.pdb
+*.userprefs
+*.dll
+*.sqlite
+*.sqlite3
+
+# macOS
+._*
+
+# Windows
+desktop.ini
