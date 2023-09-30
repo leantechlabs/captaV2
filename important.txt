@@ -1,0 +1,86 @@
+Capta Project Development Guidelines
+Introduction
+
+Welcome to the Capta project! This documentation provides guidelines for writing code and documenting your work to ensure consistency and maintainability across the project.
+Table of Contents
+
+    Coding Standards
+    Documentation
+    Development Workflow
+    Testing
+    Version Control
+    Deployment
+    Communication
+
+1. Coding Standards
+
+Follow these coding standards to maintain a consistent and readable codebase:
+
+    JavaScript:
+        Adhere to the Airbnb JavaScript Style Guide.
+        Use meaningful variable and function names.
+        Keep functions small and focused.
+
+    Node.js:
+        Follow best practices for asynchronous programming.
+        Utilize error-first callback pattern.
+        Make use of ES6 features when appropriate.
+
+2. Documentation
+
+Documentation is as important as code. Ensure that your code is well-documented:
+
+    Code Comments:
+        Add comments for complex or non-trivial sections of code.
+        Clearly document the purpose of functions and methods.
+
+    README:
+        Update the project README with instructions for installation, usage, and contribution.
+        Include a concise project overview.
+
+3. Development Workflow
+
+    Branching:
+        Create a new branch for each feature or bug fix.
+        Branch names should be descriptive (e.g., feature/user-authentication).
+
+    Pull Requests:
+        Open pull requests early to encourage collaboration and discussion.
+        Reference the relevant issue in your pull request.
+
+4. Testing
+
+    Unit Tests:
+        Write unit tests for new features.
+        Ensure existing tests are maintained and updated.
+
+    Integration Tests:
+        Test the integration of components and modules.
+
+5. Version Control
+
+    Commits:
+        Write clear and concise commit messages.
+        Follow the Conventional Commits standard.
+
+    Git Flow:
+        Follow the Git Flow branching model.
+
+6. Deployment
+
+    Continuous Integration:
+        Set up CI/CD pipelines for automated testing and deployment.
+        Deploy to staging environments before production.
+
+    Environment Configuration:
+        Use environment variables for configuration.
+        Store sensitive information securely.
+
+7. Communication
+
+    Team Meetings:
+        Participate in regular team meetings.
+        Discuss progress, challenges, and plans.
+
+    Discord/Communication Channel:
+        Use Discord or another communication channel for quick updates and discussions.
