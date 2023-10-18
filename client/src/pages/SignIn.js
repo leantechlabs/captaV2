@@ -10,7 +10,6 @@ const SignIn = () => {
     setMessage('Invalid email and password');
   };
   
-
   return (
     <html lang="en">
      <Layout/>
