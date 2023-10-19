@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
+import Layout from '../Layouts/Layout';
 import ScriptSection from './ScriptSection';
 
 

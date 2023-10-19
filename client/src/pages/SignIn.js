@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Layout from './Layout';
-import ScriptSection from './ScriptSection';
-import Form from './Form';
+import Layout from './Layouts/Layout';
+import ScriptSection from './Includes/ScriptSection';
+import Form from './Forms/SignInForm';
 
 const SignIn = () => {
   const [message , setMessage] = useState('');

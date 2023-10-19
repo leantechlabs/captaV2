@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-const Form = ({message , updateMessage}) => {
+const SignInForm = ({message , updateMessage}) => {
 
     //Variable Declaration
     const [ email , setEmail] = useState('');
@@ -90,4 +90,4 @@ const Form = ({message , updateMessage}) => {
   )
 }
 
-export default Form
+export default SignInForm
