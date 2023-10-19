@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Layout from './Layouts/Layout';
+import Layout from './Layout/Layout';
 import ScriptSection from './Includes/ScriptSection';
 import Form from './Forms/SignInForm';
-
+import './main.css'
 const SignIn = () => {
   const [message , setMessage] = useState('');
 
@@ -13,7 +13,7 @@ const SignIn = () => {
     <html lang="en">
      <Layout/>
       <body className="">
-        <main className="main-content  mt-0">
+        <main className="main-content">
           <section>
             <div className="page-header min-vh-100">
               <div className="container">
