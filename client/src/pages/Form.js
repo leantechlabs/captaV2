@@ -34,7 +34,7 @@ const Form = ({message , updateMessage}) => {
     
   return (
     <div>
-      <form role="form" >
+      <form role="form"  onSubmit={handleSignIn}>
         <div className="mb-3">
             <input type="email"
                 name="email"
@@ -78,8 +78,7 @@ const Form = ({message , updateMessage}) => {
             )}
             <button
                 type="submit"
-                className="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0"
-                onClick={handleSignIn}
+                className="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0"          
             >
                 Sign in
             </button>
