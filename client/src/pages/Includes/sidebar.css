@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  padding: 0%;
+}
+
+.sidenav {
+  width: 250px;
+  height: 650px;
+  background-color: #f0f0f0;
+}
+
+/* Sidebar image */
+.sidenav .navbar-brand-img {
+  width: 80%;
+  margin: 20px auto 0;
+}
+
+/* Additional styles for select boxes and submenus */
+.sidenav select {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sidenav .navbar-nav .nav-item ul.navbar-nav {
+  margin-left: 20px;
+  display: none;
+}
+
+.sidenav .navbar-nav .nav-item.open ul.navbar-nav {
+  display: block;
+}
