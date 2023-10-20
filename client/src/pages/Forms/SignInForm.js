@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import Layout from '../Layout/Layout';
+import ScriptSection from '../Includes/ScriptSection';
 
 const SignInForm = ({message , updateMessage}) => {
 
@@ -34,6 +36,7 @@ const SignInForm = ({message , updateMessage}) => {
     
   return (
     <div>
+      
       <form role="form" onSubmit={handleSignIn}>
         <div className="mb-3">
             <input type="email"
@@ -86,8 +89,10 @@ const SignInForm = ({message , updateMessage}) => {
         </div>
 
      </form>
+
+     
     </div>
   )
 }
 
-export default SignInForm
+export default SignInForm;

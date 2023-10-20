@@ -1,15 +1,19 @@
 import React from "react";
-// import Dashboard from "./pages/Footer";
-import SignIn from "./pages/SignIn";
-// import Navbar from "./pages/Navbar";
-import Navbar from "./pages/Includes/Navbar";
+import {Routes , Route , link , BrowserRouter as Router} from "react-router-dom"
+
+import Dashboard from "./dash/Dashboard";
+
 function App() {
   return (
     <div className="App">
-      <SignIn />
-            {/* <SignIn /> */}
-            {/* <Navbar/> */}
-      {/* <Dashboard/> */}
+      <Router>
+        <Routes>
+          
+          <Route path = "/dashboard" element = {<Dashboard />}/>
+        </Routes>
+
+      </Router>
+
     </div>
   );
 }
