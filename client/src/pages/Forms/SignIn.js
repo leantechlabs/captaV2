@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ApiUrls from '../Includes/corsUrls';
 
 const SignIn = () => {
   const [state, setState] = useState({
@@ -19,7 +20,7 @@ const SignIn = () => {
       password: state.password,
     };
 
-    axios.post('http://localhost:3001/login', data)
+    axios.post(ApiUrls['login'], data)
       .then((response) => {
         setState({ ...state, message: response.data.message });
       })
