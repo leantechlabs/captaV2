@@ -1,0 +1,11 @@
+{
+  "name": "captav2",
+  "version": "1.0.0",
+  "description": "This project is developed by LeanTech Labs.\r ##Private Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
