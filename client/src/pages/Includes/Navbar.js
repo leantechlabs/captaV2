@@ -6,7 +6,6 @@ import ScriptSection from './ScriptSection'
 const Navbar = () => {
   return (
     <div>
-    <Layout/>
     <nav className="custom-navbar navbar-expand-lg" id="navbarBlur" data-scroll="false">
       <div className="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb"></nav>
@@ -33,7 +32,6 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-    <ScriptSection/>
     </div>
   )
 }

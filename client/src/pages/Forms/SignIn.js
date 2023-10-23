@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Layout from '../Layout/Layout';
-import ScriptSection from '../Includes/ScriptSection';
 import axios from 'axios';
+import ApiUrls from '../Includes/corsUrls';
 
 const SignIn = () => {
   const [state, setState] = useState({
@@ -21,7 +20,7 @@ const SignIn = () => {
       password: state.password,
     };
 
-    axios.post('http://localhost:3001/login', data)
+    axios.post(ApiUrls['login'], data)
       .then((response) => {
         setState({ ...state, message: response.data.message });
       })
@@ -31,10 +30,7 @@ const SignIn = () => {
   }
 
   return (
-    <html lang="en">
-      <Layout />
-      <body className="">
-        <div>
+   
           <main className="main-content mt-0">
             <section>
               <div className="page-header min-vh-100">
@@ -121,11 +117,7 @@ const SignIn = () => {
                 </div>
               </div>
             </section>
-          </main>
-        </div>
-        <ScriptSection />
-      </body>
-    </html>
+          </main>     
   );
 };
 
