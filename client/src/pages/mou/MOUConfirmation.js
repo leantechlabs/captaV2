@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Layout from './Layout';
-import ScriptSection from './ScriptSection';
-import Navbar from './Navbar';
+import Layout from '../Layout/Layout';
+import ScriptSection from '../Includes/ScriptSection';
+import Navbar from '../Includes/Navbar';
+import Sidebar from '../Includes/Sidebar';
 
 const MOUConfirmation = () => {
   const initialConfirmationData = {
@@ -38,11 +39,19 @@ const MOUConfirmation = () => {
   };
 
   return (
-    <div className="g-sidenav-show bg-gray-100">
-      <Layout />
-      <div className="min-height-300 bg-primary position-absolute w-100"></div>
-      <Navbar />
-      <div className="card">
+    <html lang="en">
+    <Layout />
+    <body className="">
+      <div className="bg-gray-100 g-sidenav-show">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
+        {/* Include the sidebar component */}
+        <Sidebar />
+
+        <main className="main-content position-relative border-radius-lg">
+          {/* Include the navbar component */}
+          <Navbar />
+          <div className="container-fluid py-4">
+          <div className="card">
         <div className="card-body">
           <p className="text-uppercase text-sm">MOU Confirmation</p>
           {message && (
@@ -119,10 +128,14 @@ const MOUConfirmation = () => {
             />
           </div>
           <button className="btn btn-primary btn-sm ms-auto" onClick={handleSubmit}>Submit</button>
+          </div>
+          </div>
+          </div>
+            </main>
+          </div>
           <ScriptSection />
-        </div>
-      </div>
-    </div>
+        </body>
+      </html>
   );
 };
 

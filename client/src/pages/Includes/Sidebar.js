@@ -51,13 +51,41 @@ const Sidebar = () => {
             <div className="collapse" id="usersSubmenu">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="/manage/add-user">
+                  <a className="nav-link" href="/user/add">
                     <span className="nav-link-text ms-3">Add Users</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/manage/manage-users">
+                  <a className="nav-link" href="/user/manage">
                     <span className="nav-link-text ms-3">Manage Users</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" onClick={() => toggleSubmenu('#mouSubmenu')} data-toggle="collapse" role="button" aria-expanded="false" aria-controls="usersSubmenu" id="usersToggle">
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">MOU</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </a>
+            <div className="collapse" id="mouSubmenu">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link" href="/mou/create">
+                    <span className="nav-link-text ms-3">MOU Create</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/mou/confirm">
+                    <span className="nav-link-text ms-3">MOU Confirmation</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/mou/manage">
+                    <span className="nav-link-text ms-3">MOU Manage</span>
                   </a>
                 </li>
               </ul>

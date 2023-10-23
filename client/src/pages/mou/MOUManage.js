@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Layout from './Layout';
-import ScriptSection from './ScriptSection';
-import Navbar from './Navbar';
+import Layout from '../Layout/Layout';
+import ScriptSection from '../Includes/ScriptSection';
+import Navbar from '../Includes/Navbar';
+import Sidebar from '../Includes/Sidebar';
 
 const MOUManagePage = () => {
 
@@ -49,12 +50,20 @@ const MOUManagePage = () => {
   };
 
   return (
-    <div className="g-sidenav-show bg-gray-100">
+    <html lang="en">
     <Layout />
-    <div className="min-height-300 bg-primary position-absolute w-100"></div>
-    <Navbar />
-    <div className="card">
-      <div className="card-body">
+    <body className="">
+      <div className="bg-gray-100 g-sidenav-show">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
+        {/* Include the sidebar component */}
+        <Sidebar />
+
+        <main className="main-content position-relative border-radius-lg">
+          {/* Include the navbar component */}
+          <Navbar />
+          <div className="container-fluid py-4">
+          <div className="card">
+        <div className="card-body">
         <h4 className="text-uppercase text-sm">MOU Management</h4>
     <div>
       <table className="table">
@@ -94,12 +103,15 @@ const MOUManagePage = () => {
           ))}
         </tbody>
       </table>
-      <ScriptSection />
-
-    </div>
-    </div>
       </div>
-    </div>
+          </div>
+          </div>
+          </div>
+            </main>
+          </div>
+          <ScriptSection />
+        </body>
+      </html>
   );
 };
 
