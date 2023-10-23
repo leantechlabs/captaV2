@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -16,19 +16,19 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-2 ${isSidebarOpen ? 'show' : ''}`}
-      id="sidenav-main"
-    >
-      <div className="sidenav-footer">
-        <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav" onClick={toggleSidebar}></i>
-        <a className="navbar-brand m-0" target="_blank">
-          <img src="/img/logo.png" className="navbar-brand-img h-100" alt="main_logo" />
-          <span className="ms-1 font-weight-bold"></span>
-        </a>
-      </div>
-      <hr className="horizontal dark mt-0" />
-      <div className="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-        <ul className="navbar-nav">
+    className={`sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-2 ${isSidebarOpen ? 'show' : ''}`}
+    id="sidenav-main"
+  >
+    <div className="sidenav-footer">
+      <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav" onClick={toggleSidebar}></i>
+      <a className="navbar-brand m-0" target="_blank">
+        <img src="/img/logo.png" className="navbar-brand-img h-100" alt="main_logo" />
+        <span className="ms-1 font-weight-bold"></span>
+      </a>
+    </div>
+    <hr className="horizontal dark mt-0" />
+    <div className="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <ul className="navbar-nav">
           <li className="nav-item mt-3">
             <h6 href="/" className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6"></h6>
           </li>
@@ -88,7 +88,7 @@ const Sidebar = () => {
           </li>
           
         </ul>
-      </div>
+        </div>
       <div className="sidenav-footer mt-auto">
         <div className="card card-plain shadow-none" id="sidenavCard">
           <div className="card-body text-center p-3 w-100 pt-0">

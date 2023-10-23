@@ -1,10 +1,10 @@
-import React from 'react';
-import Layout from '../Layout/Layout';
+import React from "react";
+import Layout from "../Layout/Layout";
 import Navbar from "../Includes/Navbar";
-import ModuleItem from './ModuleItem';
-import TableRow from './TableRow';
-import Sidebar from '../Includes/Sidebar';
-import '../../custom.css';
+import ModuleItem from "./ModuleItem";
+import TableRow from "./TableRow";
+import Sidebar from "../Includes/Sidebar";
+import "../../custom.css";
 
 const Dashboard = () => {
   const moduleData = [
@@ -36,7 +36,12 @@ const Dashboard = () => {
   ];
 
   const tableData = [
-    ["College 1", "2023-10-23", "32", <i className="ni ni-settings" aria-hidden="true"></i>],
+    [
+      "College 1",
+      "2023-10-23",
+      "32",
+      <i className="ni ni-settings" aria-hidden="true"></i>,
+    ],
   ];
 
   return (
@@ -67,19 +72,23 @@ const Dashboard = () => {
                   </div>
                   <div className="card-body p-3">
                     <ul className="list-group">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>College Name</th>
-                            <th>Module Name</th>
-                            <th>Hours Pending</th>
-                            <th>Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <TableRow data={tableData} paddingLeft="20px" />
-                        </tbody>
-                      </table>
+                      <div className="table-responsive">
+                        {" "}
+                        {/* Add this div for responsiveness */}
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>College Name</th>
+                              <th>Module Name</th>
+                              <th>Hours Pending</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <TableRow data={tableData} paddingLeft="20px" />
+                          </tbody>
+                        </table>
+                      </div>
                     </ul>
                   </div>
                 </div>
