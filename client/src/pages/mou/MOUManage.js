@@ -50,9 +50,7 @@ const MOUManagePage = () => {
   };
 
   return (
-    <html lang="en">
-    <Layout />
-    <body className="">
+
       <div className="bg-gray-100 g-sidenav-show">
         <div className="min-height-300 bg-primary position-absolute w-100"></div>
         {/* Include the sidebar component */}
@@ -109,9 +107,8 @@ const MOUManagePage = () => {
           </div>
             </main>
           </div>
-          <ScriptSection />
-        </body>
-      </html>
+      
+  
   );
 };
 

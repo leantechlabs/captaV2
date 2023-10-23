@@ -68,7 +68,7 @@ const Sidebar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/Users/manage" className="nav-link">
+                  <Link to="/Users/Manage-Users" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Users</span>
                   </Link>
                 </li>
