@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Layout from '../Layout/Layout';
-import ScriptSection from '../Includes/ScriptSection';
 import axios from 'axios';
 
 const SignIn = () => {
@@ -31,10 +29,7 @@ const SignIn = () => {
   }
 
   return (
-    <html lang="en">
-      <Layout />
-      <body className="">
-        <div>
+   
           <main className="main-content mt-0">
             <section>
               <div className="page-header min-vh-100">
@@ -121,11 +116,7 @@ const SignIn = () => {
                 </div>
               </div>
             </section>
-          </main>
-        </div>
-        <ScriptSection />
-      </body>
-    </html>
+          </main>     
   );
 };
 
