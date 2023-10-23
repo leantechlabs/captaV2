@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
-import Sidebar from '../Includes/Sidebar';
+import Layout from '../Layout/Layout';
+import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
+import Sidebar from '../Includes/Sidebar';
+import Axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
 const AddUser = () => {
     const [userType, setUserType] = useState('');

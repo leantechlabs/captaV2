@@ -68,8 +68,36 @@ const Sidebar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/manage/manage-users" className="nav-link">
+                  <Link to="/Users/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Users</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#mouSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">MOU</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="mouSubmenu">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="/mou/create" className="nav-link">
+                    <span className="nav-link-text ms-3">MOU Create</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/confirm" className="nav-link">
+                    <span className="nav-link-text ms-3">MOU Confirmation</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">MOU Manage</span>
                   </Link>
                 </li>
               </ul>
