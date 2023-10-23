@@ -6,6 +6,7 @@ import SignIn from './pages/Forms/SignIn';
 import ScriptSection from './pages/Includes/ScriptSection';
 import Layout from './pages/Layout/Layout';
 import Footer from './pages/Includes/Footer'
+import AddUser from './pages/Users/addUsers';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/Users/Add-User" element={<AddUser/>} />
         </Routes>
       </Router>
     </div>
