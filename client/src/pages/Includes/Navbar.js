@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../Layout/Layout'
 import ScriptSection from './ScriptSection'
-import '../main.css';
+
 
 const Navbar = () => {
   return (
