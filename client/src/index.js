@@ -11,10 +11,10 @@ import ManageUser from "./pages/Users/Manageuser";
 import MOUTable from "./pages/mou/MOUTable";
 import MOUManagePage from "./pages/mou/MOUManage";
 import MOUConfirmation from "./pages/mou/MOUConfirmation";
-
+import ManageUser from './pages/Users/manageUsers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+//app
 function App() {
   return (
     <div className="App">
@@ -27,6 +27,9 @@ function App() {
           <Route path="/mou/create" element={<MOUTable />} />
           <Route path="/mou/confirm" element={<MOUConfirmation />} />
           <Route path="/mou/manage" element={<MOUManagePage />} />
+
+          <Route path="Manage/Manage-Users" element={<ManageUser/>} />/
+
         </Routes>
       </Router>
     </div>
@@ -36,5 +39,7 @@ function App() {
 root.render(
   <React.StrictMode>
     <App />
+    {/* <Footer/> */}
+    <ScriptSection/>
   </React.StrictMode>
 );

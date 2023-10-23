@@ -12,8 +12,7 @@ Thumbs.db
 # Logs
 *.log
 
-# Environment variables
-.env
+
 
 # IDE-specific files
 .vscode/
