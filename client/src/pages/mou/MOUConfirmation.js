@@ -8,8 +8,6 @@ import Sidebar from '../Includes/Sidebar';
 const MOUConfirmation = () => {
   const initialConfirmationData = {
     MOUID: '',
-    AdminID: '',
-    ModeratorID: '',
     ConfirmationDate: '',
     ConfirmationStatus: 'Pending',
     Comments: '',
@@ -59,36 +57,19 @@ const MOUConfirmation = () => {
           )}
           <div className="form-group">
             <label htmlFor="MOUID" className="form-control-label">MOU ID:</label>
-            <input
+            <select
               className="form-control"
               type="text"
               id="MOUID"
               name="MOUID"
+              placeholder='Select'
               value={confirmationData.MOUID}
               onChange={handleInputChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="AdminID" className="form-control-label">Admin ID:</label>
-            <input
-              className="form-control"
-              type="text"
-              id="AdminID"
-              name="AdminID"
-              value={confirmationData.AdminID}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="ModeratorID" className="form-control-label">Moderator ID:</label>
-            <input
-              className="form-control"
-              type="text"
-              id="ModeratorID"
-              name="ModeratorID"
-              value={confirmationData.ModeratorID}
-              onChange={handleInputChange}
-            />
+            >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
           </div>
           <div className="form-group">
             <label htmlFor="ConfirmationDate" className="form-control-label">Confirmation Date:</label>
