@@ -7,6 +7,7 @@ const ApiUrls= {
     //add all api urls here
     'login':Api+'/login',
     'addUser':Api+'/User/addUser',
+    'ManageUser':Api+'/User/ManageUser',
 }
 
 export default ApiUrls;

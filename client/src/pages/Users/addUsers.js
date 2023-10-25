@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
+import Layout from '../Layout/Layout';
 const AddUser = () => {
     const [userType, setUserType] = useState('');
     const [showTrainerFields, setShowTrainerFields] = useState(false);

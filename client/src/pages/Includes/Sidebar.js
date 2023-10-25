@@ -104,6 +104,39 @@ const Sidebar = () => {
             </div>
           </li>
           <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#mouSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">MOU</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="mouSubmenu">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="/mou/create" className="nav-link">
+                    <span className="nav-link-text ms-3">Training Module Confirmation</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/confirm" className="nav-link">
+                    <span className="nav-link-text ms-3">Module Confirmation Sheet</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">Manage Module Sheet</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">Verify Module Sheet</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" onClick={() => toggleSubmenu("#institutionSubmenu")}>
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-building text-primary text-sm opacity-10"></i>
