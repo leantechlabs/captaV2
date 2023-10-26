@@ -195,7 +195,7 @@ const MOUTable = () => {
         <p className="text-uppercase text-sm">Terms and Conditions</p>
         <div className="form-group">
           <label htmlFor="TermsConditions.NatureRelationship" className="form-control-label">Nature of Relationship:</label>
-          <input
+          <textarea
             className="form-control"
             type="text"
             id="TermsConditions.NatureRelationship"
@@ -206,7 +206,7 @@ const MOUTable = () => {
         </div>
         <div className="form-group">
           <label htmlFor="TermsConditions.MutualObligation" className="form-control-label">Mutual Obligation:</label>
-          <input
+          <textarea
             className="form-control"
             type="text"
             id="TermsConditions.MutualObligation"
@@ -217,7 +217,7 @@ const MOUTable = () => {
         </div>
         <div className="form-group">
           <label htmlFor="TermsConditions.LimitationsWarranties" className="form-control-label">Limitations and Warranties:</label>
-          <input
+          <textarea
             className="form-control"
             type="text"
             id="TermsConditions.LimitationsWarranties"

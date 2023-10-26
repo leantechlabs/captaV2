@@ -147,12 +147,12 @@ const Sidebar = () => {
             <div className="collapse" id="institutionSubmenu">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to="/manage/add-institution" className="nav-link">
+                  <Link to="/institution/add" className="nav-link">
                     <span className="nav-link-text ms-3">Add Institution</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/manage/manage-institution" className="nav-link">
+                  <Link to="/institution/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Institution</span>
                   </Link>
                 </li>
