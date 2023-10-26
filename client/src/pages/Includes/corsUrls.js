@@ -6,8 +6,15 @@ if (flag=='Dev'){
 const ApiUrls= {
     //add all api urls here
     'login':Api+'/login',
-    'addUser':Api+'/User/addUser',
-    'ManageUser':Api+'/User/ManageUser',
+    'addUser':Api+'/user/add',
+    'ManageUser':Api+'/user/manage',
+    'AddInstitution':Api+'/college/add',
+    'ManageInstitution':Api+'/college/manage',
+    'MouCreate':Api+'/mou/create',
+    'MouConfirm':Api+'/mou/confirm',
+    'MouManage':Api+'/mou/manage',
+    'ModuleCreate':Api+'/mou/create'
+    //Abc$ada
 }
 
 export default ApiUrls;

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import Layout from '../Layout/Layout';
 import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
+import ApiUrls  from '../Includes/corsUrls';
 
 const AddInstitution = () => {
   const [collegeName, setCollegeName] = useState('');
@@ -21,7 +22,7 @@ const AddInstitution = () => {
   const [chairmanPhoneNumber, setChairmanPhoneNumber] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async () => {
     // Create a data object with the college details
     const collegeData = {
       collegeName,
@@ -38,16 +39,16 @@ const AddInstitution = () => {
       chairmanEmail,
       chairmanPhoneNumber,
     };
-
-    axios
-      .post('/college/add-institution', collegeData)
-      .then((response) => {
-        setMessage(response.data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        setMessage('An error occurred.');
-      });
+    try {
+      // process.env.API_SERVER check the env file
+      const response = await Axios.post(ApiUrls['addUser'], collegeData);
+      console.log('Server response:', response.data);
+      setMessage('Data submitted successfully');
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Failed to submit data');
+    }
+   
   };
 
   return (

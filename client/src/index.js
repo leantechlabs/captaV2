@@ -25,13 +25,13 @@ function App() {
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/Users/Add-User" element={<AddUser/>} />
-          <Route path="/Users/Manage-Users" element={<ManageUser/>} />/
+          <Route path="/user/add" element={<AddUser/>} />
+          <Route path="/user/manage" element={<ManageUser/>} />/
           <Route path="/mou/create" element={<MOUTable />} />
           <Route path="/mou/confirm" element={<MOUConfirmation />} />
           <Route path="/mou/manage" element={<MOUManagePage />} />
-          <Route path="/institution/add" element={<AddInstitution />} />
-          <Route path="/institution/manage" element={<ManageInstitution />} />
+          <Route path="/college/add" element={<AddInstitution />} />
+          <Route path="/college/manage" element={<ManageInstitution />} />
 
 
         </Routes>
