@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
-import { ToastContainer,toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster,toast} from 'sonner';
 import DOMPurify from 'dompurify';
 
 
@@ -28,25 +27,19 @@ const SignIn = () => {
 
     // Perform validation (e.g., check for empty fields)
     if (!data.email || !data.password) {
-      toast.error('Please fill in all fields.', {
-        position: toast.POSITION.TOP_CENTER
-    });
+      toast.error('Please fill in all fields.');
       return;
     }
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!data.email.match(emailRegex)) {
-      toast.error('Please enter a valid email address', {
-        position: toast.POSITION.TOP_CENTER
-    });
+      toast.error('Please enter a valid email address');
       return;
     }
 
     // Validation for password
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
     if (!data.password.match(passwordRegex)) {  
-      toast.error('Password should be min 8 characters long and includes atleast one uppercase and lowercase and special character.', {
-        position: toast.POSITION.TOP_CENTER
-    });
+      toast.error('Password should be min 8 characters long and includes atleast one uppercase and lowercase and special character.');
       return;
     }
 
@@ -55,17 +48,13 @@ const SignIn = () => {
         // Successful response
         const successMessage = response.data.message;
         setState({ ...state, message: successMessage });
-        toast.success(successMessage, {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.success(successMessage);
       })
       .catch((error) => {
         // Handle API response errors and display the reason
         const errorMessage = error.response ? error.response.data.message : 'Error: Unable to log in.';
         setState({ ...state, message: errorMessage });
-        toast.error(errorMessage, {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.error(errorMessage);
       });
   }
 
@@ -94,7 +83,7 @@ const SignIn = () => {
                         value={state.email}
                         onChange={handleInputChange}
                       />
-                      <ToastContainer />
+                      <Toaster richColors position='top-center' />
                     </div>
                     <div className="mb-3">
                       <input

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import Sidebar from '../Includes/Sidebar';
+import DOMPurify from 'dompurify';
+import { Toaster,toast} from 'sonner';
 import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
 import Layout from '../Layout/Layout';
@@ -57,29 +59,145 @@ const AddUser = () => {
       setBankAccounts(updatedBankAccounts);
     };
 
+
+    const charOnly = /^[A-Za-z ]+$/;
+    const charNum= /^[a-zA-Z0-9]*$/;
+    const uppercaseNum=/^[A-Z0-9]*$/;
+    const nums=/^[0-9]*$/;
+  
+  
+    const mailCheck=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    // toast.success(formData.username);
+   
+
+     
+    
     const handleSubmit = async () => {
+
+
+      if(!formData.username || !charNum.test(formData.username))
+      {
+        toast.error("Please enter a valid user name");
+        return;
+      }
+      if (!formData.email || !formData.email.match(mailCheck)) {
+        toast.error('Please enter a valid email address.');
+        return;
+      }
+
+      if(!formData.userId || !formData.userId.match(nums))
+      {
+        toast.error("Please enter a valid userId");
+        return;
+      }
+
+      if(!formData.phoneNumber || !formData.phoneNumber.match(nums))
+      {
+        toast.error("Please enter a valid phone number");
+        return;
+      }
+
+      if(!formData.address || !formData.address.length>3)
+      {
+        toast.error("Please enter a valid address");
+        return;
+      }
+      if(!formData.city || !formData.city.match(charOnly))
+      {
+        toast.error("Please enter a valid city");
+        return;
+      }
+      if(!formData.address || !formData.address.length>3)
+      {
+        toast.error("Please enter a valid address");
+        return;
+      }
+
+      if(!formData.address || !formData.address.length>3)
+      {
+        toast.error("Please enter a valid address");
+        return;
+      }
+
+      if(!formData.city || !formData.city.match(charOnly))
+      {
+        toast.error("Please enter a valid city");
+        return;
+      }
+      if(!formData.country || !formData.country.match(charOnly))
+      {
+        toast.error("Please enter a valid country");
+        return;
+      }
+      if(!formData.postalCode || !formData.postalCode.match(nums))
+      {
+        toast.error("Please enter a valid Postal code");
+        return;
+      }
+
+      if(!formData.salary)
+      {
+        toast.error("Salary can't be empty");
+        return;
+      }
+
+
+
+
+       const fileType = formData.resume.split('.').pop().toLowerCase();
+      if (fileType !== 'pdf' || fileType !== 'doc' || fileType!=="docx") {
+        formData.resume=null;
+        toast.error("Error");
+        return;
+      }
+
+      const adharFile=formData.adhar.split('.').pop().toLocaleLowerCase();
+      if(adharFile!=="pdf" || adharFile!=='png' || adharFile!=='jpg' || adharFile!=='jpeg')
+      {
+        formData.adhar=null;
+        toast.error("Adhar only accepted in pdf,jpg,png,jpeg");
+        return;
+      }
+
+      const panFile=formData.pan.split('.').pop().toLocaleLowerCase();
+      if(panFile!=="pdf" || panFile!=='png' || panFile!=='jpg' || panFile!=='jpeg')
+      {
+        formData.pan=null;
+        toast.error("Pan only accepted in pdf,jpg,png,jpeg");
+        return;
+      }
+
+      const photoFile=formData.photo.split('.').pop().toLocaleLowerCase();
+      if(photoFile!=='png' || photoFile!=='jpg' || photoFile!=='jpeg')
+      {
+        formData.photo=null;
+        toast.error("Photo only accepted in jpg,png,jpeg");
+        return;
+      }
+
       const userData = {
-        username: formData.username,
-        email: formData.email,
-        userId: formData.userId,
-        phoneNumber: formData.phoneNumber,
-        address: formData.address,
-        city: formData.city,
-        country: formData.country,
-        postalCode: formData.postalCode,
-        resume: formData.resume,
-        adhar: formData.adhar,
-        pan: formData.pan,
-        photo: formData.photo,
-        role: formData.role,
-        trainerType: formData.trainerType,
-        skills: formData.skills,
-        salary: formData.salary,
+        username: DOMPurify.sanitize(formData.username).trim(),
+        email: DOMPurify.sanitize(formData.email).trim(),
+        userId: DOMPurify.sanitize(formData.userId).trim(),
+        phoneNumber: DOMPurify.sanitize(formData.phoneNumber).trim(),
+        address: DOMPurify.sanitize(formData.address).trim(),
+        city: DOMPurify.sanitize(formData.city).trim(),
+        country: DOMPurify.sanitize(formData.country).trim(),
+        postalCode: DOMPurify.sanitize(formData.postalCode).trim(),
+        resume: DOMPurify.sanitize(formData.resume).trim(), 
+        adhar: DOMPurify.sanitize(formData.adhar).trim(),
+        pan: DOMPurify.sanitize(formData.pan).trim(),
+        photo: DOMPurify.sanitize(formData.photo).trim(),
+        role: DOMPurify.sanitize(formData.role).trim(),
+        trainerType: DOMPurify.sanitize(formData.trainerType).trim(),
+        skills: DOMPurify.sanitize(formData.skills).trim(),
+        salary: DOMPurify.sanitize(formData.salary).trim(),
         bankAccounts:  bankAccounts.map((account, index) => ({
-            bankName: account.bankName,
-            branchCode: account.branchCode,
-            accountNumber: account.accountNumber,
-            ifscNumber: account.ifscNumber,
+            bankName: DOMPurify.sanitize(account.bankName).trim(),
+            branchCode: DOMPurify.sanitize(account.branchCode).trim(),
+            accountNumber: DOMPurify.sanitize(account.accountNumber).trim(),
+            ifscNumber: DOMPurify.sanitize(account.ifscNumber).trim(),
           })),
     
       };
@@ -89,9 +207,12 @@ const AddUser = () => {
         const response = await Axios.post(ApiUrls['addUser'], userData);
         console.log('Server response:', response.data);
         setMessage('Data submitted successfully');
-      } catch (error) {
+        toast.success("Form submited successfully");
+      } 
+      catch (error) {
         console.error('Error:', error);
         setMessage('Failed to submit data');
+        toast.error("Failed to add the user"+error)
       }
     };
 
@@ -174,6 +295,7 @@ const AddUser = () => {
                               />
                             </div>
                           </div>
+                          <Toaster richColors position='top-center'/>
                           <div className="col-md-6">
                             <div className="form-group">
                               <label className="form-control-label">
@@ -477,6 +599,7 @@ const AddUser = () => {
                             <input
                               className="form-control"
                               type="file"
+                              accept=".pdf,.doc,.docx"
                               name="resume"
                               onChange={(e) =>
                                 setFormData({
@@ -496,6 +619,7 @@ const AddUser = () => {
                               className="form-control"
                               type="file"
                               name="adhar"
+                              accept=".pdf,.jpg,.jpeg,.png"
                               onChange={(e) =>
                                 setFormData({
                                   ...formData,
@@ -514,6 +638,7 @@ const AddUser = () => {
                               className="form-control"
                               type="file"
                               name="pan"
+                              accept=".jpeg,.jpg,.png,.pdf"
                               onChange={(e) =>
                                 setFormData({
                                   ...formData,
@@ -532,6 +657,7 @@ const AddUser = () => {
                               className="form-control"
                               type="file"
                               name="photo"
+                              accept=".jpeg,.jpg,.png"
                               onChange={(e) =>
                                 setFormData({
                                   ...formData,
