@@ -6,6 +6,7 @@ import { Toaster,toast} from 'sonner';
 import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
 import Layout from '../Layout/Layout';
+import 'react-toastify/dist/ReactToastify.css';
 const AddUser = () => {
     const [userType, setUserType] = useState('');
     const [showTrainerFields, setShowTrainerFields] = useState(false);

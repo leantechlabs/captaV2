@@ -16,8 +16,8 @@ import ManageInstitution from "./pages/Institution/ManageInstitution";
 import ModuleConfirmationSheet from './pages/Module/ModuleConfirmationsheet';
 import ModuleManage from './pages/Module/ModuleManage';
 import ModuleConfirmation from './pages/Module/ModuleConfirmation';
-
-
+import SessionDetails from './pages/Session/SessionDetails';
+import SessionAttendance from './pages/Session/SessionAttendance';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //app
 function App() {
@@ -37,9 +37,10 @@ function App() {
           <Route path='/module/confirmation/create' element = {<ModuleConfirmationSheet />} />
           <Route path='/module/confirmation/manage' element = {<ModuleManage />} />
           <Route path='/module/status' element = {<ModuleConfirmation />} />
+          <Route path='/session/details' element ={<SessionDetails/>}/>
+          <Route path='/session/attendance' element ={<SessionAttendance/>}/>
 
-
-        </Routes>
+          </Routes>
       </Router>
     </div>
   );

@@ -228,12 +228,12 @@ const Sidebar = () => {
             <div className="collapse" id="SessionSubmenu">
               <ul className="navbar-nav">
               <li className="nav-item">
-                  <Link to="session/details" className="nav-link">
+                  <Link to="/session/details" className="nav-link">
                     <span className="nav-link-text ms-3">Session Details</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="session/attendance" className="nav-link">
+                  <Link to="/session/attendance" className="nav-link">
                     <span className="nav-link-text ms-3">Session Attendance</span>
                   </Link>
                 </li>
