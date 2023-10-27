@@ -63,12 +63,12 @@ const Sidebar = () => {
             <div className="collapse" id="usersSubmenu">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to="/Users/Add-User" className="nav-link">
+                  <Link to="/user/add" className="nav-link">
                     <span className="nav-link-text ms-3">Add Users</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/manage/manage-users" className="nav-link">
+                  <Link to="/user/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Users</span>
                   </Link>
                 </li>
@@ -86,13 +86,160 @@ const Sidebar = () => {
             <div className="collapse" id="institutionSubmenu">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to="/manage/add-institution" className="nav-link">
+                  <Link to="/college/add" className="nav-link">
                     <span className="nav-link-text ms-3">Add Institution</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/manage/manage-institution" className="nav-link">
+                  <Link to="/college/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Institution</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#mouSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">MOU</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="mouSubmenu">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="/mou/create" className="nav-link">
+                    <span className="nav-link-text ms-3">MOU Create</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/confirm" className="nav-link">
+                    <span className="nav-link-text ms-3">MOU Confirmation</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/mou/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">MOU Manage</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#TrainingSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">Training Curriculum</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="TrainingSubmenu">
+              <ul className="navbar-nav">
+                
+                <li className="nav-item">
+                  <Link to="curriculum/create" className="nav-link">
+                    <span className="nav-link-text ms-3">Create Curriculum</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="curriculum/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">Manage Curriculum</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="module/create" className="nav-link">
+                    <span className="nav-link-text ms-3">Create Module</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="module/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">Manage Module</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#moduleSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">Module Confirmation</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="moduleSubmenu">
+              <ul className="navbar-nav">
+                
+                <li className="nav-item">
+                  <Link to="module/confirmation/create" className="nav-link">
+                    <span className="nav-link-text ms-3">Module Confirmation Sheet</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="module/confirmation/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">Manage Module Sheet</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="module/status" className="nav-link">
+                    <span className="nav-link-text ms-3">Verify Module Sheet</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#BatchSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">Batch Management</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="BatchSubmenu">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="batch/create" className="nav-link">
+                    <span className="nav-link-text ms-3">Create Batch</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="batch/manage" className="nav-link">
+                    <span className="nav-link-text ms-3">Manage Batch</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="batch/allocate" className="nav-link">
+                    <span className="nav-link-text ms-3">Allocate Batch</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link  className="nav-link" onClick={() => toggleSubmenu("#SessionSubmenu")}>
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">Session Management</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="SessionSubmenu">
+              <ul className="navbar-nav">
+              <li className="nav-item">
+                  <Link to="session/details" className="nav-link">
+                    <span className="nav-link-text ms-3">Session Details</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="session/attendance" className="nav-link">
+                    <span className="nav-link-text ms-3">Session Attendance</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="session/report" className="nav-link">
+                    <span className="nav-link-text ms-3">Session Report</span>
                   </Link>
                 </li>
               </ul>

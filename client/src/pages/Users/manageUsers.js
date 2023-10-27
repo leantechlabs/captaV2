@@ -107,7 +107,7 @@ const ManageUser = () => {
                                     </button>
                                   </td>
                                 </tr>
-                                {/* Add more user data properties as needed */}
+                            
                               </tbody>
                             </table>
                           </div>

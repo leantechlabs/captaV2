@@ -42,6 +42,12 @@ const Dashboard = () => {
       "32",
       <i className="ni ni-settings" aria-hidden="true"></i>,
     ],
+    [
+      "College 1",
+      "2023-10-23",
+      "32",
+      <i className="ni ni-settings" aria-hidden="true"></i>,
+    ],
   ];
 
   return (
