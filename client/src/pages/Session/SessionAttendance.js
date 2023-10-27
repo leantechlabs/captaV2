@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { toast } from 'react-toastify'; 
+import { Toaster,toast} from 'sonner';
 import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
@@ -76,13 +76,10 @@ const SessionAttendance = () => {
     try {
       const response = await Axios.post('http://localhost:3001/session/attendance', attendanceData);
       console.log('Attendance submitted:', response.data);
-  
-      toast.success('Attendance submitted successfully');
     
     } catch (error) {
       console.error('Error submitting attendance:', error);
-  
-      toast.error('Submission failed');
+
     }
   };
   

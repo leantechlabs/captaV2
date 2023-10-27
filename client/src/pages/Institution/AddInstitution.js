@@ -139,11 +139,13 @@ const AddInstitution = () => {
 
   return (
     <div className="bg-gray-100 g-sidenav-show">
+      
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
-      <main className="main-content position-relative border-radius-lg">
+      <main className="main-content position-relative ">
         <Navbar />
         <div className="container-fluid py-4">
+        
           <div className="card">
             <div className="card-body">
               <p className="text-uppercase text-sm">Institution Information</p>
