@@ -74,12 +74,15 @@ const SessionAttendance = () => {
     };
   
     try {
-      const response = await Axios.post('http://localhost:3001/session/attendance', attendanceData);
+      const response = await Axios.post(ApiUrls['SessionAttendance'], attendanceData);
       console.log('Attendance submitted:', response.data);
+  
+      toast.success('Attendance submitted successfully');
     
     } catch (error) {
       console.error('Error submitting attendance:', error);
-
+  
+      toast.error('Submission failed');
     }
   };
   

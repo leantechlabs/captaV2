@@ -1,7 +1,8 @@
 const flag= 'Test'
-const Api= 'http://localhost:3001' //testAPi
+var Api= 'http://localhost:3001' //testAPi
 if (flag=='Dev'){
-    const Api= 'https://ap-south-1.console.aws.amazon.com/codesuite/codepipeline/pipeline/' //Production APi
+    //const Api= 'https://ap-south-1.console.aws.amazon.com/codesuite/codepipeline/pipeline/' //Production APi
+     Api= 'https://capta-server.vercel.app'
 }
 const ApiUrls= {
     //add all api urls here
@@ -18,7 +19,7 @@ const ApiUrls= {
     'ModuleManage': Api + '/module/confirmation/manage',
     'ModuleStatus' : Api + '/module/status',
     //session
-    'SessionAttendance':Api+'session/attendance'
+    'SessionAttendance' :Api+'/session/attendance'
 }
 
 export default ApiUrls;
