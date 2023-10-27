@@ -13,7 +13,9 @@ import MOUManagePage from "./pages/Mou/MOUManage";
 import MOUConfirmation from "./pages/Mou/MOUConfirmation";
 import AddInstitution from "./pages/Institution/AddInstitution";
 import ManageInstitution from "./pages/Institution/ManageInstitution";
-
+import ModuleConfirmationSheet from './pages/Module/ModuleConfirmationsheet';
+import ModuleManage from './pages/Module/ModuleManage';
+import ModuleConfirmation from './pages/Module/ModuleConfirmation';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,6 +34,9 @@ function App() {
           <Route path="/mou/manage" element={<MOUManagePage />} />
           <Route path="/college/add" element={<AddInstitution />} />
           <Route path="/college/manage" element={<ManageInstitution />} />
+          <Route path='/module/confirmation/create' element = {<ModuleConfirmationSheet />} />
+          <Route path='/module/confirmation/manage' element = {<ModuleManage />} />
+          <Route path='/module/status' element = {<ModuleConfirmation />} />
 
 
         </Routes>

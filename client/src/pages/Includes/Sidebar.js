@@ -172,17 +172,17 @@ const Sidebar = () => {
               <ul className="navbar-nav">
                 
                 <li className="nav-item">
-                  <Link to="module/confirmation/create" className="nav-link">
+                  <Link to="/module/confirmation/create" className="nav-link">
                     <span className="nav-link-text ms-3">Module Confirmation Sheet</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="module/confirmation/manage" className="nav-link">
+                  <Link to="/module/confirmation/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Module Sheet</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="module/status" className="nav-link">
+                  <Link to="/module/status" className="nav-link">
                     <span className="nav-link-text ms-3">Verify Module Sheet</span>
                   </Link>
                 </li>

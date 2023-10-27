@@ -13,7 +13,10 @@ const ApiUrls= {
     'MouCreate':Api+'/mou/create',
     'MouConfirm':Api+'/mou/confirm',
     'MouManage':Api+'/mou/manage',
-    'ModuleCreate':Api+'/mou/create'
+    'ModuleCreate':Api+'/mou/create',
+    'ModuleConfirmation':Api +'/module/confirmation/create',
+    'ModuleManage': Api + '/module/confirmation/manage',
+    'ModuleStatus' : Api + '/module/status'
     //Abc$ada
 }
 
