@@ -115,7 +115,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#mouSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-paper-diploma text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">MOU</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -146,7 +146,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#TrainingSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-hat-3 text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Training Curriculum</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -186,7 +186,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#moduleSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-books text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Module Confirmation</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -223,7 +223,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#BatchSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-building text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Batch Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -254,7 +254,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#SessionSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-ruler-pencil text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Session Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -287,7 +287,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#ReportSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-collection text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Report Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -340,7 +340,7 @@ const Sidebar = () => {
               onClick={() => toggleSubmenu("#SettingsSubmenu")}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-settings text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Settings</span>
               <i className="fas fa-caret-down ms-auto"></i>

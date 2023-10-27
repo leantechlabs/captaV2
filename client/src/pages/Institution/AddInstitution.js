@@ -142,12 +142,12 @@ const AddInstitution = () => {
       
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
-      <main className="main-content position-relative ">
+      <main className="main-content position-relative border-radius-lg">
         <Navbar />
         <div className="container-fluid py-4">
         
           <div className="card">
-            <div className="card-body">
+            <div className="card-body ">
               <p className="text-uppercase text-sm">Institution Information</p>
               {message && (
                 <div className="alert alert-custom" role="alert">
