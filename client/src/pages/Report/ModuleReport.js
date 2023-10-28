@@ -29,6 +29,8 @@ const ModuleReport = () => {
   };
 
   return (
+    <div className="bg-gray-100 g-sidenav-show">
+    <div className="min-height-300 bg-primary position-absolute w-100"></div>
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
@@ -86,6 +88,7 @@ const ModuleReport = () => {
           </div>
         </main>
       </div>
+    </div>
     </div>
   );
 };

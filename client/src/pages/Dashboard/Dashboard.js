@@ -21,6 +21,12 @@ const Dashboard = () => {
       trainers: 3,
     },
     {
+      title: "Rev",
+      hours: 20,
+      status: "Pending",
+      trainers: 3,
+    },
+    {
       title: "C",
       hours: 30,
       status: "Pending",
@@ -51,6 +57,9 @@ const Dashboard = () => {
   ];
 
   return (
+
+    <div className="bg-gray-100 g-sidenav-show">
+    <div className="min-height-300 bg-primary position-absolute w-100"></div>
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
@@ -103,7 +112,8 @@ const Dashboard = () => {
           </div>
         </main>
       </div>
-    </div>
+      </div>
+      </div>
   );
 };
 

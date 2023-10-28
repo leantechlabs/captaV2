@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.11.0",
+    "react-minimal-side-navigation": "^1.9.2",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
