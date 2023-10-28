@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import Layout from '../Layout/Layout';
 import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
+import ApiUrls from '../Includes/corsUrls';
 
 const MOUConfirmation = () => {
   const initialConfirmationData = {
@@ -23,18 +24,18 @@ const MOUConfirmation = () => {
       [name]: value,
     }));
   };
-
-  const handleSubmit = () => {
-    axios
-      .post('/add-confirmation', confirmationData)
-      .then((response) => {
-        setMessage(response.data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        setMessage('An error occurred.');
-      });
+  const handleSubmit = async () => {
+    try {
+      // process.env.API_SERVER check the env file
+      const response = await Axios.post(ApiUrls['MouConfirm'], confirmationData);
+      console.log('Server response:', response.data);
+      setMessage('Data submitted successfully');
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Failed to submit data');
+    }
   };
+
 
   return (
 

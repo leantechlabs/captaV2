@@ -16,7 +16,9 @@ const ApiUrls= {
     'ModuleCreate':Api+'/mou/create',
     'ModuleConfirmation':Api +'/module/confirmation/create',
     'ModuleManage': Api + '/module/confirmation/manage',
-    'ModuleStatus' : Api + '/module/status'
+    'ModuleStatus' : Api + '/module/status',
+    'createCurriculum' : Api + '/curriculum/create',
+    'createModuleCurriculum' : Api + '/module/create'
     //Abc$ada
 }
 

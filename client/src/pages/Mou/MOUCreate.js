@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import Layout from '../Layout/Layout';
 import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
+import ApiUrls from '../Includes/corsUrls';
 
-const MOUTable = () => {
+const MouCreate = () => {
   const initialMOUData = {
     Date: '',
     Location: '',
@@ -61,16 +62,16 @@ const MOUTable = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    axios
-      .post('/MOU/create', mouData)
-      .then((response) => {
-        setMessage(response.data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        setMessage('An error occurred.');
-      });
+  const handleSubmit = async () => {
+    try {
+      // process.env.API_SERVER check the env file
+      const response = await Axios.post(ApiUrls['MouCreate'], mouData);
+      console.log('Server response:', response.data);
+      setMessage('Data submitted successfully');
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Failed to submit data');
+    }
   };
 
   return (
@@ -362,4 +363,4 @@ const MOUTable = () => {
   );
 };
 
-export default MOUTable;
+export default MouCreate;

@@ -8,14 +8,18 @@ import Layout from './pages/Layout/Layout';
 import Footer from './pages/Includes/Footer'
 import AddUser from './pages/Users/addUsers';
 import ManageUser from './pages/Users/manageUsers';
-import MOUTable from "./pages/Mou/MOUTable";
-import MOUManagePage from "./pages/Mou/MOUManage";
-import MOUConfirmation from "./pages/Mou/MOUConfirmation";
+import MOUCreate from "./pages/mou/MOUCreate";
+import MOUManagePage from "./pages/mou/MOUManage";
+import MOUConfirmation from "./pages/mou/MOUConfirmation";
 import AddInstitution from "./pages/Institution/AddInstitution";
 import ManageInstitution from "./pages/Institution/ManageInstitution";
 import ModuleConfirmationSheet from './pages/Module/ModuleConfirmationsheet';
 import ModuleManage from './pages/Module/ModuleManage';
 import ModuleConfirmation from './pages/Module/ModuleConfirmation';
+import Curriculumcreate from './pages/curriculum/createCurriculum';
+import CurriculumManage from './pages/curriculum/manageCurriculum';
+import ModuleCurriculumCreate from './pages/curriculum/createModuleCurriculum';
+import ModuleCurriculumManage from './pages/curriculum/manageModuleCurriculum';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -29,7 +33,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/user/add" element={<AddUser/>} />
           <Route path="/user/manage" element={<ManageUser/>} />/
-          <Route path="/mou/create" element={<MOUTable />} />
+          <Route path="/mou/create" element={<MOUCreate />} />
           <Route path="/mou/confirm" element={<MOUConfirmation />} />
           <Route path="/mou/manage" element={<MOUManagePage />} />
           <Route path="/college/add" element={<AddInstitution />} />
@@ -37,6 +41,10 @@ function App() {
           <Route path='/module/confirmation/create' element = {<ModuleConfirmationSheet />} />
           <Route path='/module/confirmation/manage' element = {<ModuleManage />} />
           <Route path='/module/status' element = {<ModuleConfirmation />} />
+          <Route path='/curriculum/create' element = {<Curriculumcreate />} />
+          <Route path='/curriculum/manage' element = {<CurriculumManage />} />
+          <Route path='/module/create' element = {<ModuleCurriculumCreate />} />
+          <Route path='/module/manage' element = {<ModuleCurriculumManage />} />
 
 
         </Routes>
