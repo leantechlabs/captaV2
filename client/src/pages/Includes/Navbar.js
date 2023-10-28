@@ -1,34 +1,52 @@
-import React from 'react'
-import Layout from '../Layout/Layout'
-import ScriptSection from './ScriptSection'
-
+import React from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
+  const handleProfile = () => {
+    console.log('View Profile');
+  };
+
+  const handleNote = () => {
+    console.log('Notifications');
+  };
+  const handleSignOut = () => {
+    console.log('SIgnOut');
+  };
+
+
   return (
-    <div>
-    <nav className=" navbar-expand-lg" id="navbarBlur" data-scroll="true">
+    <nav className=" " id="navbarBlur" data-scroll="true">
       <div className="container-fluid py-4 px-3">
-        <nav aria-label="breadcrumb"></nav>
-        <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-        <div className="custom-align-center">
-            <div className="input-group">
-              <span className="input-group-text text-body">
-                <i className="fas fa-search" aria-hidden="true"></i>
+        <div className="row justify-content-between">
+          <div className="col-lg-8 col-md-4 col-sm-0">
+            <div className="input-group d-none d-md-block">
+              {/* <span className="input-group-text text-body">
+                <i className="fas fa-search" aria-hidden="true"> </i>
+                <input type="text" className="form-control" placeholder="  Type here..." />
               </span>
-              <input type="text" className="form-control" placeholder="Type here..." />
+              */}
+            </div>
+            
+          </div>
+          <div className="col-lg-4 col-md-8 col-sm-8">
+            <div className="d-flex justify-content-end align-items-center">
+            <Dropdown>
+                  <Dropdown.Toggle variant="white" id="dropdown-basic">
+                  <i class="fa fa-user"> </i> Profile{' '}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
+                    <Dropdown.Item onClick={handleNote}>Notifications</Dropdown.Item>
+                    <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
             </div>
           </div>
-       
         </div>
       </div>
     </nav>
-    </div>
-  )
-}
+  );
+};
 
-export default Navbar
-
-
-    
-  
-
+export default Navbar;

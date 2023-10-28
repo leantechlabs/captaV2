@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <aside
       className={`sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-1 ${
-        isSidebarOpen ? "show" : ""
+        isSidebarOpen ? "show" : "show"
       }`}
       id="sidenav-main"
     >
