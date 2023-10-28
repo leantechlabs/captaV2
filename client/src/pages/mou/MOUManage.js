@@ -4,25 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 
-const MOUManagePage = () => {
+const MouManage = () => {
   const [mouData, setMOUData] = useState([
     {
-      MOUID: 1,
+      MOUID: 1001,
       Details: 'Sample MOU 1 Details',
     },
     {
-      MOUID: 2,
+      MOUID: 1021,
       Details: 'Sample MOU 2 Details',
     },
     {
-      MOUID: 3,
+      MOUID: 3011,
       Details: 'Sample MOU 3 Details',
     },
   ]);
-  const [selectedOption, setSelectedOption] = useState('today');
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-  };
+
   const handleEdit = (mouID) => {
     console.log(`Editing MOU with ID ${mouID}`);
   };
@@ -45,21 +42,7 @@ const MOUManagePage = () => {
           <div className="card">
             <div className="card-body">
               <p className="text-uppercase text-sm">MOU Management</p>
-              <div className="d-flex align-items-center">
-                      <label className="me-2">Select:</label>
-                      <select
-                        className="form-select"
-                        value={selectedOption}
-                        onChange={(e) => handleOptionChange(e.target.value)}
-                        style={{ marginBottom: '10px' }}
 
-
-                      >
-                        <option value="today">Today's Sessions</option>
-                        <option value="weekly">Weekly Sessions</option>
-                        <option value="curriculum">Whole Curriculum</option>
-                      </select>
-                    </div>
               <div className="table-responsive">
                 <table className="table">
                   <thead>
@@ -105,4 +88,4 @@ const MOUManagePage = () => {
   );
 };
 
-export default MOUManagePage;
+export default MouManage;

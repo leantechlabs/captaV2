@@ -8,18 +8,16 @@ import Layout from './pages/Layout/Layout';
 import Footer from './pages/Includes/Footer'
 import AddUser from './pages/Users/addUsers';
 import ManageUser from './pages/Users/manageUsers';
-import MOUCreate from "./pages/mou/MOUCreate";
-import MOUManagePage from "./pages/mou/MOUManage";
-import MOUConfirmation from "./pages/mou/MOUConfirmation";
+
 import AddInstitution from "./pages/Institution/AddInstitution";
 import ManageInstitution from "./pages/Institution/ManageInstitution";
 import ModuleConfirmationSheet from './pages/Module/ModuleConfirmationsheet';
 import ModuleManage from './pages/Module/ModuleManage';
 import ModuleConfirmation from './pages/Module/ModuleConfirmation';
-import Curriculumcreate from './pages/curriculum/createCurriculum';
-import CurriculumManage from './pages/curriculum/manageCurriculum';
-import ModuleCurriculumCreate from './pages/curriculum/createModuleCurriculum';
-import ModuleCurriculumManage from './pages/curriculum/manageModuleCurriculum';
+import Curriculumcreate from './pages/Curriculum/createCurriculum';
+import CurriculumManage from './pages/Curriculum/manageCurriculum';
+import ModuleCurriculumCreate from './pages/Curriculum/createModuleCurriculum';
+import ModuleCurriculumManage from './pages/Curriculum/manageModuleCurriculum';
 import SessionDetails from './pages/Session/SessionDetails';
 import SessionAttendance from './pages/Session/SessionAttendance';
 import CurriculumReport from './pages/Report/CurricullumReport';
@@ -28,8 +26,9 @@ import ModuleReport from './pages/Report/ModuleReport';
 import TrainersReport from './pages/Report/TrainerReport';
 import SystemSettings from './pages/Settings/SystemSettings';
 import Api from './pages/Settings/Api'
-
-
+import MouCreate from './pages/Mou/MOUCreate';
+import MouConfirmation from './pages/Mou/MOUConfirmation';
+import MouManage from './pages/Mou/MOUManage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //app
@@ -42,9 +41,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/user/add" element={<AddUser />} />
           <Route path="/user/manage" element={<ManageUser />} />/
-          <Route path="/mou/create" element={<MOUCreate />} />
-          <Route path="/mou/confirm" element={<MOUConfirmation />} />
-          <Route path="/mou/manage" element={<MOUManagePage />} />
+          <Route path="/mou/create" element={<MouCreate />} />
+          <Route path="/mou/confirm" element={<MouConfirmation />} />
+          <Route path="/mou/manage" element={<MouManage />} /> 
           <Route path="/college/add" element={<AddInstitution />} />
           <Route path="/college/manage" element={<ManageInstitution />} />
           <Route

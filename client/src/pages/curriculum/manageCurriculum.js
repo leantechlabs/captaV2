@@ -1,46 +1,40 @@
-import React,{ useState } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 
 const CurriculumManage = () => {
   const curriculumItems = [
     {
-      SNo: 1,
-      CuriucllumID: '101',
+      CurriculumID: '101',
       ModuleName: 'Module A',
       Topic: 'Topic 1',
       SubTopic: 'Sub-topic 1',
       Day: 1,
-      Hours: 2,
-      PractisePrograms: 'Program 1',
+      Hours: 6,
+      PracticalPrograms: 'Program 1',
     },
     {
-      SNo: 2,
-      CuriucllumID: '102',
+      CurriculumID: '102',
       ModuleName: 'Module B',
       Topic: 'Topic 2',
       SubTopic: 'Sub-topic 2',
       Day: 2,
-      Hours: 3,
-      PractisePrograms: 'Program 2',
+      Hours: 12,
+      PracticalPrograms: 'Program 2',
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState('today');
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
-  const handleEdit = (CuriucllumID) => {
-    console.log(`Editing Curriculum with ID ${CuriucllumID}`);
-  };
-  const handleDelete = (CuriucllumID) => {
-    console.log(`Deleting Module Curriculum with ID ${CuriucllumID}`);
-  };
-  const handleManage = (CuriucllumID) => {
-    console.log(`Managing Module with ID ${CuriucllumID}`);
-  };
+const handleEdit = (curriculumID) => {
+  // Implement edit logic
+  console.log(`Editing Curriculum with ID ${curriculumID}`);
+};
+
+
 
   return (
     <div className="bg-gray-100 g-sidenav-show">
@@ -53,75 +47,46 @@ const CurriculumManage = () => {
             <div className="card-body">
               <p className="text-uppercase text-sm">Curriculum Management</p>
               <div>
-              <div className="d-flex align-items-center">
-                      <label className="me-2">Select:</label>
-                      <select
-                        className="form-select"
-                        value={selectedOption}
-                        onChange={(e) => handleOptionChange(e.target.value)}
-                        style={{ marginBottom: '10px' }}
-
-
-                      >
-                        <option value="today">Today's Sessions</option>
-                        <option value="weekly">Weekly Sessions</option>
-                        <option value="curriculum">Whole Curriculum</option>
-                      </select>
-                    </div>
+                <div className="form-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search Curriculum by Name"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                  />
+                </div>
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>S.No</th>
                       <th>Curriculum ID</th>
-                      <th>Module Name</th>
-                      <th>Topic</th>
-                      <th>Sub-Topic</th>
-                      <th>Day</th>
-                      <th>Hours</th>
-                      <th>Practical Programs</th>
-                      <th>Action</th>
+                      <th>Curriculum Name</th>
+                      <th>Total Hours</th>
+                      <th>Total Days</th>
+                      <th>Edit</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {curriculumItems.map((item) => (
-                      <tr key={item.SNo}>
-                        <td className="text-center">{item.SNo}</td>
-                        <td className="text-center">{item.CuriucllumID}</td>
-                        <td className="text-center">{item.ModuleName}</td>
-                        <td className="text-center">{item.Topic}</td>
-                        <td className="text-center">{item.SubTopic}</td>
-                        <td className="text-center">{item.Day}</td>
-                        <td className="text-center">{item.Hours}</td>
-                        <td className="text-center">{item.PractisePrograms}</td>
-                        <td>
-                          <Dropdown>
-                            <Dropdown.Toggle
-                              variant="secondary"
-                              id="dropdown-basic"
+                    {curriculumItems
+                      .filter((item) =>
+                        item.ModuleName.toLowerCase().includes(searchTerm.toLowerCase())
+                      )
+                      .map((item) => (
+                        <tr key={item.CurriculumID}>
+                          <td>{item.CurriculumID}</td>
+                          <td>{item.ModuleName}</td>
+                          <td>{item.Hours}</td>
+                          <td>{item.Day}</td>
+                          <td>
+                            <button
+                              className="btn btn-primary btn-sm"
+                              onClick={() => handleEdit(item.CurriculumID)}
                             >
-                              <i className="fas fa-ellipsis"></i>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                              <Dropdown.Item
-                                onClick={() => handleEdit(item.CuriucllumID)}
-                              >
-                                Edit
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                onClick={() => handleDelete(item.CuriucllumID)}
-                              >
-                                Delete
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                onClick={() => handleManage(item.CuriucllumID)}
-                              >
-                                Manage
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </td>
-                      </tr>
-                    ))}
+                              Edit
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

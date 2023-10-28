@@ -5,21 +5,14 @@ import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
 import ApiUrls from '../Includes/corsUrls';
-
+import * as XLSX from 'xlsx'; // Import the xlsx library for Excel file parsing
 
 const CurriculumPage = () => {
-  const initialCurriculumData = {
-    CuriucllumID:'',
-    ModuleName: '',
-    Topic: '',
-    SubTopic: '',
-    Day: 1,
-    Hours: 1,
-    PractisePrograms: '',
-  };
-
-  const [curriculumData, setCurriculumData] = useState(initialCurriculumData);
+  const [curriculumData, setCurriculumData] = useState({
+    CurriculumName: '',
+  });
   const [message, setMessage] = useState('');
+  const [excelFile, setExcelFile] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,12 +22,41 @@ const CurriculumPage = () => {
     }));
   };
 
+  const handleExcelUpload = (event) => {
+    const file = event.target.files[0];
+    setExcelFile(file);
+  };
+
   const handleSubmit = async () => {
     try {
-      // process.env.API_SERVER check the env file
-      const response = await Axios.post(ApiUrls['createCurriculum'], curriculumData);
-      console.log('Server response:', response.data);
-      setMessage('Data submitted successfully');
+      // Processing the Excel file and create a dictionary
+      if (excelFile) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+          const excelData = XLSX.utils.sheet_to_json(worksheet);
+
+          // Sending the curriculum data to the server
+          Axios.post(ApiUrls['createCurriculum'], {
+            ...curriculumData,
+            excelData,
+          })
+            .then((response) => {
+              console.log('Server response:', response.data);
+              setMessage('Data submitted successfully');
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+              setMessage('Failed to submit data');
+            });
+        };
+
+        reader.readAsArrayBuffer(excelFile);
+      } else {
+        setMessage('Please upload an Excel file.');
+      }
     } catch (error) {
       console.error('Error:', error);
       setMessage('Failed to submit data');
@@ -56,84 +78,43 @@ const CurriculumPage = () => {
                   <span>{message}</span>
                 </div>
               )}
+
               <div className="form-group">
-                <label htmlFor="CuriucllumID" className="form-control-label">CuriucllumID:</label>
-                <input
-                  className="form-control"
-                  type="number"
-                  id="CuriucllumID"
-                  name="CuriucllumID"
-                  value={curriculumData.CuriucllumID}
-                  onChange={handleInputChange}
-                />
-              </div>             
-              <div className="form-group">
-                <label htmlFor="ModuleName" className="form-control-label">Module Name:</label>
+                <label htmlFor="CurriculumName" className="form-control-label">
+                  Curriculum Name:
+                </label>
                 <input
                   className="form-control"
                   type="text"
-                  id="ModuleName"
-                  name="ModuleName"
-                  value={curriculumData.ModuleName}
+                  id="CurriculumName"
+                  name="CurriculumName"
+                  value={curriculumData.CurriculumName}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="Topic" className="form-control-label">Topic:</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  id="Topic"
-                  name="Topic"
-                  value={curriculumData.Topic}
-                  onChange={handleInputChange}
-                />
+
+              <div className="col-md-4">
+                <div className="form-group">
+                  <label htmlFor="ExcelFile" className="form-control-label">
+                    Upload Excel File:
+                  </label>
+                  <input
+                    className="form-control"
+                    type="file"
+                    accept=".xlsx, .xls"
+                    onChange={handleExcelUpload}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="SubTopic" className="form-control-label">Sub-Topic:</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  id="SubTopic"
-                  name="SubTopic"
-                  value={curriculumData.SubTopic}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="Day" className="form-control-label">Day:</label>
-                <input
-                  className="form-control"
-                  type="number"
-                  id="Day"
-                  name="Day"
-                  value={curriculumData.Day}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="Hours" className="form-control-label">Hours:</label>
-                <input
-                  className="form-control"
-                  type="number"
-                  id="Hours"
-                  name="Hours"
-                  value={curriculumData.Hours}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="PractisePrograms" className="form-control-label">Practical Programs:</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  id="PractisePrograms"
-                  name="PractisePrograms"
-                  value={curriculumData.PractisePrograms}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <button className="btn btn-primary btn-sm ms-auto" onClick={handleSubmit}>Submit</button>
+              <br>
+              </br>
+              <p>Download Sample Excel File: <a href="../sample_excel.xlsx">Download</a></p>
+              <button
+                className="btn btn-primary btn-sm ms-auto"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>

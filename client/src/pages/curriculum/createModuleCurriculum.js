@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Layout from '../Layout/Layout';
 import Sidebar from '../Includes/Sidebar';
@@ -6,31 +6,55 @@ import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
 
 const ModuleCurriculumCreate = () => {
-    const initialModuleCurriculumData = {
-        ModuleName: '',
-        TotalHours: 0,
-        TotalDays: 0,
-        TotalBatches: 0,
-        StartDate: '',
-        EndDate: '',
-        Curriculum: '',
-    };
+  const initialModuleCurriculumData = {
+    ModuleName: '',
+    TotalHours: 0,
+    TotalDays: 0,
+    TotalBatches: 0,
+    StartDate: '',
+    EndDate: '',
+    Curriculum: '', // Updated to store the selected curriculum name
+  };
 
-  const [ModulecurriculumData, setModuleCurriculumData] = useState(initialModuleCurriculumData);
+  const [moduleCurriculumData, setModuleCurriculumData] = useState(initialModuleCurriculumData);
   const [message, setMessage] = useState('');
+  const [curriculumNames, setCurriculumNames] = useState([]); // State to store curriculum names
+  const [selectedCurriculum, setSelectedCurriculum] = useState(''); // State to store the selected curriculum name
+
+  useEffect(() => {
+    // Fetch curriculum names from the server and populate the curriculumNames state
+    Axios.get(ApiUrls['fetchCurriculumNames'])
+      .then((response) => {
+        setCurriculumNames(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching curriculum names:', error);
+      });
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setModuleCurriculumData((prevData) => ({
-        ...prevData,
-        [name]: value,
+      ...prevData,
+      [name]: value,
     }));
+  };
+
+  const handleCurriculumChange = (event) => {
+    setSelectedCurriculum(event.target.value);
   };
 
   const handleSubmit = async () => {
     try {
-      // process.env.API_SERVER check the env file
-      const response = await Axios.post(ApiUrls['createModuleCurriculum'], ModulecurriculumData);
+      // Prepare data including the selected curriculum name
+      const data = {
+        ...moduleCurriculumData,
+        Curriculum: selectedCurriculum,
+      };
+
+      // Send the POST request to create a module
+      const response = await Axios.post(ApiUrls['createModule'], data);
+
       console.log('Server response:', response.data);
       setMessage('Data submitted successfully');
     } catch (error) {
@@ -54,85 +78,108 @@ const ModuleCurriculumCreate = () => {
                   <span>{message}</span>
                 </div>
               )}
+               <div className="form-group">
+                <label htmlFor="Curriculum" className="form-control-label">
+                  Curriculum:
+                </label>
+                <select
+                  className="form-control"
+                  id="Curriculum"
+                  name="Curriculum"
+                  value={selectedCurriculum}
+                  onChange={handleCurriculumChange}
+                >
+                  <option value="">Select Curriculum</option>
+                  {curriculumNames.map((name) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="form-group">
-                <label htmlFor="ModuleName" className="form-control-label">Module Name:</label>
+                <label htmlFor="ModuleName" className="form-control-label">
+                  Module Name:
+                </label>
                 <input
                   type="text"
                   className="form-control"
                   id="ModuleName"
                   name="ModuleName"
-                  value={ModulecurriculumData.ModuleName}
+                  value={moduleCurriculumData.ModuleName}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="TotalHours" className="form-control-label">Total Hours:</label>
+                <label htmlFor="TotalHours" className="form-control-label">
+                  Total Hours:
+                </label>
                 <input
                   type="number"
                   className="form-control"
                   id="TotalHours"
                   name="TotalHours"
-                  value={ModulecurriculumData.TotalHours}
+                  value={moduleCurriculumData.TotalHours}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="TotalDays" className="form-control-label">Total Days:</label>
+                <label htmlFor="TotalDays" className="form-control-label">
+                  Total Days:
+                </label>
                 <input
                   type="number"
                   className="form-control"
                   id="TotalDays"
                   name="TotalDays"
-                  value={ModulecurriculumData.TotalDays}
+                  value={moduleCurriculumData.TotalDays}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="TotalBatches" className="form-control-label">Total Batches:</label>
+                <label htmlFor="TotalBatches" className="form-control-label">
+                  Total Batches:
+                </label>
                 <input
                   type="number"
                   className="form-control"
                   id="TotalBatches"
                   name="TotalBatches"
-                  value={ModulecurriculumData.TotalBatches}
+                  value={moduleCurriculumData.TotalBatches}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="StartDate" className="form-control-label">Start Date:</label>
+                <label htmlFor="StartDate" className="form-control-label">
+                  Start Date:
+                </label>
                 <input
                   type="date"
                   className="form-control"
                   id="StartDate"
                   name="StartDate"
-                  value={ModulecurriculumData.StartDate}
+                  value={moduleCurriculumData.StartDate}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="EndDate" className="form-control-label">End Date:</label>
+                <label htmlFor="EndDate" className="form-control-label">
+                  End Date:
+                </label>
                 <input
                   type="date"
                   className="form-control"
                   id="EndDate"
                   name="EndDate"
-                  value={ModulecurriculumData.EndDate}
+                  value={moduleCurriculumData.EndDate}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="Curriculum" className="form-control-label">Curriculum:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="Curriculum"
-                  name="Curriculum"
-                  value={ModulecurriculumData.Curriculum}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <button className="btn btn-primary btn-sm ms-auto" onClick={handleSubmit}>Submit</button>
-              </div>
+             
+              <button className="btn btn-primary btn-sm ms-auto" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </main>

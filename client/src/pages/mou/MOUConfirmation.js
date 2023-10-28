@@ -6,7 +6,7 @@ import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
 import ApiUrls from '../Includes/corsUrls';
 
-const MOUConfirmation = () => {
+const MouConfirmation = () => {
   const initialConfirmationData = {
     MOUID: '',
     ConfirmationDate: '',
@@ -117,4 +117,4 @@ const MOUConfirmation = () => {
   );
 };
 
-export default MOUConfirmation;
+export default MouConfirmation;
