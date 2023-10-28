@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Layout from '../Layout/Layout';
 import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
-import ApiUrls from '../Includes/corsUrls';
 
-const MouConfirmation = () => {
+const ModuleConfirmation = () => {
   const initialConfirmationData = {
-    MOUID: '',
+    ModuleID: '',
+    // AdminID: '',
+    // ModeratorID: '',
     ConfirmationDate: '',
     ConfirmationStatus: 'Pending',
     Comments: '',
@@ -24,18 +25,18 @@ const MouConfirmation = () => {
       [name]: value,
     }));
   };
-  const handleSubmit = async () => {
-    try {
-      // process.env.API_SERVER check the env file
-      const response = await Axios.post(ApiUrls['MouConfirm'], confirmationData);
-      console.log('Server response:', response.data);
-      setMessage('Data submitted successfully');
-    } catch (error) {
-      console.error('Error:', error);
-      setMessage('Failed to submit data');
-    }
-  };
 
+  const handleSubmit = () => {
+    axios
+      .post('/add-module-confirmation', confirmationData)
+      .then((response) => {
+        setMessage(response.data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setMessage('An error occurred.');
+      });
+  };
 
   return (
 
@@ -50,28 +51,45 @@ const MouConfirmation = () => {
           <div className="container-fluid py-4">
           <div className="card">
         <div className="card-body">
-          <p className="text-uppercase text-sm">MOU Confirmation</p>
+          <p className="text-uppercase text-sm">Module Confirmation</p>
           {message && (
             <div className="alert alert-custom" role="alert">
               <span>{message}</span>
             </div>
           )}
           <div className="form-group">
-            <label htmlFor="MOUID" className="form-control-label">MOU ID:</label>
-            <select
+            <label htmlFor="MODULEID" className="form-control-label">MODULE ID:</label>
+            <input
               className="form-control"
               type="text"
-              id="MOUID"
-              name="MOUID"
-              placeholder='Select'
-              value={confirmationData.MOUID}
+              id="MODULEID"
+              name="MODULEID"
+              value={confirmationData.ModuleID}
               onChange={handleInputChange}
-            >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+            />
           </div>
+          {/* <div className="form-group">
+            <label htmlFor="AdminID" className="form-control-label">Admin ID:</label>
+            <input
+              className="form-control"
+              type="text"
+              id="AdminID"
+              name="AdminID"
+              value={confirmationData.AdminID}
+              onChange={handleInputChange}
+            />
+          </div> */}
+          {/* <div className="form-group">
+            <label htmlFor="ModeratorID" className="form-control-label">Moderator ID:</label>
+            <input
+              className="form-control"
+              type="text"
+              id="ModeratorID"
+              name="ModeratorID"
+              value={confirmationData.ModeratorID}
+              onChange={handleInputChange}
+            />
+          </div> */}
           <div className="form-group">
             <label htmlFor="ConfirmationDate" className="form-control-label">Confirmation Date:</label>
             <input
@@ -117,4 +135,4 @@ const MouConfirmation = () => {
   );
 };
 
-export default MouConfirmation;
+export default ModuleConfirmation;
