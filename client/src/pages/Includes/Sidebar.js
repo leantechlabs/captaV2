@@ -39,7 +39,10 @@ const Sidebar = () => {
         </Link>
       </div>
       <hr className="horizontal dark mt-0" />
-      <div className="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <div
+        className="collapse navbar-collapse w-auto"
+        id="sidenav-collapse-main"
+      >
         <ul className="navbar-nav">
           <li className="nav-item mt-3">
             <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6"></h6>
@@ -53,7 +56,10 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link  className="nav-link" onClick={() => toggleSubmenu("#usersSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#usersSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
               </div>
@@ -76,7 +82,10 @@ const Sidebar = () => {
             </div>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" onClick={() => toggleSubmenu("#institutionSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#institutionSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-building text-primary text-sm opacity-10"></i>
               </div>
@@ -92,16 +101,21 @@ const Sidebar = () => {
                 </li>
                 <li className="nav-item">
                   <Link to="/college/manage" className="nav-link">
-                    <span className="nav-link-text ms-3">Manage Institution</span>
+                    <span className="nav-link-text ms-3">
+                      Manage Institution
+                    </span>
                   </Link>
                 </li>
               </ul>
             </div>
           </li>
           <li className="nav-item">
-            <Link  className="nav-link" onClick={() => toggleSubmenu("#mouSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#mouSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-paper-diploma text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">MOU</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -127,16 +141,18 @@ const Sidebar = () => {
             </div>
           </li>
           <li className="nav-item">
-            <Link  className="nav-link" onClick={() => toggleSubmenu("#TrainingSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#TrainingSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-hat-3 text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Training Curriculum</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
             <div className="collapse" id="TrainingSubmenu">
               <ul className="navbar-nav">
-                
                 <li className="nav-item">
                   <Link to="/curriculum/create" className="nav-link">
                     <span className="nav-link-text ms-3">Create Curriculum</span>
@@ -161,38 +177,49 @@ const Sidebar = () => {
             </div>
           </li>
           <li className="nav-item">
-            <Link  className="nav-link" onClick={() => toggleSubmenu("#moduleSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#moduleSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-books text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Module Confirmation</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
             <div className="collapse" id="moduleSubmenu">
               <ul className="navbar-nav">
-                
                 <li className="nav-item">
                   <Link to="/module/confirmation/create" className="nav-link">
-                    <span className="nav-link-text ms-3">Module Confirmation Sheet</span>
+                    <span className="nav-link-text ms-3">
+                      Module Confirmation Sheet
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/module/confirmation/manage" className="nav-link">
-                    <span className="nav-link-text ms-3">Manage Module Sheet</span>
+                    <span className="nav-link-text ms-3">
+                      Manage Module Sheet
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/module/status" className="nav-link">
-                    <span className="nav-link-text ms-3">Verify Module Sheet</span>
+                    <span className="nav-link-text ms-3">
+                      Verify Module Sheet
+                    </span>
                   </Link>
                 </li>
               </ul>
             </div>
           </li>
           <li className="nav-item">
-            <Link  className="nav-link" onClick={() => toggleSubmenu("#BatchSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#BatchSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-building text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Batch Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
@@ -218,23 +245,28 @@ const Sidebar = () => {
             </div>
           </li>
           <li className="nav-item">
-            <Link  className="nav-link" onClick={() => toggleSubmenu("#SessionSubmenu")}>
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#SessionSubmenu")}
+            >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                <i className="ni ni-ruler-pencil text-primary text-sm opacity-10"></i>
               </div>
               <span className="nav-link-text ms-1">Session Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
             <div className="collapse" id="SessionSubmenu">
               <ul className="navbar-nav">
-              <li className="nav-item">
-                  <Link to="session/details" className="nav-link">
+                <li className="nav-item">
+                  <Link to="/session/details" className="nav-link">
                     <span className="nav-link-text ms-3">Session Details</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="session/attendance" className="nav-link">
-                    <span className="nav-link-text ms-3">Session Attendance</span>
+                  <Link to="/session/attendance" className="nav-link">
+                    <span className="nav-link-text ms-3">
+                      Session Attendance
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -245,12 +277,97 @@ const Sidebar = () => {
               </ul>
             </div>
           </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#ReportSubmenu")}
+            >
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-collection text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">Report Management</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="ReportSubmenu">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="/report/curriculum" className="nav-link">
+                    <span className="nav-link-text ms-3">
+                      Curriculum Report
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/report/colleges" className="nav-link">
+                    <span className="nav-link-text ms-3">Colleges Report</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/report/module" className="nav-link">
+                    <span className="nav-link-text ms-3">Module Report</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/report/trainer" className="nav-link">
+                    <span className="nav-link-text ms-3">Trainer Report</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/report/session" className="nav-link">
+                    <span className="nav-link-text ms-3">Session Report</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/report/trainer-attendance" className="nav-link">
+                    <span className="nav-link-text ms-3">Trainer Attendance Report</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/report/financial" className="nav-link">
+                    <span className="nav-link-text ms-3">Financial Report</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              onClick={() => toggleSubmenu("#SettingsSubmenu")}
+            >
+              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i className="ni ni-settings text-primary text-sm opacity-10"></i>
+              </div>
+              <span className="nav-link-text ms-1">Settings</span>
+              <i className="fas fa-caret-down ms-auto"></i>
+            </Link>
+            <div className="collapse" id="SettingsSubmenu">
+              <ul className="navbar-nav">
+               
+                <li className="nav-item">
+                  <Link to="/settings/system-set" className="nav-link">
+                    <span className="nav-link-text ms-3">System Settings</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/settings/api" className="nav-link">
+                    <span className="nav-link-text ms-3">Api Settings</span>
+                  </Link>
+                </li>
+              
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
       <div className="sidenav-footer mt-auto">
         <div className="card card-plain shadow-none" id="sidenavCard">
           <div className="card-body text-center p-3 w-100 pt-0">
-            <Link to="/" target="_blank" className="btn btn-dark btn-sm w-100 mb-3">
+            <Link
+              to="/"
+              target="_blank"
+              className="btn btn-dark btn-sm w-100 mb-3"
+            >
               Sign Out
             </Link>
           </div>

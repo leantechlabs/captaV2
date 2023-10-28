@@ -48,7 +48,7 @@ const ModuleCurriculumCreate = () => {
         <div className="container-fluid py-4">
           <div className="card">
             <div className="card-body">
-              <h4 className="text-uppercase text-sm">Create Module Curriculum</h4>
+              <p className="text-uppercase text-sm">Create Module Curriculum</p>
               {message && (
                 <div className="alert alert-custom" role="alert">
                   <span>{message}</span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../Includes/Sidebar';
@@ -28,6 +28,10 @@ const CurriculumManage = () => {
     },
   ];
 
+  const [selectedOption, setSelectedOption] = useState('today');
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
   const handleEdit = (CuriucllumID) => {
     console.log(`Editing Curriculum with ID ${CuriucllumID}`);
   };
@@ -47,8 +51,23 @@ const CurriculumManage = () => {
         <div className="container-fluid py-4">
           <div className="card">
             <div className="card-body">
-              <h4 className="text-uppercase text-sm">Curriculum Management</h4>
+              <p className="text-uppercase text-sm">Curriculum Management</p>
               <div>
+              <div className="d-flex align-items-center">
+                      <label className="me-2">Select:</label>
+                      <select
+                        className="form-select"
+                        value={selectedOption}
+                        onChange={(e) => handleOptionChange(e.target.value)}
+                        style={{ marginBottom: '10px' }}
+
+
+                      >
+                        <option value="today">Today's Sessions</option>
+                        <option value="weekly">Weekly Sessions</option>
+                        <option value="curriculum">Whole Curriculum</option>
+                      </select>
+                    </div>
                 <table className="table">
                   <thead>
                     <tr>

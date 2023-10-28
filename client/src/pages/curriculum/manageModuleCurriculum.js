@@ -43,7 +43,10 @@ const ModuleCurriculumManage = () => {
 //       });
 //   }, []);
 const [showMenu, setShowMenu] = useState(false);
-
+const [selectedOption, setSelectedOption] = useState('today');
+const handleOptionChange = (option) => {
+  setSelectedOption(option);
+};
   const handleEdit = (moduleId) => {
     console.log(`Editing Module Curriculum with ID ${moduleId}`);
   };
@@ -65,7 +68,22 @@ const [showMenu, setShowMenu] = useState(false);
         <div className="container-fluid py-4">
           <div className="card">
             <div className="card-body">
-              <h4 className="text-uppercase text-sm">Module Curriculum Management</h4>
+              <p className="text-uppercase text-sm">Module Curriculum Management</p>
+              <div className="d-flex align-items-center">
+                      <label className="me-2">Select:</label>
+                      <select
+                        className="form-select"
+                        value={selectedOption}
+                        onChange={(e) => handleOptionChange(e.target.value)}
+                        style={{ marginBottom: '10px' }}
+
+
+                      >
+                        <option value="today">Today's Sessions</option>
+                        <option value="weekly">Weekly Sessions</option>
+                        <option value="curriculum">Whole Curriculum</option>
+                      </select>
+                    </div>
               <div className="table-responsive">
                 <table className="table">
                   <thead>
