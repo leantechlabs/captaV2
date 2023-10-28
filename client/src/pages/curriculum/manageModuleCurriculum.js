@@ -89,7 +89,7 @@ const ModuleCurriculumManage = () => {
                               className="btn btn-primary btn-sm"
                               onClick={() => handleEdit(module.ModuleId)}
                             >
-                              Edit
+                              Edit 
                             </button>
                           </td>
                       </tr>
