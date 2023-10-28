@@ -18,8 +18,9 @@ const ApiUrls= {
     'ModuleConfirmation':Api +'/module/confirmation/create',
     'ModuleManage': Api + '/module/confirmation/manage',
     'ModuleStatus' : Api + '/module/status',
-    //session
-    'SessionAttendance' :Api+'/session/attendance'
+    'createCurriculum' : Api + '/curriculum/create',
+    'createModuleCurriculum' : Api + '/module/create'
+    //Abc$ada
 }
 
 export default ApiUrls;

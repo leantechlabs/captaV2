@@ -127,7 +127,8 @@ const AddInstitution = () => {
     };
 
     try {
-      const response = await Axios.post(ApiUrls['addUser'], collegeData);
+      // process.env.API_SERVER check the env file
+      const response = await Axios.post(ApiUrls['AddInstitution'], collegeData);
       console.log('Server response:', response.data);
       setMessage('Data submitted successfully');
       toast.success('Institution Added Successfully');
