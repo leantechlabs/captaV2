@@ -3,9 +3,11 @@ import axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
 import { Toaster,toast} from 'sonner';
 import DOMPurify from 'dompurify';
+import { Link,useNavigate } from 'react-router-dom';
 
 
 const SignIn = () => {
+  const navigate = useNavigate()
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -14,7 +16,6 @@ const SignIn = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // Sanitize input fields by trimming white spaces
     const sanitizedValue = DOMPurify.sanitize(value.trim());
     setState({ ...state, [name]: sanitizedValue });
   }
@@ -24,8 +25,6 @@ const SignIn = () => {
       email: state.email,
       password: state.password,
     };
-
-    // Perform validation (e.g., check for empty fields)
     if (!data.email || !data.password) {
       toast.error('Please fill in all fields.');
       return;
@@ -36,7 +35,6 @@ const SignIn = () => {
       return;
     }
 
-    // Validation for password
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
     if (!data.password.match(passwordRegex)) {  
       toast.error('Password should be min 8 characters long and includes atleast one uppercase and lowercase and special character.');
@@ -45,13 +43,12 @@ const SignIn = () => {
 
     axios.post(ApiUrls['login'], data)
       .then((response) => {
-        // Successful response
         const successMessage = response.data.message;
         setState({ ...state, message: successMessage });
         toast.success(successMessage);
+        navigate('/dashboard')
       })
       .catch((error) => {
-        // Handle API response errors and display the reason
         const errorMessage = error.response ? error.response.data.message : 'Error: Unable to log in.';
         setState({ ...state, message: errorMessage });
         toast.error(errorMessage);

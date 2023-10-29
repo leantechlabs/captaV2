@@ -29,7 +29,7 @@ import Api from './pages/Settings/Api'
 import MouCreate from './pages/Mou/MOUCreate';
 import MouConfirmation from './pages/Mou/MOUConfirmation';
 import MouManage from './pages/Mou/MOUManage';
-
+import Register from './pages/Forms/Register';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //app
 function App() {
@@ -37,6 +37,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+        <Route path="/register-x123lmopq" element={<Register />} />
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/user/add" element={<AddUser />} />

@@ -7,6 +7,7 @@ if (flag=='Dev'){
 const ApiUrls= {
     //add all api urls here
     'login':Api+'/login',
+    'register':Api+'/register',
     'addUser':Api+'/user/add',
     'ManageUser':Api+'/user/manage',
     'AddInstitution':Api+'/college/add',

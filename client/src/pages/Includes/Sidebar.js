@@ -30,7 +30,7 @@ const Sidebar = () => {
           id="iconSidenav"
           onClick={toggleSidebar}
         ></i>
-        <Link to="/" className="navbar-brand mx-4" target="_blank">
+        <Link to="#" className="navbar-brand mx-4" target="_blank">
           <img
             src="/img/logo.png"
             className="navbar-brand-img h-100"
