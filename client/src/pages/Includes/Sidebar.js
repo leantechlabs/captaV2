@@ -154,26 +154,26 @@ const Sidebar = () => {
             <div className="collapse" id="TrainingSubmenu">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to="curriculum/create" className="nav-link">
+                  <Link to="/curriculum/create" className="nav-link">
                     <span className="nav-link-text ms-3">
                       Create Curriculum
                     </span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="curriculum/manage" className="nav-link">
+                  <Link to="/curriculum/manage" className="nav-link">
                     <span className="nav-link-text ms-3">
                       Manage Curriculum
                     </span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="module/create" className="nav-link">
+                  <Link to="/module/create" className="nav-link">
                     <span className="nav-link-text ms-3">Create Module</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="module/manage" className="nav-link">
+                  <Link to="/module/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Module</span>
                   </Link>
                 </li>

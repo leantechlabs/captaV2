@@ -24,7 +24,10 @@ import ModuleReport from './pages/Report/ModuleReport';
 import TrainersReport from './pages/Report/TrainerReport';
 import SystemSettings from './pages/Settings/SystemSettings';
 import Api from './pages/Settings/Api'
-
+import CreateCurriculum from './pages/Training_Curriculum-module/CreateCurriculum';
+import ManageCurriculum from './pages/Training_Curriculum-module/ManageCurriculum';
+import Module from './pages/Training_Curriculum-module/CreateModule';
+import ManageModule from './pages/Training_Curriculum-module/ManageCurriculumModule'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -52,6 +55,10 @@ function App() {
             element={<ModuleManage />}
           />
           <Route path="/module/status" element={<ModuleConfirmation />} />
+          <Route path='/curriculum/create' element={<CreateCurriculum/>}/>
+          <Route path='/curriculum/manage' element={<ManageCurriculum/>}/>
+          <Route path='/module/manage' element={<ManageModule/>}/>
+          <Route path='/module/create' element={<Module/>}/>
           <Route path="/session/details" element={<SessionDetails />} />
           <Route path="/session/attendance" element={<SessionAttendance />} />
           <Route path="/report/curriculum" element={<CurriculumReport />} />
