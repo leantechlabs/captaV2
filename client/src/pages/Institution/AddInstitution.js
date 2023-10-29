@@ -142,8 +142,9 @@ const AddInstitution = () => {
     <div className="bg-gray-100 g-sidenav-show">
       
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
+
       <Sidebar />
-      <main className="main-content position-relative border-radius-lg">
+      <main className="main-content position-relative border-radius-lg ">
         <Navbar />
         <div className="container-fluid py-4">
         
@@ -346,6 +347,7 @@ const AddInstitution = () => {
         </div>
       </main>
     </div>
+    
   );
 };
 

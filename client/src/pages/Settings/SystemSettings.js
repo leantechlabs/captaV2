@@ -61,14 +61,16 @@ const SystemSettings = () => {
                 <div className="card">
                   <div className="card-body">
                     <p className="text-uppercase text-sm">System Settings</p>
-                    <div className="form-group">
+                    <div className="form-group col-6">
                       <label className="form-control-label">Change Logo</label>
                       <input
                         type="file"
+                        className="form-control"
                         accept="image/*"
                         onChange={handleLogoChange}
                       />
                     </div>
+                    
                     <div className="form-group">
                       <label className="form-control-label">SMTP</label>
                       <input
@@ -115,6 +117,7 @@ const SystemSettings = () => {
                 </div>
               </div>
             </div>
+            <br></br>
             <div className="row">
               <div className="col-md-12">
                 <div className="card">
@@ -134,6 +137,7 @@ const SystemSettings = () => {
                           <tr key={index}>
                             <td>{feature}</td>
                             <td>
+
                               <input
                                 type="checkbox"
                                 checked={permissions[feature].admin}
