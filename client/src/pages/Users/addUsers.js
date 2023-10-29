@@ -142,40 +142,36 @@ const AddUser = () => {
         toast.error("Salary can't be empty");
         return;
       }
+      //  const fileType = formData.resume.split('.').pop().toLowerCase();
+      // if (fileType !== 'pdf' || fileType !== 'doc' || fileType!=="docx") {
+      //   formData.resume=null;
+      //   toast.error("Please Select Valid Files");
+      //   return;
+      // }
 
+      // const adharFile=formData.adhar.split('.').pop().toLocaleLowerCase();
+      // if(adharFile!=="pdf" || adharFile!=='png' || adharFile!=='jpg' || adharFile!=='jpeg')
+      // {
+      //   formData.adhar=null;
+      //   toast.error("Adhar only accepted in pdf,jpg,png,jpeg");
+      //   return;
+      // }
 
+      // const panFile=formData.pan.split('.').pop().toLocaleLowerCase();
+      // if(panFile!=="pdf" || panFile!=='png' || panFile!=='jpg' || panFile!=='jpeg')
+      // {
+      //   formData.pan=null;
+      //   toast.error("Pan only accepted in pdf,jpg,png,jpeg");
+      //   return;
+      // }
 
-
-       const fileType = formData.resume.split('.').pop().toLowerCase();
-      if (fileType !== 'pdf' || fileType !== 'doc' || fileType!=="docx") {
-        formData.resume=null;
-        toast.error("Error");
-        return;
-      }
-
-      const adharFile=formData.adhar.split('.').pop().toLocaleLowerCase();
-      if(adharFile!=="pdf" || adharFile!=='png' || adharFile!=='jpg' || adharFile!=='jpeg')
-      {
-        formData.adhar=null;
-        toast.error("Adhar only accepted in pdf,jpg,png,jpeg");
-        return;
-      }
-
-      const panFile=formData.pan.split('.').pop().toLocaleLowerCase();
-      if(panFile!=="pdf" || panFile!=='png' || panFile!=='jpg' || panFile!=='jpeg')
-      {
-        formData.pan=null;
-        toast.error("Pan only accepted in pdf,jpg,png,jpeg");
-        return;
-      }
-
-      const photoFile=formData.photo.split('.').pop().toLocaleLowerCase();
-      if(photoFile!=='png' || photoFile!=='jpg' || photoFile!=='jpeg')
-      {
-        formData.photo=null;
-        toast.error("Photo only accepted in jpg,png,jpeg");
-        return;
-      }
+      // const photoFile=formData.photo.split('.').pop().toLocaleLowerCase();
+      // if(photoFile!=='png' || photoFile!=='jpg' || photoFile!=='jpeg')
+      // {
+      //   formData.photo=null;
+      //   toast.error("Photo only accepted in jpg,png,jpeg");
+      //   return;
+      // }
 
       const userData = {
         username: DOMPurify.sanitize(formData.username).trim(),
@@ -203,20 +199,17 @@ const AddUser = () => {
     
       };
 
-      try {
-        // process.env.API_SERVER check the env file
-        const response = await Axios.post(ApiUrls['addUser'], userData);
-        console.log('Server response:', response.data);
+      Axios.post(ApiUrls['addUser'], userData)
+      .then((response) => {
+        const successMessage = response.userData.message;
         setMessage('Data submitted successfully');
-        toast.success("Form submited successfully");
-      } 
-      catch (error) {
-        console.error('Error:', error);
-        setMessage('Failed to submit data');
-        toast.error("Failed to add the user"+error)
-      }
-    };
-
+        toast.success(successMessage);
+      })
+      .catch((error) => {
+        const errorMessage = error.response ? error.response.data.message : 'Error: Contact System Admin.';
+        toast.error(errorMessage);
+      });
+  }
     return (
       <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -715,8 +708,8 @@ const AddUser = () => {
                                 <option value="" selected>
                                   Select
                                 </option>
-                                <option value="1">Type 1</option>
-                                <option value="2">Type 2</option>
+                                <option value="1">Full Timer</option>
+                                <option value="2">Free Lancer</option>
                               </select>
                             </div>
                           </div>
