@@ -14,10 +14,10 @@ import ManageInstitution from "./pages/Institution/ManageInstitution";
 import ModuleConfirmationSheet from './pages/Module/ModuleConfirmationsheet';
 import ModuleManage from './pages/Module/ModuleManage';
 import ModuleConfirmation from './pages/Module/ModuleConfirmation';
-import Curriculumcreate from './pages/Curriculum/createCurriculum';
-import CurriculumManage from './pages/Curriculum/manageCurriculum';
-import ModuleCurriculumCreate from './pages/Curriculum/createModuleCurriculum';
-import ModuleCurriculumManage from './pages/Curriculum/manageModuleCurriculum';
+import Curriculumcreate from './pages/curriculum/createCurriculum';
+import CurriculumManage from './pages/curriculum/manageCurriculum';
+import ModuleCurriculumCreate from './pages/curriculum/createModuleCurriculum';
+import ModuleCurriculumManage from './pages/curriculum/manageModuleCurriculum';
 import SessionDetails from './pages/Session/SessionDetails';
 import SessionAttendance from './pages/Session/SessionAttendance';
 import CurriculumReport from './pages/Report/CurricullumReport';
@@ -30,6 +30,9 @@ import MouCreate from './pages/Mou/MOUCreate';
 import MouConfirmation from './pages/Mou/MOUConfirmation';
 import MouManage from './pages/Mou/MOUManage';
 import Register from './pages/Forms/Register';
+import CreateBatch from './pages/Batch/CreateBatch';
+import ManageBatch from './pages/Batch/ManageBatch';
+import AllocateBatch from './pages/Batch/AllocateBatch';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //app
 function App() {
@@ -69,6 +72,9 @@ function App() {
           <Route path="/settings/system-set" element={<SystemSettings />} />
           <Route path="/settings/api" element={<Api />} />
           {/* <Route path="/report/session" element={<SessionReport />} /> */}
+          <Route path='/batch/create' element = {<CreateBatch />} />
+          <Route path='/batch/manage' element = {<ManageBatch />} />
+          <Route path='/batch/allocate' element = {<AllocateBatch />} />
         </Routes>
       </Router>
     </div>

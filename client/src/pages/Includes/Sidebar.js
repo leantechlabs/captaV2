@@ -228,17 +228,17 @@ const Sidebar = () => {
             <div className="collapse" id="BatchSubmenu">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to="batch/create" className="nav-link">
+                  <Link to="/batch/create" className="nav-link">
                     <span className="nav-link-text ms-3">Create Batch</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="batch/manage" className="nav-link">
+                  <Link to="/batch/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Batch</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="batch/allocate" className="nav-link">
+                  <Link to="/batch/allocate" className="nav-link">
                     <span className="nav-link-text ms-3">Allocate Batch</span>
                   </Link>
                 </li>
