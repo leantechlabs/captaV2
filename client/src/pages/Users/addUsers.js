@@ -7,6 +7,7 @@ import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
 import Layout from '../Layout/Layout';
 import 'react-toastify/dist/ReactToastify.css';
+
 const AddUser = () => {
     const [userType, setUserType] = useState('');
     const [showTrainerFields, setShowTrainerFields] = useState(false);
@@ -199,7 +200,7 @@ const AddUser = () => {
     
       };
 
-      Axios.post(ApiUrls['addUser'], userData)
+      Axios.post(ApiUrls['addUser'], userData,{headers:{'Content-Type': 'multipart/form-data'}})
       .then((response) => {
         const successMessage = response.userData.message;
         setMessage('Data submitted successfully');
