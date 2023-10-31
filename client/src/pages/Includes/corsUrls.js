@@ -20,7 +20,10 @@ const ApiUrls= {
     'ModuleManage': Api + '/module/confirmation/manage',
     'ModuleStatus' : Api + '/module/status',
     'createCurriculum' : Api + '/curriculum/create',
-    'createModuleCurriculum' : Api + '/module/create'
+    'createModuleCurriculum' : Api + '/module/create',
+    'createBatch' : Api + '/batch/create',
+    'manageBatch' : Api + '/batch/manage',
+    'allocateBatch' : Api + '/batch/allocate',
     //Abc$ada
 }
 
