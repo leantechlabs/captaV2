@@ -14,12 +14,9 @@ const ManageUser = () => {
   };
 
   const handleEditClick = (user) => {
-    // Handle edit action here
-    // You can open a modal or navigate to an edit page
   };
 
   useEffect(() => {
-    // Fetch user data from the server
     fetch(ApiUrls['ManageUser'], {
       method: 'POST',
       headers: {

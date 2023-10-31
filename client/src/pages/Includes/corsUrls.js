@@ -5,7 +5,7 @@ if (flag=='Dev'){
      Api= 'https://capta-server.vercel.app'
 }
 const ApiUrls= {
-    //add all api urls here
+    //add all api urls her
     'login':Api+'/login',
     'register':Api+'/register',
     'addUser':Api+'/user/add',
