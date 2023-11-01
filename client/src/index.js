@@ -33,6 +33,11 @@ import Register from './pages/Forms/Register';
 import CreateBatch from './pages/Batch/CreateBatch';
 import ManageBatch from './pages/Batch/ManageBatch';
 import AllocateBatch from './pages/Batch/AllocateBatch';
+import CreateCurriculum from './pages/Training_Curriculum-module/CreateCurriculum';
+import ManageCurriculum from './pages/Training_Curriculum-module/ManageCurriculum';
+import Module from './pages/Training_Curriculum-module/CreateModule';
+import ManageModule from './pages/Training_Curriculum-module/ManageCurriculumModule';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //app
 function App() {
@@ -58,6 +63,10 @@ function App() {
             path="/module/confirmation/manage"
             element={<ModuleManage />}
           />
+          <Route path='/curriculum/create' element={<CreateCurriculum/>}/>
+          <Route path='/curriculum/manage' element={<ManageCurriculum/>}/>
+          <Route path='/module/manage' element={<ManageModule/>}/>
+          <Route path='/module/create' element={<Module/>}/>
           <Route path='/curriculum/create' element = {<Curriculumcreate />} />
           <Route path='/curriculum/manage' element = {<CurriculumManage />} />
           <Route path='/module/create' element = {<ModuleCurriculumCreate />} />
