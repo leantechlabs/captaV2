@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
+import ApiUrls from '../Includes/corsUrls';
 
 const CurriculumManage = () => {
-  const curriculumItems = [
-    {
-      CurriculumID: '101',
-      ModuleName: 'Module A',
-      Topic: 'Topic 1',
-      SubTopic: 'Sub-topic 1',
-      Day: 1,
-      Hours: 6,
-      PracticalPrograms: 'Program 1',
-    },
-    {
-      CurriculumID: '102',
-      ModuleName: 'Module B',
-      Topic: 'Topic 2',
-      SubTopic: 'Sub-topic 2',
-      Day: 2,
-      Hours: 12,
-      PracticalPrograms: 'Program 2',
-    },
-  ];
-
+  const [curriculumItems, setCurriculumItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
-const handleEdit = (curriculumID) => {
-  // Implement edit logic
-  console.log(`Editing Curriculum with ID ${curriculumID}`);
-};
 
+  const handleEdit = (curriculumID) => {
+    console.log(`Editing Curriculum with ID ${curriculumID}`);
+  };
 
+  useEffect(() => {
+    fetch(ApiUrls['ManageCurriculum'], {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCurriculumItems(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching curriculum details: ', error);
+      });
+  }, []);
+
+  const filteredCurriculumItems = curriculumItems.filter((item) =>
+    item.CurriculumName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="bg-gray-100 g-sidenav-show">
@@ -67,26 +66,22 @@ const handleEdit = (curriculumID) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {curriculumItems
-                      .filter((item) =>
-                        item.ModuleName.toLowerCase().includes(searchTerm.toLowerCase())
-                      )
-                      .map((item) => (
-                        <tr key={item.CurriculumID}>
-                          <td>{item.CurriculumID}</td>
-                          <td>{item.ModuleName}</td>
-                          <td>{item.Hours}</td>
-                          <td>{item.Day}</td>
-                          <td>
-                            <button
-                              className="btn btn-primary btn-sm"
-                              onClick={() => handleEdit(item.CurriculumID)}
-                            >
-                              Edit
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                    {filteredCurriculumItems.map((item) => (
+                      <tr key={item._id}>
+                        <td>{item._id.substr(0, 7)}</td>
+                        <td>{item.CurriculumName}</td>
+                        <td>{item.TotalHours}</td>
+                        <td>{item.TotalDays}</td>
+                        <td>
+                          <button
+                            className="btn btn-primary btn-sm"
+                            onClick={() => handleEdit(item.CurriculumID)}
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

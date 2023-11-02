@@ -1,31 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../Layout/Layout';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
+import ApiUrls from '../Includes/corsUrls';
 
 const ModuleCurriculumManage = () => {
-  const moduleCurriculumData = [
-    {
-      ModuleId: 1,
-      ModuleName: 'Module A',
-      TotalHours: 30,
-      TotalDays: 10,
-      TotalBatches: 3,
-      StartDate: '2023-01-01',
-      EndDate: '2023-02-28',
-      Curriculum: 'Curriculum A',
-    },
-    {
-      ModuleId: 2,
-      ModuleName: 'Module B',
-      TotalHours: 40,
-      TotalDays: 15,
-      TotalBatches: 4,
-      StartDate: '2023-03-01',
-      EndDate: '2023-04-30',
-      Curriculum: 'Curriculum B',
-    },
-  ];
+  const [moduleCurriculumData , setModuleCurriculumData] = useState([]); 
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -41,6 +21,32 @@ const ModuleCurriculumManage = () => {
     console.log(`Editing Curriculum with ID ${curriculumID}`);
   };
   
+
+  useEffect(() => {
+    fetch(ApiUrls['ManageModuleCurriculum'] ,{
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json',
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      setModuleCurriculumData(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching module details : ' , error);
+    })
+  } , [])
+
+  // Define a function to format the date
+  const formatDate = (isoDateString) => {
+    const date = new Date(isoDateString);
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options);
+  };
+  
+
+
   return (
     <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -76,14 +82,14 @@ const ModuleCurriculumManage = () => {
                   </thead>
                   <tbody>
                     {filteredModules.map((module) => (
-                      <tr key={module.ModuleId}>
-                        <td>{module.ModuleId}</td>
+                      <tr key={module._id}>
+                        <td>{module._id.substr(0,7)}</td>
                         <td>{module.ModuleName}</td>
                         <td>{module.TotalHours}</td>
                         <td>{module.TotalDays}</td>
                         <td>{module.TotalBatches}</td>
-                        <td>{module.StartDate}</td>
-                        <td>{module.EndDate}</td>
+                        <td>{formatDate(module.StartDate)}</td>
+                        <td>{formatDate(module.EndDate)}</td>
                         <td>
                             <button
                               className="btn btn-primary btn-sm"
@@ -93,7 +99,7 @@ const ModuleCurriculumManage = () => {
                             </button>
                           </td>
                       </tr>
-                    ))}
+                    ))};
                   </tbody>
                 </table>
               </div>
