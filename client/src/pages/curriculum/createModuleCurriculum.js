@@ -53,7 +53,7 @@ const ModuleCurriculumCreate = () => {
       };
 
       // Send the POST request to create a module
-      const response = await Axios.post(ApiUrls['createModule'], data);
+      const response = await Axios.post(ApiUrls['createModuleCurriculum'], data);
 
       console.log('Server response:', response.data);
       setMessage('Data submitted successfully');
@@ -90,9 +90,9 @@ const ModuleCurriculumCreate = () => {
                   onChange={handleCurriculumChange}
                 >
                   <option value="">Select Curriculum</option>
-                  {curriculumNames.map((name) => (
-                    <option key={name} value={name}>
-                      {name}
+                  {curriculumNames.map((curriculum) => (
+                    <option key={curriculum._id} value={curriculum.CurriculumName}>
+                      {curriculum.CurriculumName}
                     </option>
                   ))}
                 </select>
