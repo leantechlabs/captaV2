@@ -3,6 +3,9 @@ import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 import Axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
+import DOMPurify from 'dompurify';
+import { Toaster,toast} from 'sonner';
+
 
 
 
@@ -52,8 +55,63 @@ const CreateBatch = ({selectedCurriculum}) => {
         }));
       };
 
+      const charOnly = /^[A-Za-z ]+$/;
+      const charNum= /^[a-zA-Z0-9]*$/;
+      const uppercaseNum=/^[A-Z0-9]*$/;
+      const nums=/^[0-9]*$/;
+
 
       const handleBatchSubmit = async () => {
+
+        if(!batchData.BatchName || !batchData.BatchName.match(charNum))
+        {
+            toast.error("Please enter a valid Batch name");
+            return;
+        }
+        if(batchData.Students==='0')
+        {
+            toast.error("No of students can't be Empty");
+            return;
+        }
+        if(batchData.TrainerID==='0')
+        {
+            toast.error("Trainer Id can't be Zero");
+            return;
+        }    
+         if(batchData==='0')
+        {
+            toast.error("No of Days can't be Zero");
+            return;
+        }     
+        if(!batchData.StartDate)
+        {
+            toast.error("Start can't be empty");
+            return;
+        }     
+        if(!batchData.EndDate)
+        {
+            toast.error("End date can't be Empty");
+            return;
+        }    
+         if(!batchData || !batchData.Status.match(charOnly))
+        {
+            toast.error("Please enter a valid Status");
+            return;
+        }     
+        if(!batchData.Schedule)
+        {
+            toast.error("Schedule can't be Empty");
+            return;
+        }
+
+        batchData.BatchName=DOMPurify.sanitize(batchData.BatchName).trim();
+        batchData.Students=DOMPurify.sanitize(batchData.Students).trim();
+        batchData.TrainerID=DOMPurify.sanitize(batchData.TrainerID).trim();
+        batchData.Days=DOMPurify.sanitize(batchData.Days).trim();
+        batchData.StartDate=DOMPurify.sanitize(batchData.StartDate).trim();
+        batchData.EndDate=DOMPurify.sanitize(batchData.EndDate).trim();
+        batchData.Status=DOMPurify.sanitize(batchData.Status).trim();
+        batchData.Schedule=DOMPurify.sanitize(batchData.Schedule).trim();
         try{
             const response = await Axios.post(ApiUrls['createBatch'] , batchData);
 
@@ -71,6 +129,7 @@ const CreateBatch = ({selectedCurriculum}) => {
     <div className='bg-gray-100 g-sidenav-show'>
         <div className='min-height-300 bg-primary position-absolute w-100'></div>
         <Sidebar />
+        <Toaster richColors position='top-center'/>
         <main className='main-content position-relative border-radius-lg'>
             <Navbar />
             <div className='container-fluid py-4'>

@@ -4,6 +4,9 @@ import Layout from '../Layout/Layout';
 import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
+import DOMPurify from 'dompurify';
+import { Toaster,toast} from 'sonner';
+
 
 const ModuleConfirmation = () => {
   const initialConfirmationData = {
@@ -25,8 +28,37 @@ const ModuleConfirmation = () => {
       [name]: value,
     }));
   };
+  const charOnly = /^[A-Za-z ]+$/;
+  const charNum= /^[a-zA-Z0-9]*$/;
+    const nums=/^[0-9]*$/;
 
   const handleSubmit = () => {
+    if(!confirmationData.ModuleID || confirmationData.ModuleID.match(nums))
+    {
+      toast.error("Please enter a valid Module Id");
+      return;
+    }
+    if(!confirmationData.ConfirmationDate)
+    {
+      toast.error("confirmation date can't be empty");
+      return;
+    }
+    if(!confirmationData.ConfirmationStatus || confirmationData.ConfirmationStatus.match(charOnly))
+    {
+      toast.error("Please enter a valid Confirmation Status");
+      return;
+    }
+    if(!confirmationData.Comments)
+    {
+      toast.error("Comments section can't be empty");
+      return;
+    }
+
+
+    confirmationData.ModuleID=DOMPurify.sanitize(confirmationData.ModuleID).trim();
+    confirmationData.ConfirmationDate=DOMPurify.sanitize(confirmationData.ConfirmationDate).trim();
+    confirmationData.ConfirmationStatus=DOMPurify.sanitize(confirmationData.ConfirmationStatus).trim();
+    confirmationData.Comments=DOMPurify.sanitize(confirmationData.Comments).trim();
     axios
       .post('/add-module-confirmation', confirmationData)
       .then((response) => {
@@ -44,7 +76,7 @@ const ModuleConfirmation = () => {
         <div className="min-height-300 bg-primary position-absolute w-100"></div>
         {/* Include the sidebar component */}
         <Sidebar />
-
+        <Toaster richColors position='top-center'/>
         <main className="main-content position-relative border-radius-lg">
           {/* Include the navbar component */}
           <Navbar />

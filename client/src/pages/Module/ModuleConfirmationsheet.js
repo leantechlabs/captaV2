@@ -2,6 +2,9 @@ import React, { useState  , useEffect} from 'react'
 import Sidebar from '../Includes/Sidebar'
 import Navbar from '../Includes/Navbar'
 import axios from 'axios'
+import DOMPurify from 'dompurify';
+import { Toaster,toast} from 'sonner';
+
 
 const ModuleConfirmationSheet = () => {
 
@@ -99,79 +102,126 @@ const ModuleConfirmationSheet = () => {
           });
       }, []);
       
+      const arr=[startPreferredTimings,endPreferredTimings,marketingPerson,marketingContact,marketingEmail,trainingManager,trainingContact,trainingEmail,unitBasis,unitCost,numUnits,totalCost,gst,grossIncome,tds,amountToCoignAccount
+        ,travelling,commission,indirectExpenses,totalExpenses,address,suitableTransport,food,accommodation,localTransport,majorTransport,previousVendor,feedback,interestGoals,day1Company,otherCompanies,modulesCovered,startDate,endDate,numberOfStudents];
+      const charOnly = /^[A-Za-z ]+$/;
+      const charNum= /^[a-zA-Z0-9]*$/;
+      const uppercaseNum=/^[A-Z0-9]*$/;
+      const nums=/^[0-9]*$/;
 
-
+      const mailCheck=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const handleSubmit =(e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('collegeName', collegeName);
-        formData.append('pocName', pocName);
-        formData.append('designation' , designation);
-        formData.append('pocEmail', pocEmail);
-        formData.append('pocContact', pocContact);
-        formData.append('address' , address);
-        formData.append('suitableTransport' , suitableTransport);
-        formData.append('food' , food);
-        formData.append('accommodation', accommodation);
-        formData.append('localTransport', localTransport);
-        formData.append('majorTransport', majorTransport);
-        formData.append('previousVendor', previousVendor);
-        formData.append('feedback', feedback);
-        formData.append('interestGoals', interestGoals);
-        formData.append('day1Company', day1Company);
-        formData.append('moduleName', moduleName);
-        formData.append('hoursPerBatch', hoursPerBatch);
-        formData.append('modulesCovered', modulesCovered);
-        formData.append('executionType', executionType);
-        formData.append('startDate', startDate);
-        formData.append('endDate', endDate);
-        formData.append('numStudents', numStudents);
-        formData.append('numBatches', numBatches);
-        formData.append('startPreferredTimings', startPreferredTimings);
-        formData.append('endPreferredTimings', endPreferredTimings);
-        formData.append('marketingPerson', marketingPerson);
-        formData.append('marketingContact', marketingContact);
-        formData.append('marketingEmail', marketingEmail);
-        formData.append('trainingManager', trainingManager);
-        formData.append('trainingContact', trainingContact);
-        formData.append('trainingEmail', trainingEmail);
-        formData.append('unitBasis', unitBasis);
-        formData.append('unitCost', unitCost);
-        formData.append('numUnits', numUnits);
-        formData.append('totalCost', totalCost);
-        formData.append('gst', gst);
-        formData.append('grossIncome', grossIncome);
-        formData.append('tds', tds);
-        formData.append('amountToCoignAccount', amountToCoignAccount);
-        formData.append('instackExams', instackExams);
-        formData.append('instackMonths', instackMonths);
-        formData.append('income', income);
-        formData.append('expenses', expenses);
-        formData.append('totalDaysTraining', totalDaysTraining);
-        formData.append('perDayPerTrainer', perDayPerTrainer);
-        formData.append('totalContractValueBatch', totalContractValueBatch);
-        formData.append('totalTrainingHours', totalTrainingHours);
-        formData.append('companySpecificHours', companySpecificHours);
-        formData.append('totalHours', totalHours);
-        formData.append('perHourPerBatch', perHourPerBatch);
-        formData.append('perDayPerBatch', perDayPerBatch);
-        formData.append('totalStudents', totalStudents);
-        formData.append('totalBatches', totalBatches);
-        formData.append('totalTrainingDays', totalTrainingDays);
-        formData.append('totalContractValueCOIGN', totalContractValueCOIGN);
-        formData.append('numberOfTrainers', numberOfTrainers);
-        formData.append('perHeadPerDay', perHeadPerDay);
-        formData.append('numberOfDaysPerTrainer', numberOfDaysPerTrainer);
-        formData.append('portalCostPerStudent', portalCostPerStudent);
-        formData.append('numberOfStudents', numberOfStudents);
-        formData.append('travelling', travelling);
-        formData.append('commission', commission);
-        formData.append('indirectExpenses', indirectExpenses);
-        formData.append('totalExpenses', totalExpenses);
-        formData.append('totalProfit', totalProfit);
+        formData.append('collegeName', DOMPurify.sanitize(collegeName).trim());
+        formData.append('pocName', DOMPurify.sanitize(pocName).trim());
+        formData.append('designation' , DOMPurify.sanitize(designation).trim());
+        formData.append('pocEmail', DOMPurify.sanitize(pocEmail).trim());
+        formData.append('pocContact', DOMPurify.sanitize(pocContact).trim());
+        formData.append('address' , DOMPurify.sanitize(address).trim());
+        formData.append('suitableTransport' , DOMPurify.sanitize(suitableTransport).trim());
+        formData.append('food' , DOMPurify.sanitize(food).trim());
+        formData.append('accommodation', DOMPurify.sanitize(accommodation).trim());
+        formData.append('localTransport', DOMPurify.sanitize(localTransport).trim());
+        formData.append('majorTransport', DOMPurify.sanitize(majorTransport).trim());
+        formData.append('previousVendor', DOMPurify.sanitize(previousVendor).trim());
+        formData.append('feedback', DOMPurify.sanitize(feedback).trim());
+        formData.append('interestGoals', DOMPurify.sanitize(interestGoals).trim());
+        formData.append('day1Company', DOMPurify.sanitize(day1Company).trim());
+        formData.append('otherCompanies',DOMPurify.sanitize(otherCompanies).trim());
+        formData.append('moduleName', DOMPurify.sanitize(moduleName).trim());
+        formData.append('hoursPerBatch', DOMPurify.sanitize(hoursPerBatch).trim());
+        formData.append('modulesCovered', DOMPurify.sanitize(modulesCovered).trim());
+        formData.append('executionType', DOMPurify.sanitize(executionType).trim());
+        formData.append('startDate', DOMPurify.sanitize(startDate).trim());
+        formData.append('endDate', DOMPurify.sanitize(endDate).trim());
+        formData.append('numStudents', DOMPurify.sanitize(numStudents).trim());
+        formData.append('numBatches', DOMPurify.sanitize(numBatches).trim());
+        formData.append('startPreferredTimings', DOMPurify.sanitize(startPreferredTimings).trim());
+        formData.append('endPreferredTimings', DOMPurify.sanitize(endPreferredTimings).trim());
+        formData.append('marketingPerson', DOMPurify.sanitize(marketingPerson).trim());
+        formData.append('marketingContact', DOMPurify.sanitize(marketingContact).trim());
+        formData.append('marketingEmail', DOMPurify.sanitize(marketingEmail).trim());
+        formData.append('trainingManager', DOMPurify.sanitize(trainingManager).trim());
+        formData.append('trainingContact', DOMPurify.sanitize(trainingContact).trim());
+        formData.append('trainingEmail', DOMPurify.sanitize(trainingEmail).trim());
+        formData.append('unitBasis', DOMPurify.sanitize(unitBasis).trim());
+        formData.append('unitCost', DOMPurify.sanitize(unitCost).trim());
+        formData.append('numUnits', DOMPurify.sanitize(numUnits).trim());
+        formData.append('totalCost', DOMPurify.sanitize(totalCost).trim());
+        formData.append('gst', DOMPurify.sanitize(gst).trim());
+        formData.append('grossIncome', DOMPurify.sanitize(grossIncome).trim());
+        formData.append('tds', DOMPurify.sanitize(tds).trim());
+        formData.append('amountToCoignAccount', DOMPurify.sanitize(amountToCoignAccount).trim());
+        formData.append('instackExams', DOMPurify.sanitize(instackExams).trim());
+        formData.append('instackMonths', DOMPurify.sanitize(instackMonths).trim());
+        formData.append('income', DOMPurify.sanitize(income).trim());
+        formData.append('expenses', DOMPurify.sanitize(expenses).trim());
+        formData.append('totalDaysTraining', DOMPurify.sanitize(totalDaysTraining).trim());
+        formData.append('perDayPerTrainer', DOMPurify.sanitize(perDayPerTrainer).trim());
+        formData.append('totalContractValueBatch', DOMPurify.sanitize(totalContractValueBatch).trim());
+        formData.append('totalTrainingHours', DOMPurify.sanitize(totalTrainingHours).trim());
+        formData.append('companySpecificHours', DOMPurify.sanitize(companySpecificHours).trim());
+        formData.append('totalHours', DOMPurify.sanitize(totalHours).trim());
+        formData.append('perHourPerBatch', DOMPurify.sanitize(perHourPerBatch).trim());
+        formData.append('perDayPerBatch', DOMPurify.sanitize(perDayPerBatch).trim());
+        formData.append('totalStudents', DOMPurify.sanitize(totalStudents).trim());
+        formData.append('totalBatches', DOMPurify.sanitize(totalBatches).trim());
+        formData.append('totalTrainingDays',DOMPurify.sanitize( totalTrainingDays).trim());
+        formData.append('totalContractValueCOIGN', DOMPurify.sanitize(totalContractValueCOIGN).trim());
+        formData.append('numberOfTrainers', DOMPurify.sanitize(numberOfTrainers).trim());
+        formData.append('perHeadPerDay', DOMPurify.sanitize(perHeadPerDay).trim());
+        formData.append('numberOfDaysPerTrainer', DOMPurify.sanitize(numberOfDaysPerTrainer).trim());
+        formData.append('portalCostPerStudent', DOMPurify.sanitize(portalCostPerStudent).trim());
+        formData.append('numberOfStudents', DOMPurify.sanitize(numberOfStudents).trim());
+        formData.append('travelling', DOMPurify.sanitize(travelling).trim());
+        formData.append('commission', DOMPurify.sanitize(commission).trim());
+        formData.append('indirectExpenses', DOMPurify.sanitize(indirectExpenses).trim());
+        formData.append('totalExpenses', DOMPurify.sanitize(totalExpenses).trim());
+        formData.append('totalProfit', DOMPurify.sanitize(totalProfit).trim());
 
-
+        if(!pocName || !pocName.match(charOnly))
+        {
+            toast.error("Please enter a valid POC name");
+            return;
+        }
+        if(!designation || !designation.match(charOnly))
+        {
+            toast.error("Please enter a valid Designation");
+            return;
+        }
+        if(!pocEmail || !mailCheck.test(pocEmail))
+        {
+            toast.error(pocEmail);
+            toast.error("Please enter a Valid POC Email ID");
+            return;
+        }
+        if(!pocContact || !pocContact.match(nums))
+        {
+            toast.error("Please enter a valid POC contact Number");
+            return;
+        }
+       
+        if(!moduleName || !moduleName.match(charOnly))
+        {
+            toast.error("Please enter a Valid Module name");
+            return;
+        }
+        if(!hoursPerBatch || !hoursPerBatch==='0')
+        {
+            toast.error("Please enter Hours allocated per batch for training");
+            return;
+        } 
+        if(!totalProfit || !totalProfit.match(nums))
+        {
+            toast.error("Please enter a valid Total Profit");
+            return;
+        } 
+        // arr.some((ele)=>{
+        //     toast.error("Please fill all details");
+        //     return;
+        // })
 
         axios
             .post('/module-confirmation', formData, {
@@ -193,7 +243,7 @@ const ModuleConfirmationSheet = () => {
         <div className='min-height-300 bg-primary position-absolute w-100'></div>
         {/*Include the sidebar component*/ }
         <Sidebar/>
-
+        <Toaster richColors position='top-center'/>
         <main className='main-content position-relative border-radius-lg'>
             {/* Include the navbar component*/ }
             <Navbar />

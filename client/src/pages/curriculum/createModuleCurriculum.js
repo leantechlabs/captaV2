@@ -4,6 +4,9 @@ import Layout from '../Layout/Layout';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
+import { Toaster,toast} from 'sonner';
+import DOMPurify from 'dompurify';
+import MouConfirmation from '../Mou/MOUConfirmation';
 
 const ModuleCurriculumCreate = () => {
   const initialModuleCurriculumData = {
@@ -44,8 +47,40 @@ const ModuleCurriculumCreate = () => {
     setSelectedCurriculum(event.target.value);
   };
 
+  const charOnly = /^[A-Za-z ]+$/;
+  const nums=/^[0-9]*$/;
+  console.log(moduleCurriculumData);
   const handleSubmit = async () => {
     try {
+
+      if(!moduleCurriculumData.ModuleName || moduleCurriculumData.ModuleName.match(charOnly))
+      {
+        toast.error("Please a valid Module name")
+      }
+      if(moduleCurriculumData.TotalHours==='0')
+      {
+        toast.error("Total Hours can't be zero");
+        return;
+      }
+      if(moduleCurriculumData.TotalDays==='0')
+      {
+        toast.error("Total Days can't be zero");
+        return;
+      }
+      if(moduleCurriculumData.TotalBatches==='0' )
+      {
+        toast.error("Total Batches can't be zero");
+        return;
+      }
+      
+      
+      moduleCurriculumData.ModuleName=DOMPurify.sanitize(moduleCurriculumData.ModuleName).trim();
+      moduleCurriculumData.TotalHours=DOMPurify.sanitize(moduleCurriculumData.TotalHours).trim();
+      moduleCurriculumData.TotalDays=DOMPurify.sanitize(moduleCurriculumData.TotalDays).trim();
+      moduleCurriculumData.TotalBatches=DOMPurify.sanitize(moduleCurriculumData.TotalBatches).trim();
+      moduleCurriculumData.StartDate=DOMPurify.sanitize(moduleCurriculumData.StartDate).trim();
+      moduleCurriculumData.EndDate=DOMPurify.sanitize(moduleCurriculumData.EndDate).trim();
+     
       // Prepare data including the selected curriculum name
       const data = {
         ...moduleCurriculumData,
@@ -67,6 +102,7 @@ const ModuleCurriculumCreate = () => {
     <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
+      <Toaster richColors position='top-center'/>
       <main className="main-content position-relative border-radius-lg">
         <Navbar />
         <div className="container-fluid py-4">
