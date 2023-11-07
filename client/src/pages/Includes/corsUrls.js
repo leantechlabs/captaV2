@@ -25,7 +25,10 @@ const ApiUrls= {
     'createModuleCurriculum' : Api + '/module/create',
     'ManageModuleCurriculum' : Api + '/module/manage',
     'createBatch' : Api + '/batch/create',
+    'fetchModuleIDs' : Api  + '/module/ids',
     'manageBatch' : Api + '/batch/manage',
+    'batchNames' : Api + '/batch/names',
+    'moduleNames' : Api + '/module/names',
     'allocateBatch' : Api + '/batch/allocate',
     //Abc$ada
 }
