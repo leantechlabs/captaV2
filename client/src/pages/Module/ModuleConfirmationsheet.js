@@ -102,14 +102,15 @@ const ModuleConfirmationSheet = () => {
           });
       }, []);
       
-      const arr=[startPreferredTimings,endPreferredTimings,marketingPerson,marketingContact,marketingEmail,trainingManager,trainingContact,trainingEmail,unitBasis,unitCost,numUnits,totalCost,gst,grossIncome,tds,amountToCoignAccount
-        ,travelling,commission,indirectExpenses,totalExpenses,address,suitableTransport,food,accommodation,localTransport,majorTransport,previousVendor,feedback,interestGoals,day1Company,otherCompanies,modulesCovered,startDate,endDate,numberOfStudents];
+      const arr=[startPreferredTimings,endPreferredTimings,marketingPerson,marketingContact,marketingEmail,trainingManager,trainingContact,trainingEmail,unitBasis,unitCost,numUnits,totalCost,gst,grossIncome,tds,amountToCoignAccount,instackExams,instackMonths,income,expenses,totalDaysTraining,perDayPerTrainer,totalTrainingHours,totalContractValueBatch,companySpecificHours,totalHours,perHourPerBatch,perDayPerBatch,totalStudents,totalBatches,totalTrainingDays,totalContractValueCOIGN,numberOfTrainers,perHeadPerDay,numberOfDaysPerTrainer,portalCostPerStudent,numberOfStudents
+        ,travelling,commission,indirectExpenses,totalExpenses,totalProfit];
       const charOnly = /^[A-Za-z ]+$/;
       const charNum= /^[a-zA-Z0-9]*$/;
       const uppercaseNum=/^[A-Z0-9]*$/;
       const nums=/^[0-9]*$/;
 
       const mailCheck=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      console.log(startDate);
     const handleSubmit =(e) => {
         e.preventDefault();
 
@@ -181,7 +182,7 @@ const ModuleConfirmationSheet = () => {
         formData.append('totalExpenses', DOMPurify.sanitize(totalExpenses).trim());
         formData.append('totalProfit', DOMPurify.sanitize(totalProfit).trim());
 
-        if(!pocName || !pocName.match(charOnly))
+        if(!pocName || !charOnly.test(pocName))
         {
             toast.error("Please enter a valid POC name");
             return;
@@ -193,7 +194,6 @@ const ModuleConfirmationSheet = () => {
         }
         if(!pocEmail || !mailCheck.test(pocEmail))
         {
-            toast.error(pocEmail);
             toast.error("Please enter a Valid POC Email ID");
             return;
         }
@@ -202,25 +202,106 @@ const ModuleConfirmationSheet = () => {
             toast.error("Please enter a valid POC contact Number");
             return;
         }
-       
+        if(!address)
+        {
+            toast.error("Address can't be empty");
+            return;
+        }
+        if(!suitableTransport)
+        {
+            toast.error("Please enter a Sutiable Transport");
+            return;
+        }
+        if(!food)
+        {
+            toast.error("Please enter food");
+            return;
+        }
+        if(!accommodation)
+        {
+            toast.error("Please enter Accomdation");
+            return;
+        }
+        if(!localTransport)
+        {
+            toast.error("Please enter Local Transport");
+            return;
+        }
+        if(!majorTransport)
+        {
+            toast.error("Please enter a major Transport");
+            return;
+        }
+        if(!previousVendor)
+        {
+            toast.error("Please enter a Previous Traning vendor");
+            return;
+        }
+        if(!feedback)
+        {
+            toast.error("Please enter Feedback about training");
+            return;
+        }
+
+        if(!interestGoals)
+        {
+            toast.error("Please enter internal goals");
+            return;
+        }
+        if(!day1Company)
+        {
+            toast.error("Please enter the company involved in first day");
+            return;
+        }
+        if(!otherCompanies)
+        {
+            toast.error("Please details about other companies");
+            return;
+        }
         if(!moduleName || !moduleName.match(charOnly))
         {
             toast.error("Please enter a Valid Module name");
             return;
         }
-        if(!hoursPerBatch || !hoursPerBatch==='0')
+        if(!hoursPerBatch || hoursPerBatch==='0')
         {
             toast.error("Please enter Hours allocated per batch for training");
             return;
-        } 
+        }
+        if(!modulesCovered)
+        {
+            toast.error("Please enter modules covered in training");
+            return;
+        }
+        if(!startDate)
+        {
+            toast.error("please enter a start date");
+            return;
+        }
+        if(!endDate)
+        {
+            toast.error("please enter a end date");
+            return;
+        }
+        if(!numberOfStudents)
+        {
+            toast.error("Please enter number of students participating");
+            return;
+        }
+     
+     
         if(!totalProfit || !totalProfit.match(nums))
         {
             toast.error("Please enter a valid Total Profit");
             return;
-        } 
-        // arr.some((ele)=>{
-        //     toast.error("Please fill all details");
-        //     return;
+        }
+        // arr.forEach((Element)=>
+        // {
+        //     if(!Element)
+        //     {
+        //         toast.error(`Please enter ${Element}`);
+        //         return;
+        //     }
         // })
 
         axios
