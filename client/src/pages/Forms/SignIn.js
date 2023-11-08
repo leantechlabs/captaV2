@@ -3,9 +3,14 @@ import axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
 import { Toaster,toast} from 'sonner';
 import DOMPurify from 'dompurify';
+import { redirect } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -17,6 +22,7 @@ const SignIn = () => {
     // Sanitize input fields by trimming white spaces
     const sanitizedValue = DOMPurify.sanitize(value.trim());
     setState({ ...state, [name]: sanitizedValue });
+
   }
 
   const handleSignIn = () => {
@@ -48,13 +54,19 @@ const SignIn = () => {
         // Successful response
         const successMessage = response.data.message;
         setState({ ...state, message: successMessage });
+        Cookies.set('token', response.data.token, { expires: 1 / 24 });
         toast.success(successMessage);
+        console.log(response.data.token,response);
+        navigate('/dashboard');
+
       })
       .catch((error) => {
         // Handle API response errors and display the reason
         const errorMessage = error.response ? error.response.data.message : 'Error: Unable to log in.';
         setState({ ...state, message: errorMessage });
         toast.error(errorMessage);
+        console.log(error,"not logged in ");
+
       });
   }
 
