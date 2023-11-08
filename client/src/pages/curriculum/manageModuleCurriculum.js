@@ -99,7 +99,7 @@ const ModuleCurriculumManage = () => {
                             </button>
                           </td>
                       </tr>
-                    ))};
+                    ))}
                   </tbody>
                 </table>
               </div>

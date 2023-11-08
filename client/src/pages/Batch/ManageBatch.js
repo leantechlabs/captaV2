@@ -1,44 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
+import ApiUrls from '../Includes/corsUrls';
 
 const ManageBatch = () => {
-  const batchData = [
-    {
-      BatchID: 1,
-      ModuleID: 101,
-      BatchName: 'Batch A',
-      Students: 20,
-      TrainerID: 129738,
-      Days: 20,
-      StartDate: '17-05-2023',
-      EndDate: '17-08-2023',
-      Schedule: 'Timings, info, etc',
-      Status: 'Active',
-    },
-    {
-      BatchID: 2,
-      ModuleID: 1012,
-      BatchName: 'Batch B',
-      Students: 20,
-      TrainerID: 1239738,
-      Days: 20,
-      StartDate: '15-05-2023',
-      EndDate: '15-08-2023',
-      Schedule: 'Timings, info, etc',
-      Status: 'Completed',
-    },
-  ];
+  const [batchData , setBatchData] = useState([]);
 
-  const [searchName, setSearchName] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+
 
   const handleSearch = (e) => {
-    setSearchName(e.target.value);
+    setSearchValue(e.target.value);
   };
+  
 
-  const batchDetails = batchData.filter((batch) =>
-    batch.BatchName.toLowerCase().includes(searchName.toLowerCase())
-  );
+  const batchDetails = batchData.filter((batch) => {
+    const searchTerm = searchValue.toLowerCase();
+    const nameMatch = batch.BatchName.toLowerCase().includes(searchTerm);
+    const trainerMatch = batch.TrainerID.toString().includes(searchTerm);
+  
+    // If either the batch name or trainer ID matches the search criteria, include the batch in the results
+    return nameMatch || trainerMatch;
+  });
+  
 
   const handleView = (moduleID) => {
     // View Logic
@@ -55,6 +39,30 @@ const ManageBatch = () => {
     console.log(`Editing Module with ID ${moduleID}`);
   };
 
+  useEffect(() => {
+    fetch(ApiUrls['manageBatch'] , {
+      method : 'POST' , 
+      headers : {
+        'Content-Type'  :'application/json',
+      }
+    })
+    .then((response) => response.json())
+    .then( (data) => {
+      setBatchData(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching batches : ', error);
+    })
+  } , [])
+
+  // Define a function to format the date
+  const formatDate = (isoDateString) => {
+    const date = new Date(isoDateString);
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options);
+  };
+
+
   return (
     <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -69,8 +77,8 @@ const ManageBatch = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Search by Batch Name"
-                  value={searchName}
+                  placeholder="Search by Batch Name or Trainer ID"
+                  value={searchValue}
                   onChange={handleSearch}
                 />
               </div>
@@ -91,8 +99,8 @@ const ManageBatch = () => {
                       <tr key={batch.BatchID}>
                         <td>{batch.BatchName}</td>
                         <td>{batch.TrainerID}</td>
-                        <td>{batch.StartDate}</td>
-                        <td>{batch.EndDate}</td>
+                        <td>{formatDate(batch.StartDate)}</td>
+                        <td>{formatDate(batch.EndDate)}</td>
                         <td>{batch.Status}</td>
                         <td>
                           <button
