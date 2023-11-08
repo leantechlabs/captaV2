@@ -127,9 +127,7 @@ const AddInstitution = () => {
     };
 
     try {
-      // process.env.API_SERVER check the env file
-      const response = await Axios.post(ApiUrls['AddInstitution'], collegeData);
-      console.log('Server response:', response.data);
+      Axios.post(ApiUrls['AddInstitution'], collegeData);
       setMessage('Data submitted successfully');
       toast.success('Institution Added Successfully');
     } catch (error) {
@@ -142,8 +140,9 @@ const AddInstitution = () => {
     <div className="bg-gray-100 g-sidenav-show">
       
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
+
       <Sidebar />
-      <main className="main-content position-relative border-radius-lg">
+      <main className="main-content position-relative border-radius-lg ">
         <Navbar />
         <div className="container-fluid py-4">
         
@@ -346,6 +345,7 @@ const AddInstitution = () => {
         </div>
       </main>
     </div>
+    
   );
 };
 

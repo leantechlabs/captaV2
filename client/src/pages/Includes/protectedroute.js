@@ -16,7 +16,7 @@ var count=0
   
     if (token) {
       console.log(count++);
-      axios.post('http://localhost:3001/page', { url: location.pathname }, {
+      axios.post('http://localhost:3001/permision/page', { url: location.pathname }, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

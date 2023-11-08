@@ -5,9 +5,10 @@ if (flag==='Dev'){
      Api= 'https://capta-server.vercel.app'
 }
 const ApiUrls= {
-    //add all api urls here
-    'login':Api+'/login',
-    'logout':Api+'/logout',
+    //add all api urls her
+    'login':Api+'/auth/login',
+    'logout':Api+'/auth/logout',
+    'register':Api+'/register',
     'addUser':Api+'/user/add',
     'ManageUser':Api+'/user/manage',
     'AddInstitution':Api+'/college/add',
@@ -20,9 +21,15 @@ const ApiUrls= {
     'ModuleManage': Api + '/module/confirmation/manage',
     'ModuleStatus' : Api + '/module/status',
     'createCurriculum' : Api + '/curriculum/create',
-    'createModuleCurriculum' : Api + '/module/create',
-    'system' : Api + '/settings/system',
+    'system' : Api + '/permision/settings/system',
 
+    'ManageCurriculum' : Api + '/curriculum/manage',
+    'fetchCurriculumNames' : Api + '/curriculum/names',
+    'createModuleCurriculum' : Api + '/module/create',
+    'ManageModuleCurriculum' : Api + '/module/manage',
+    'createBatch' : Api + '/batch/create',
+    'manageBatch' : Api + '/batch/manage',
+    'allocateBatch' : Api + '/batch/allocate',
     //Abc$ada
 }
 

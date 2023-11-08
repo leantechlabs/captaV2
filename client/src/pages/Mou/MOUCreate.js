@@ -52,15 +52,23 @@ const MouCreate = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    const [section, field] = name.split('.');
-    setMOUData((prevData) => ({
-      ...prevData,
-      [section]: {
-        ...prevData[section],
-        [field]: value,
-      },
-    }));
+    if (name.includes('.')) {
+      const [section, field] = name.split('.');
+      setMOUData((prevData) => ({
+        ...prevData,
+        [section]: {
+          ...prevData[section],
+          [field]: value,
+        },
+      }));
+    } else {
+      setMOUData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
+  
 
   const handleSubmit = async () => {
     try {

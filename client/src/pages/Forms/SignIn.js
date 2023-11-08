@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
 import { Toaster,toast} from 'sonner';
@@ -6,10 +6,12 @@ import DOMPurify from 'dompurify';
 import { redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { PermissionsContext } from '../context/permissionsContext'; 
 
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { fetchPermissions } = useContext(PermissionsContext); // Use useContext to get the context
 
   const [state, setState] = useState({
     email: '',
@@ -19,7 +21,6 @@ const SignIn = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // Sanitize input fields by trimming white spaces
     const sanitizedValue = DOMPurify.sanitize(value.trim());
     setState({ ...state, [name]: sanitizedValue });
 
@@ -30,8 +31,6 @@ const SignIn = () => {
       email: state.email,
       password: state.password,
     };
-
-    // Perform validation (e.g., check for empty fields)
     if (!data.email || !data.password) {
       toast.error('Please fill in all fields.');
       return;
@@ -42,7 +41,6 @@ const SignIn = () => {
       return;
     }
 
-    // Validation for password
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
     if (!data.password.match(passwordRegex)) {  
       toast.error('Password should be min 8 characters long and includes atleast one uppercase and lowercase and special character.');
@@ -51,17 +49,16 @@ const SignIn = () => {
 
     axios.post(ApiUrls['login'], data)
       .then((response) => {
-        // Successful response
         const successMessage = response.data.message;
         setState({ ...state, message: successMessage });
         Cookies.set('token', response.data.token, { expires: 1 / 24 });
         toast.success(successMessage);
         console.log(response.data.token,response);
+        // fetchPermissions();
         navigate('/dashboard');
 
       })
       .catch((error) => {
-        // Handle API response errors and display the reason
         const errorMessage = error.response ? error.response.data.message : 'Error: Unable to log in.';
         setState({ ...state, message: errorMessage });
         toast.error(errorMessage);

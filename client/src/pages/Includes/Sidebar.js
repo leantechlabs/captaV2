@@ -1,10 +1,15 @@
-import React, {useState, useContext } from 'react';
+import React, {useState, useContext,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PermissionsContext } from '../context/permissionsContext';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const permissions = useContext(PermissionsContext);
+  const permissionsContext = useContext(PermissionsContext);
+  const { permissions, fetchPermissions } = permissionsContext;
+
+  useEffect(() => {
+    fetchPermissions();
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -31,6 +36,7 @@ const Sidebar = () => {
   
 
   return (
+    
     <aside
       className={`sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-1 ${
         isSidebarOpen ? "show" : "show"
@@ -44,7 +50,7 @@ const Sidebar = () => {
           id="iconSidenav"
           onClick={toggleSidebar}
         ></i>
-        <Link to="/" className="navbar-brand mx-4" target="_blank">
+        <Link to="#" className="navbar-brand mx-4" target="_blank">
           <img
             src="/img/logo.png"
             className="navbar-brand-img h-100"
@@ -313,7 +319,7 @@ const Sidebar = () => {
                 {hasPermission('/batch/manage') && (
 
                 <li className="nav-item">
-                  <Link to="batch/manage" className="nav-link">
+                  <Link to="/batch/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Batch</span>
                   </Link>
                 </li>
@@ -321,7 +327,7 @@ const Sidebar = () => {
                 {hasPermission('/batch/allocate') && (
 
                 <li className="nav-item">
-                  <Link to="batch/allocate" className="nav-link">
+                  <Link to="/batch/allocate" className="nav-link">
                     <span className="nav-link-text ms-3">Allocate Batch</span>
                   </Link>
                 </li>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Sidebar from '../Includes/Sidebar';
 import DOMPurify from 'dompurify';
@@ -7,6 +7,10 @@ import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
 import Layout from '../Layout/Layout';
 import 'react-toastify/dist/ReactToastify.css';
+import {storage} from "./firebaseConfig";
+import {ref,uploadBytes,getDownloadURL,listAll} from "firebase/storage";
+import {v4} from "uuid";
+
 const AddUser = () => {
     const [userType, setUserType] = useState('');
     const [showTrainerFields, setShowTrainerFields] = useState(false);
@@ -37,6 +41,8 @@ const AddUser = () => {
       salary: '',
     });
    
+
+    
       
     const handleRoleChange = (e) => {
       const selectedRole = e.target.value;
@@ -142,41 +148,49 @@ const AddUser = () => {
         toast.error("Salary can't be empty");
         return;
       }
+      //  const fileType = formData.resume.split('.').pop().toLowerCase();
+      // if (fileType !== 'pdf' || fileType !== 'doc' || fileType!=="docx") {
+      //   formData.resume=null;
+      //   toast.error("Please Select Valid Files");
+      //   return;
+      // }
+
+      // const adharFile=formData.adhar.split('.').pop().toLocaleLowerCase();
+      // if(adharFile!=="pdf" || adharFile!=='png' || adharFile!=='jpg' || adharFile!=='jpeg')
+      // {
+      //   formData.adhar=null;
+      //   toast.error("Adhar only accepted in pdf,jpg,png,jpeg");
+      //   return;
+      // }
+
+      // const panFile=formData.pan.split('.').pop().toLocaleLowerCase();
+      // if(panFile!=="pdf" || panFile!=='png' || panFile!=='jpg' || panFile!=='jpeg')
+      // {
+      //   formData.pan=null;
+      //   toast.error("Pan only accepted in pdf,jpg,png,jpeg");
+      //   return;
+      // }
+
+      // const photoFile=formData.photo.split('.').pop().toLocaleLowerCase();
+      // if(photoFile!=='png' || photoFile!=='jpg' || photoFile!=='jpeg')
+      // {
+      //   formData.photo=null;
+      //   toast.error("Photo only accepted in jpg,png,jpeg");
+      //   return;
+      // }
+      // const l=['adhar','resume','pan','photo'];
+      // l.forEach((element) => {
+      //   const resumeRef= ref(storage,`${element}/${formData.pan.name+v4()}`);
+      //   uploadBytes(resumeRef,formData.element);
+      //   console.log(element);
+
+      // });
 
 
+ 
 
 
-       const fileType = formData.resume.split('.').pop().toLowerCase();
-      if (fileType !== 'pdf' || fileType !== 'doc' || fileType!=="docx") {
-        formData.resume=null;
-        toast.error("Error");
-        return;
-      }
-
-      const adharFile=formData.adhar.split('.').pop().toLocaleLowerCase();
-      if(adharFile!=="pdf" || adharFile!=='png' || adharFile!=='jpg' || adharFile!=='jpeg')
-      {
-        formData.adhar=null;
-        toast.error("Adhar only accepted in pdf,jpg,png,jpeg");
-        return;
-      }
-
-      const panFile=formData.pan.split('.').pop().toLocaleLowerCase();
-      if(panFile!=="pdf" || panFile!=='png' || panFile!=='jpg' || panFile!=='jpeg')
-      {
-        formData.pan=null;
-        toast.error("Pan only accepted in pdf,jpg,png,jpeg");
-        return;
-      }
-
-      const photoFile=formData.photo.split('.').pop().toLocaleLowerCase();
-      if(photoFile!=='png' || photoFile!=='jpg' || photoFile!=='jpeg')
-      {
-        formData.photo=null;
-        toast.error("Photo only accepted in jpg,png,jpeg");
-        return;
-      }
-
+      
       const userData = {
         username: DOMPurify.sanitize(formData.username).trim(),
         email: DOMPurify.sanitize(formData.email).trim(),
@@ -186,10 +200,10 @@ const AddUser = () => {
         city: DOMPurify.sanitize(formData.city).trim(),
         country: DOMPurify.sanitize(formData.country).trim(),
         postalCode: DOMPurify.sanitize(formData.postalCode).trim(),
-        resume: DOMPurify.sanitize(formData.resume).trim(), 
-        adhar: DOMPurify.sanitize(formData.adhar).trim(),
-        pan: DOMPurify.sanitize(formData.pan).trim(),
-        photo: DOMPurify.sanitize(formData.photo).trim(),
+        resume: null, 
+        adhar: null,
+        pan: null,
+        photo: null,
         role: DOMPurify.sanitize(formData.role).trim(),
         trainerType: DOMPurify.sanitize(formData.trainerType).trim(),
         skills: DOMPurify.sanitize(formData.skills).trim(),
@@ -202,20 +216,88 @@ const AddUser = () => {
           })),
     
       };
+      let fileupload=async function()
+{
 
-      try {
-        // process.env.API_SERVER check the env file
-        const response = await Axios.post(ApiUrls['addUser'], userData);
-        console.log('Server response:', response.data);
+      const resumeRef= ref(storage,`resume/${formData.resume.name+v4()}`);
+      await uploadBytes(resumeRef,formData.resume).then((snapshot)=>
+      {
+        getDownloadURL(snapshot.ref).then((url)=>
+        {
+     
+          userData.resume=url;
+        })
+      });
+      // const resumeUrl=Ff(resumeRef._location.path);
+
+      const adharRef=ref(storage,`adhar/${formData.adhar.name+v4()}`);
+      await uploadBytes(adharRef,formData.resume).then((snapshot)=>
+      {
+        getDownloadURL(snapshot.ref).then((url)=>
+        {
+          userData.adhar=url;
+        })
+      });
+      
+      const panRef=ref(storage,`pan/${formData.pan.name+v4()}`);
+      await uploadBytes(panRef,formData.pan).then((snapshot)=>
+      {
+        getDownloadURL(snapshot.ref).then((url)=>
+        {
+          
+          userData.pan=url;
+        })
+      });
+
+      const photoRef=ref(storage,`photo/${formData.photo.name+v4()}`);
+      await uploadBytes(photoRef,formData.photo).then((snapshot)=>
+      {
+        getDownloadURL(snapshot.ref).then((url)=>
+        {
+          userData.photo=url;
+        })
+      });
+
+      Axios.post(ApiUrls['addUser'], userData,{headers:{'Content-Type': 'multipart/form-data'}})
+      .then((response) => {
+        const successMessage = response.userData.message;
         setMessage('Data submitted successfully');
-        toast.success("Form submited successfully");
-      } 
-      catch (error) {
-        console.error('Error:', error);
-        setMessage('Failed to submit data');
-        toast.error("Failed to add the user"+error)
-      }
-    };
+        toast.success(successMessage);
+      })
+      .catch((error) => {
+        const errorMessage = error.response ? error.response.data.message : 'Error: Contact System Admin.';
+        toast.error(errorMessage);
+       
+      });
+};
+      fileupload()
+  
+
+ 
+  }
+  
+  // const imageListRef=ref(storage,"resume/");
+   
+//   function Ff()
+//   {
+
+//   useEffect(()=>
+//   {
+//     listAll(imageListRef).then((response)=>
+//     {
+//       let service=[...response.items];
+//       service.forEach((Element)=>
+//       {
+//         let {_location}=Element;
+//         // let {path_}=_location;
+//         console.log(_location.path_); 
+//       })  
+//     }  
+//     ) 
+//   }) 
+// }
+// Ff();
+
 
     return (
       <div className="bg-gray-100 g-sidenav-show">
@@ -715,8 +797,8 @@ const AddUser = () => {
                                 <option value="" selected>
                                   Select
                                 </option>
-                                <option value="1">Type 1</option>
-                                <option value="2">Type 2</option>
+                                <option value="1">Full Timer</option>
+                                <option value="2">Free Lancer</option>
                               </select>
                             </div>
                           </div>

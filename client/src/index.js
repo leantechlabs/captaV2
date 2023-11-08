@@ -30,6 +30,10 @@ import Api from './pages/Settings/Api'
 import MouCreate from './pages/mou/MOUCreate';
 import MouConfirmation from './pages/mou/MOUConfirmation';
 import MouManage from './pages/mou/MOUManage';
+import Register from './pages/Forms/Register';
+import CreateBatch from './pages/Batch/CreateBatch';
+import ManageBatch from './pages/Batch/ManageBatch';
+import AllocateBatch from './pages/Batch/AllocateBatch';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {
@@ -37,6 +41,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+        <Route path="/register-x123lmopq" element={<Register />} />
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
           <Route path="/user/add" element={<ProtectedRoute element={<AddUser />} />} />
@@ -61,9 +66,13 @@ function App() {
           <Route path="/report/trainer" element={<ProtectedRoute element={<TrainersReport />} />} />
           <Route path="/settings/system-set" element={<ProtectedRoute element={<SystemSettings />} />} />
           <Route path="/settings/api" element={<ProtectedRoute element={<Api />} />} />
+          {/* <Route path="/report/session" element={<SessionReport />} /> */}
+          <Route path='/batch/create' element = {<ProtectedRoute element={<CreateBatch />} />} />
+          <Route path='/batch/manage' element = {<ProtectedRoute element={<ManageBatch />} />} />
+          <Route path='/batch/allocate' element = {<ProtectedRoute element={<AllocateBatch />} />} />
         </Routes>
       </Router>
-
+      
     </div>
   );
 }

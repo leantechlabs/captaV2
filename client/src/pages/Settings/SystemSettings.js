@@ -66,7 +66,7 @@ const SystemSettings = () => {
     const newPageData = { page, admin, moderator, trainer };
   
     axios
-      .post('http://localhost:3001/pages', newPageData)
+      .post('http://localhost:3001/permision/pages', newPageData)
       .then((response) => {
         const successMessage = response.data.message;
         console.log('Page and permissions added successfully',response);
@@ -217,6 +217,7 @@ const SystemSettings = () => {
                         <tbody>
                           <tr>
                             <td>
+
                               <input
                                 type="text"
                                 value={page}
