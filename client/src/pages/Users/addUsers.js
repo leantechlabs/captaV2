@@ -12,6 +12,7 @@ import {ref,uploadBytes,getDownloadURL,listAll} from "firebase/storage";
 import {v4} from "uuid";
 
 const AddUser = () => {
+
     const [userType, setUserType] = useState('');
     const [showTrainerFields, setShowTrainerFields] = useState(false);
     const [message, setMessage] = useState('');
@@ -305,6 +306,7 @@ const AddUser = () => {
       <div className="container-fluid">
         <div className="row">
           <Sidebar />
+          <Toaster richColors position='top-center'/>
           <main className="col-md-12 ms-sm-auto col-lg-10 px-md-4">
             <Navbar />
             <div className="container-fluid py-4">
@@ -380,7 +382,7 @@ const AddUser = () => {
                               />
                             </div>
                           </div>
-                          <Toaster richColors position='top-center'/>
+                        
                           <div className="col-md-6">
                             <div className="form-group">
                               <label className="form-control-label">

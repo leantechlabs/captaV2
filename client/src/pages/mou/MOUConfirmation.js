@@ -5,6 +5,8 @@ import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
 import ApiUrls from '../Includes/corsUrls';
+import { Toaster,toast} from 'sonner';
+import DOMPurify from 'dompurify';
 
 const MouConfirmation = () => {
   const initialConfirmationData = {
@@ -25,6 +27,30 @@ const MouConfirmation = () => {
     }));
   };
   const handleSubmit = async () => {
+    if(!confirmationData.MOUID )
+    {
+      toast.error("MOUID Filed can't be empty");
+      return;
+    }
+    if(!confirmationData.ConfirmationDate )
+    {
+      toast.error("Confirmation Date  Filed can't be empty");
+      return;
+    }
+    if(!confirmationData.ConfirmationStatus)
+    {
+      toast.error("Confirmation Status Filed can't be empty");
+      return;
+    }
+    if(!confirmationData.Comments)
+    {
+      toast.error("Comments  Filed can't be empty");
+      return;
+    }
+    confirmationData.MOUID=DOMPurify.sanitize(confirmationData.MOUID).trim();
+    confirmationData.ConfirmationDate =DOMPurify.sanitize(confirmationData.ConfirmationDate).trim();
+    confirmationData.ConfirmationStatus=DOMPurify.sanitize(confirmationData.ConfirmationStatus).trim();
+    confirmationData.Comments=DOMPurify.sanitize(confirmationData.Comments).trim();
     try {
       // process.env.API_SERVER check the env file
       const response = await Axios.post(ApiUrls['MouConfirm'], confirmationData);
@@ -43,7 +69,7 @@ const MouConfirmation = () => {
         <div className="min-height-300 bg-primary position-absolute w-100"></div>
         {/* Include the sidebar component */}
         <Sidebar />
-
+        <Toaster richColors position='top-center'/>
         <main className="main-content position-relative border-radius-lg">
           {/* Include the navbar component */}
           <Navbar />

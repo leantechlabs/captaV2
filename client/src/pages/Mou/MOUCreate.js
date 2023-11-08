@@ -5,6 +5,8 @@ import ScriptSection from '../Includes/ScriptSection';
 import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
 import ApiUrls from '../Includes/corsUrls';
+import DOMPurify from 'dompurify';
+import { Toaster,toast} from 'sonner';
 
 const MouCreate = () => {
   const initialMOUData = {
@@ -47,6 +49,7 @@ const MouCreate = () => {
     },
   };
 
+
   const [mouData, setMOUData] = useState(initialMOUData);
   const [message, setMessage] = useState('');
 
@@ -62,10 +65,179 @@ const MouCreate = () => {
     }));
   };
 
+  const finalMouData={
+    Date: DOMPurify.sanitize(mouData.Date).trim(),
+    Location: DOMPurify.sanitize(mouData.Location).trim(),
+    FirstParty: {
+      Name:  DOMPurify.sanitize(mouData.FirstParty.Name).trim(),
+      Address: DOMPurify.sanitize(mouData.FirstParty.Address).trim(),
+      Representative: DOMPurify.sanitize(mouData.FirstParty.Representative).trim(),
+      Contact: DOMPurify.sanitize(mouData.FirstParty.Contact).trim(),
+    },
+    SecondParty: {
+      Name: DOMPurify.sanitize(mouData.SecondParty.Name).trim(),
+      Location: DOMPurify.sanitize(mouData.SecondParty.Location).trim(),
+      Representative: DOMPurify.sanitize(mouData.SecondParty.Representative).trim(),
+    },
+    TermsConditions: {
+      NatureRelationship: DOMPurify.sanitize(mouData.TermsConditions.NatureRelationship).trim(),
+      MutualObligation: DOMPurify.sanitize(mouData.TermsConditions.MutualObligation).trim(),
+      LimitationsWarranties: DOMPurify.sanitize(mouData.TermsConditions.LimitationsWarranties).trim(),
+    },
+    PurposeScope: {
+      Details: DOMPurify.sanitize(mouData.PurposeScope.Details).trim(),
+      CollaborationPeriod: DOMPurify.sanitize(mouData.PurposeScope.CollaborationPeriod).trim(),
+      OtherDetails: DOMPurify.sanitize(mouData.PurposeScope.OtherDetails).trim(),
+    },
+    PaymentTerms: {
+      AmountPerStudent: DOMPurify.sanitize(mouData.PaymentTerms.AmountPerStudent).trim(),
+      PaymentSchedule: {
+        FirstInstallment: DOMPurify.sanitize(mouData.PaymentTerms.PaymentSchedule.FirstInstallment).trim(),
+        SecondInstallment: DOMPurify.sanitize(mouData.PaymentTerms.PaymentSchedule.SecondInstallment).trim(),
+        ThirdInstallment: DOMPurify.sanitize(mouData.PaymentTerms.PaymentSchedule.ThirdInstallment).trim(),
+        FinalInstallment: DOMPurify.sanitize(mouData.PaymentTerms.PaymentSchedule.FinalInstallment).trim(),
+      },
+      PaymentMethod: DOMPurify.sanitize(mouData.PaymentTerms.PaymentMethod).trim(),
+    },
+    Termination: {
+      TerminationConditions: DOMPurify.sanitize(mouData.Termination.TerminationConditions).trim(),
+      PaymentDue: DOMPurify.sanitize(mouData.Termination.PaymentDue).trim(),
+    },
+
+  };
+  const charOnly = /^[A-Za-z ]+$/;
+  const charNum= /^[a-zA-Z0-9]*$/;
+  const uppercaseNum=/^[A-Z0-9]*$/;
+  const nums=/^[0-9]*$/;
+
+
+  const mailCheck=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
   const handleSubmit = async () => {
+
+
+    if(!finalMouData.Date)
+    {
+      toast.error("Please enter Date");
+      return;
+    }
+    if(!finalMouData.Location)
+    {
+      toast.error("Please enter Location");
+      return;
+    }
+    if(!finalMouData.FirstParty.Name || !finalMouData.FirstParty.Name.match(charOnly))
+    {
+      toast.error("Please enter a valid Name");
+      return;
+    }
+    if(!finalMouData.FirstParty.Address || !finalMouData.FirstParty.Address.match(charNum))
+    {
+      toast.error("Please enter a  valid Address ");
+      return;
+    }if(!finalMouData.FirstParty.Representative || !finalMouData.FirstParty.Representative.match(charOnly))
+    {
+      toast.error("Please enter a valid Representative");
+      return;
+    }
+    if(!finalMouData.FirstParty.Contact)
+    {
+      toast.error("Please enter a Valid Phone number");
+      return;
+    }
+    if(!finalMouData.SecondParty.Name || !finalMouData.SecondParty.Name.match(charOnly))
+    {
+      toast.error("Please enter a valid Second party Name");
+      return;
+    }
+    if(!finalMouData.SecondParty.Address || !finalMouData.SecondParty.Address.match(charNum))
+    {
+      toast.error("Please enter a  valid Second Party Address ");
+      return;
+    }if(!finalMouData.SecondParty.Representative || !finalMouData.SecondParty.Representative.match(charOnly))
+    {
+      toast.error("Please enter a valid Second Party Representative");
+      return;
+    }
+
+    if(!finalMouData.TermsConditions.NatureRelationship)
+    {
+      toast.error("Please enter a valid Nature of Relationship");
+      return;
+    }
+    if(!finalMouData.TermsConditions.MutualObligation)
+    {
+      toast.error("Please enter a valid Mutual Obligation");
+      return;
+    }
+    if(!finalMouData.TermsConditions.LimitationsWarranties)
+    {
+      toast.error("Please enter a valid Limitations and Warranties");
+      return;
+    }
+
+    if(!finalMouData.PurposeScope.Details)
+    {
+      toast.error("Please enter a valid Details");
+      return;
+    }  
+     if(!finalMouData.PurposeScope.CollaborationPeriod)
+    {
+      toast.error("Please enter a valid Collaboration Period");
+      return;
+    }   if(!finalMouData.PurposeScope.OtherDetails)
+    {
+      toast.error("Please enter a valid OtherDetails");
+      return;
+    }
+
+    if(!finalMouData.PaymentTerms.AmountPerStudent || !finalMouData.PaymentTerms.AmountPerStudent.match(nums))
+    {
+      toast.error("Please enter a valid Amount Per Student");
+      return;
+    }
+
+    if(!finalMouData.PaymentTerms.FirstInstallment.AmountPerStudent || !finalMouData.PaymentTerms.FirstInstallment.match(nums))
+    {
+      toast.error("Please enter a valid First Installment");
+      return;
+    }
+    if(!finalMouData.PaymentTerms.SecondInstallment.AmountPerStudent || !finalMouData.PaymentTerms.SecondInstallment.match(nums))
+    {
+      toast.error("Please enter a valid Second Installment");
+      return;
+    }
+    if(!finalMouData.PaymentTerms.ThirdInstallment.AmountPerStudent || !finalMouData.PaymentTerms.ThirdInstallment.match(nums))
+    {
+      toast.error("Please enter a valid Third Installment");
+      return;
+    }
+    if(!finalMouData.PaymentTerms.FinalInstallment.AmountPerStudent || !finalMouData.PaymentTerms.FinalInstallment.match(nums))
+    {
+      toast.error("Please enter a valid Final Installment");
+      return;
+    }
+    if(!finalMouData.PaymentTerms.PaymentMethod.AmountPerStudent || !finalMouData.PaymentTerms.PaymentMethod.match(charOnly))
+    {
+      toast.error("Please enter a valid Payment Method");
+      return;
+    }
+
+
+    if(!finalMouData.Termination.TerminationConditions)
+    {
+      toast.error("Please enter a Valid Termination Conditions");
+      return;
+    }
+    if(!finalMouData.Termination.Date)
+    {
+      toast.error("Please enter a valid termination Date");
+      return;
+    }
+
     try {
       // process.env.API_SERVER check the env file
-      const response = await Axios.post(ApiUrls['MouCreate'], mouData);
+      const response = await Axios.post(ApiUrls['MouCreate'], finalMouData);
       console.log('Server response:', response.data);
       setMessage('Data submitted successfully');
     } catch (error) {
@@ -79,7 +251,7 @@ const MouCreate = () => {
         <div className="min-height-300 bg-primary position-absolute w-100"></div>
         {/* Include the sidebar component */}
         <Sidebar />
-
+        <Toaster richColors position='top-center'/>
         <main className="main-content position-relative border-radius-lg">
           {/* Include the navbar component */}
           <Navbar />
