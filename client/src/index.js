@@ -34,6 +34,11 @@ import Register from './pages/Forms/Register';
 import CreateBatch from './pages/Batch/CreateBatch';
 import ManageBatch from './pages/Batch/ManageBatch';
 import AllocateBatch from './pages/Batch/AllocateBatch';
+import CreateCurriculum from './pages/Training_Curriculum-module/CreateCurriculum';
+import ManageCurriculum from './pages/Training_Curriculum-module/ManageCurriculum';
+import Module from './pages/Training_Curriculum-module/CreateModule';
+import ManageModule from './pages/Training_Curriculum-module/ManageCurriculumModule';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {

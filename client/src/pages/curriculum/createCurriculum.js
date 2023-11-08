@@ -6,6 +6,8 @@ import Navbar from '../Includes/Navbar';
 import Sidebar from '../Includes/Sidebar';
 import ApiUrls from '../Includes/corsUrls';
 import * as XLSX from 'xlsx'; // Import the xlsx library for Excel file parsing
+import DOMPurify from 'dompurify';
+import { Toaster,toast} from 'sonner';
 
 const CurriculumPage = () => {
   const [curriculumData, setCurriculumData] = useState({
@@ -26,8 +28,15 @@ const CurriculumPage = () => {
     const file = event.target.files[0];
     setExcelFile(file);
   };
+  const uppercaseNum=/^[A-Z0-9]*$/;
 
   const handleSubmit = async () => {
+    if(!curriculumData.CurriculumName || curriculumData.CurriculumName.match(uppercaseNum))
+    {
+      toast.error("Please enter a valid Curriculam name");
+      return;
+    }
+    curriculumData.CurriculumName=DOMPurify.sanitize(curriculumData.CurriculumName).trim();
     try {
       // Processing the Excel file and create a dictionary
       if (excelFile) {
@@ -67,6 +76,7 @@ const CurriculumPage = () => {
     <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
       <Sidebar />
+      <Toaster richColors position='top-center'/>
       <main className="main-content position-relative border-radius-lg">
         <Navbar />
         <div className="container-fluid py-4">

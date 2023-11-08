@@ -8,10 +8,11 @@ export const PermissionsContext = createContext();
 
 export const PermissionsProvider = ({ children }) => {
   const [permissions, setPermissions] = useState([]);
-  const token = Cookies.get('token');
-  console.log(token);
+
 
   const fetchPermissions = () => {
+    const token = Cookies.get('token');
+    console.log(token);
     console.log('Fetching permissions...');
     axios.get(`http://localhost:3001/permision/api/permissions`, {
       headers: {

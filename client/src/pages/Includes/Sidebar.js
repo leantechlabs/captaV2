@@ -6,11 +6,16 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const permissionsContext = useContext(PermissionsContext);
   const { permissions, fetchPermissions } = permissionsContext;
+  // const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
-    fetchPermissions();
+    fetchPermissions()
   }, []);
 
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>; 
+  // }
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
