@@ -8,6 +8,7 @@ export const PermissionsContext = createContext();
 
 export const PermissionsProvider = ({ children }) => {
   const [permissions, setPermissions] = useState([]);
+  const [isFolderClicked, setIsFolderClicked] = useState(false);
 
 
   const fetchPermissions = () => {
@@ -29,7 +30,7 @@ export const PermissionsProvider = ({ children }) => {
   };
 
   return (
-    <PermissionsContext.Provider value={{ permissions, fetchPermissions}}>
+    <PermissionsContext.Provider value={{ permissions, fetchPermissions,isFolderClicked, setIsFolderClicked}}>
       {children}
     </PermissionsContext.Provider>
   );

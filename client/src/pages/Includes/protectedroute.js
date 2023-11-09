@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { PermissionsContext } from '../context/permissionsContext';
 
 const ProtectedRoute = ({ element }) => {
   const isAuthenticated = !!Cookies.get('token');
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
+  const { isFolderClicked } = useContext(PermissionsContext);
 
   const [hasAuthorization, setHasAuthorization] = useState();
   console.log(hasAuthorization,"does");
 var count=0
   useEffect(() => {
+    if (!isFolderClicked) {
     const token = Cookies.get('token');
   
     if (token) {
@@ -41,6 +44,7 @@ var count=0
       setIsLoading(false);
 
     }
+  }
   }, [location.pathname]);
   
 
