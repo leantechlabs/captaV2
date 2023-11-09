@@ -93,6 +93,7 @@ const SystemSettings = () => {
       <div className="container-fluid">
         <div className="row">
           <Sidebar />
+          <Toaster richColors position='top-center'/>
           <main className="col-md-12 ms-sm-auto col-lg-10 px-md-4">
             <Navbar />
             <div className="container-fluid py-4">
