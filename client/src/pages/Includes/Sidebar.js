@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, {useState, useContext,useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { PermissionsContext } from '../context/permissionsContext';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const permissionsContext = useContext(PermissionsContext);
+  const { permissions, fetchPermissions } = permissionsContext;
+  // const [isLoading, setIsLoading] = useState(true); 
 
+  useEffect(() => {
+    fetchPermissions()
+  }, []);
+
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>; 
+  // }
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -14,6 +26,19 @@ const Sidebar = () => {
       submenu.classList.toggle("show");
     }
   };
+
+  const hasPermission = (page) => {
+    if (page) {
+      const permissionExists = permissions.includes(page);
+      return permissionExists;
+    }
+    return false;
+  };
+  const hasFolderPermission = (folderPages) => {
+    const folderPermissionExists = folderPages.some(page => hasPermission(page));
+    return folderPermissionExists;
+  };
+  
 
   return (
     
@@ -48,15 +73,18 @@ const Sidebar = () => {
           <li className="nav-item mt-3">
             <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6"></h6>
           </li>
-          <li className="nav-item">
-            <Link to="/dashboard" className="nav-link active">
-              <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i className="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-              </div>
-              <span className="nav-link-text ms-1">Dashboard</span>
-            </Link>
-          </li>
-          <li className="nav-item">
+          {hasPermission('/dashboard') && (
+            <li className="nav-item">
+              <Link to="/dashboard" className="nav-link active">
+                <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i className="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                </div>
+                <span className="nav-link-text ms-1">Dashboard</span>
+              </Link>
+            </li>
+          )}
+            {hasFolderPermission(['/user/add', '/user/manage']) && (
+             <li className="nav-item">
             <Link
               className="nav-link"
               onClick={() => toggleSubmenu("#usersSubmenu")}
@@ -69,19 +97,27 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="usersSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/user/add') && (
+
                 <li className="nav-item">
                   <Link to="/user/add" className="nav-link">
                     <span className="nav-link-text ms-3">Add Users</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/user/manage') && (
+
                 <li className="nav-item">
                   <Link to="/user/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Users</span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
           </li>
+          )}
+            {hasFolderPermission(['/college/add', '/college/manage']) && (
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -95,11 +131,16 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="institutionSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/college/add') && (
+
                 <li className="nav-item">
                   <Link to="/college/add" className="nav-link">
                     <span className="nav-link-text ms-3">Add Institution</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/college/manage') && (
+
                 <li className="nav-item">
                   <Link to="/college/manage" className="nav-link">
                     <span className="nav-link-text ms-3">
@@ -107,9 +148,14 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
-          </li>
+          </li>   
+           )}
+ 
+           {hasFolderPermission(['/mou/create', '/mou/confirm','/mou/manage']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -123,24 +169,37 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="mouSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/mou/create') && (
+
                 <li className="nav-item">
                   <Link to="/mou/create" className="nav-link">
                     <span className="nav-link-text ms-3">MOU Create</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/mou/confirm') && (
+
                 <li className="nav-item">
                   <Link to="/mou/confirm" className="nav-link">
                     <span className="nav-link-text ms-3">MOU Confirmation</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/mou/manage') && (
+
                 <li className="nav-item">
                   <Link to="/mou/manage" className="nav-link">
                     <span className="nav-link-text ms-3">MOU Manage</span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
           </li>
+          )}
+
+          {hasFolderPermission(['/curriculum/create','/module/create','/module/manage', '/curriculum/manage']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -154,29 +213,43 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="TrainingSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/curriculum/create') && (
                 <li className="nav-item">
                   <Link to="/curriculum/create" className="nav-link">
                     <span className="nav-link-text ms-3">Create Curriculum</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/curriculum/manage') && (
+
                 <li className="nav-item">
                   <Link to="/curriculum/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Curriculum</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/module/create') && (
+
                 <li className="nav-item">
                   <Link to="/module/create" className="nav-link">
                     <span className="nav-link-text ms-3">Create Module</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/module/manage') && (
                 <li className="nav-item">
                   <Link to="/module/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Module</span>
                   </Link>
                 </li>
-              </ul>
+                )}
+                </ul>
             </div>
           </li>
+          )}
+
+          {hasFolderPermission(['/module/confirmation/create', '/module/confirmation/manage','/module/status']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -190,6 +263,8 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="moduleSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/module/confirmation/create') && (
+
                 <li className="nav-item">
                   <Link to="/module/confirmation/create" className="nav-link">
                     <span className="nav-link-text ms-3">
@@ -197,6 +272,9 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/module/confirmation/manage') && (
+
                 <li className="nav-item">
                   <Link to="/module/confirmation/manage" className="nav-link">
                     <span className="nav-link-text ms-3">
@@ -204,6 +282,9 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/module/status') && (
+
                 <li className="nav-item">
                   <Link to="/module/status" className="nav-link">
                     <span className="nav-link-text ms-3">
@@ -211,9 +292,14 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
           </li>
+          )}
+
+          {hasFolderPermission(['/batch/create', '/batch/manage','/batch/allocate']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -227,24 +313,37 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="BatchSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/batch/create') && (
+
                 <li className="nav-item">
                   <Link to="/batch/create" className="nav-link">
                     <span className="nav-link-text ms-3">Create Batch</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/batch/manage') && (
+
                 <li className="nav-item">
                   <Link to="/batch/manage" className="nav-link">
                     <span className="nav-link-text ms-3">Manage Batch</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/batch/allocate') && (
+
                 <li className="nav-item">
                   <Link to="/batch/allocate" className="nav-link">
                     <span className="nav-link-text ms-3">Allocate Batch</span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
           </li>
+          )}
+
+          {hasFolderPermission(['/session/details', '/session/attendance','/session/report']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -258,11 +357,16 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="SessionSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/session/details') && (
+
                 <li className="nav-item">
                   <Link to="/session/details" className="nav-link">
                     <span className="nav-link-text ms-3">Session Details</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/session/attendance') && (
+
                 <li className="nav-item">
                   <Link to="/session/attendance" className="nav-link">
                     <span className="nav-link-text ms-3">
@@ -270,14 +374,22 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/session/report') && (
+
                 <li className="nav-item">
-                  <Link to="session/report" className="nav-link">
+                  <Link to="/session/report" className="nav-link">
                     <span className="nav-link-text ms-3">Session Report</span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
           </li>
+          )}
+
+          {hasFolderPermission(['/report/curriculum','/report/module','/report/colleges','/report/trainer','/report/session','/report/trainer-attendance','/report/financial']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -291,6 +403,7 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="ReportSubmenu">
               <ul className="navbar-nav">
+              {hasPermission('/report/curriculum') && (
                 <li className="nav-item">
                   <Link to="/report/curriculum" className="nav-link">
                     <span className="nav-link-text ms-3">
@@ -298,39 +411,62 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/report/colleges') && (
+
                 <li className="nav-item">
                   <Link to="/report/colleges" className="nav-link">
                     <span className="nav-link-text ms-3">Colleges Report</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/report/module') && (
+
                 <li className="nav-item">
                   <Link to="/report/module" className="nav-link">
                     <span className="nav-link-text ms-3">Module Report</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/report/trainer') && (
+
                 <li className="nav-item">
                   <Link to="/report/trainer" className="nav-link">
                     <span className="nav-link-text ms-3">Trainer Report</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/report/session') && (
+
                 <li className="nav-item">
                   <Link to="/report/session" className="nav-link">
                     <span className="nav-link-text ms-3">Session Report</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/report/trainer-attendance') && (
+
                 <li className="nav-item">
                   <Link to="/report/trainer-attendance" className="nav-link">
                     <span className="nav-link-text ms-3">Trainer Attendance Report</span>
                   </Link>
                 </li>
+                )}
+                {hasPermission('/report/financial') && (
+
                 <li className="nav-item">
                   <Link to="/report/financial" className="nav-link">
                     <span className="nav-link-text ms-3">Financial Report</span>
                   </Link>
                 </li>
+                )}
               </ul>
             </div>
           </li>
+          )}
+
+          {hasFolderPermission(['/settings/system-set', '/settings/api']) && (
+
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -344,24 +480,27 @@ const Sidebar = () => {
             </Link>
             <div className="collapse" id="SettingsSubmenu">
               <ul className="navbar-nav">
-               
-                <li className="nav-item">
-                  <Link to="/settings/system-set" className="nav-link">
-                    <span className="nav-link-text ms-3">System Settings</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/settings/api" className="nav-link">
-                    <span className="nav-link-text ms-3">Api Settings</span>
-                  </Link>
-                </li>
-              
+                {hasPermission('/settings/system-set') && (
+                  <li className="nav-item">
+                    <Link to="/settings/system-set" className="nav-link">
+                      <span className="nav-link-text ms-3">System Settings</span>
+                    </Link>
+                  </li>
+                )}
+                {hasPermission('/settings/api') && (
+                  <li className="nav-item">
+                    <Link to="/settings/api" className="nav-link">
+                      <span className="nav-link-text ms-3">Api Settings</span>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </li>
-        </ul>
-      </div>
-      
+          )}
+              </ul>
+            </div>
+ 
       <div
         className={`sidebar-collapse-button d-xl-none ${
           isSidebarOpen ? "collapsed" : ""

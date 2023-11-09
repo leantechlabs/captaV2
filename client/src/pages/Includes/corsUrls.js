@@ -1,12 +1,13 @@
 const flag= 'Test'
 var Api= 'http://localhost:3001' //testAPi
-if (flag=='Dev'){
+if (flag==='Dev'){
     //const Api= 'https://ap-south-1.console.aws.amazon.com/codesuite/codepipeline/pipeline/' //Production APi
      Api= 'https://capta-server.vercel.app'
 }
 const ApiUrls= {
     //add all api urls her
-    'login':Api+'/login',
+    'login':Api+'/auth/login',
+    'logout':Api+'/auth/logout',
     'register':Api+'/register',
     'addUser':Api+'/user/add',
     'ManageUser':Api+'/user/manage',
@@ -20,6 +21,8 @@ const ApiUrls= {
     'ModuleManage': Api + '/module/confirmation/manage',
     'ModuleStatus' : Api + '/module/status',
     'createCurriculum' : Api + '/curriculum/create',
+    'system' : Api + '/permision/settings/system',
+
     'ManageCurriculum' : Api + '/curriculum/manage',
     'fetchCurriculumNames' : Api + '/curriculum/names',
     'createModuleCurriculum' : Api + '/module/create',

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
 import { Toaster,toast} from 'sonner';
 import DOMPurify from 'dompurify';
-import { Link,useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { PermissionsContext } from '../context/permissionsContext'; 
 
 
 const SignIn = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { fetchPermissions } = useContext(PermissionsContext); // Use useContext to get the context
+
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -18,6 +23,7 @@ const SignIn = () => {
     const { name, value } = e.target;
     const sanitizedValue = DOMPurify.sanitize(value.trim());
     setState({ ...state, [name]: sanitizedValue });
+
   }
 
   const handleSignIn = () => {
@@ -45,13 +51,19 @@ const SignIn = () => {
       .then((response) => {
         const successMessage = response.data.message;
         setState({ ...state, message: successMessage });
+        Cookies.set('token', response.data.token, { expires: 1 / 24 });
         toast.success(successMessage);
-        navigate('/dashboard')
+        console.log(response.data.token,response);
+        // fetchPermissions();
+        navigate('/dashboard');
+
       })
       .catch((error) => {
         const errorMessage = error.response ? error.response.data.message : 'Error: Unable to log in.';
         setState({ ...state, message: errorMessage });
         toast.error(errorMessage);
+        console.log(error,"not logged in ");
+
       });
   }
 

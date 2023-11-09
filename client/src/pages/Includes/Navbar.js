@@ -1,9 +1,14 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link,useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import ApiUrls from '../Includes/corsUrls';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleProfile = () => {
     console.log('View Profile');
   };
@@ -12,9 +17,17 @@ const Navbar = () => {
     console.log('Notifications');
   };
   const handleSignOut = () => {
-    navigate('/')
+    console.log('SIgnOut');
+    axios.get(ApiUrls['logout'])
+    .then((response) => {
+      console.log(response);
+      Cookies.remove('token');
+      navigate('/');
+    })
+    .catch((error) => {
+      console.log(error,"not logged in ");
+    });
   };
-
 
   return (
     <nav className=" " id="navbarBlur" data-scroll="true">
