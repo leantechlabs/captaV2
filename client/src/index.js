@@ -15,10 +15,10 @@ import ManageInstitution from "./pages/Institution/ManageInstitution";
 import ModuleConfirmationSheet from './pages/Module/ModuleConfirmationsheet';
 import ModuleManage from './pages/Module/ModuleManage';
 import ModuleConfirmation from './pages/Module/ModuleConfirmation';
-import Curriculumcreate from './pages/curriculum/createCurriculum';
-import CurriculumManage from './pages/curriculum/manageCurriculum';
-import ModuleCurriculumCreate from './pages/curriculum/createCurriculum';
-import ModuleCurriculumManage from './pages/curriculum/manageModuleCurriculum';
+import Curriculumcreate from './pages/Curriculum/createCurriculum';
+import CurriculumManage from './pages/Curriculum/manageCurriculum';
+import ModuleCurriculumCreate from './pages/Curriculum/createCurriculum';
+import ModuleCurriculumManage from './pages/Curriculum/manageModuleCurriculum';
 import SessionDetails from './pages/Session/SessionDetails';
 import SessionAttendance from './pages/Session/SessionAttendance';
 import CurriculumReport from './pages/Report/CurricullumReport';
@@ -27,17 +27,17 @@ import ModuleReport from './pages/Report/ModuleReport';
 import TrainersReport from './pages/Report/TrainerReport';
 import SystemSettings from './pages/Settings/SystemSettings';
 import Api from './pages/Settings/Api'
-import MouCreate from './pages/mou/MOUCreate';
-import MouConfirmation from './pages/mou/MOUConfirmation';
-import MouManage from './pages/mou/MOUManage';
+import MouCreate from './pages/Mou/MOUCreate';
+import MouConfirmation from './pages/Mou/MOUConfirmation';
+import MouManage from './pages/Mou/MOUManage';
 import Register from './pages/Forms/Register';
 import CreateBatch from './pages/Batch/CreateBatch';
 import ManageBatch from './pages/Batch/ManageBatch';
 import AllocateBatch from './pages/Batch/AllocateBatch';
-import CreateCurriculum from './pages/Training_Curriculum-module/CreateCurriculum';
-import ManageCurriculum from './pages/Training_Curriculum-module/ManageCurriculum';
-import Module from './pages/Training_Curriculum-module/CreateModule';
-import ManageModule from './pages/Training_Curriculum-module/ManageCurriculumModule';
+// import CreateCurriculum from './pages/Training_Curriculum-module/CreateCurriculum';
+// import ManageCurriculum from './pages/Training_Curriculum-module/ManageCurriculum';
+// import Module from './pages/Training_Curriculum-module/CreateModule';
+// import ManageModule from './pages/Training_Curriculum-module/ManageCurriculumModule';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -77,7 +77,7 @@ function App() {
           <Route path='/batch/allocate' element = {<ProtectedRoute element={<AllocateBatch />} />} />
         </Routes>
       </Router>
-      
+       
     </div>
   );
 }

@@ -70,6 +70,7 @@ const ManageUser = () => {
                       user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                       user.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                       user.phoneNumber?.toLowerCase().includes(searchTerm.toLowerCase())
+
                     )
                     .map((user) => (
                       <tr key={user.id}>
