@@ -4,8 +4,8 @@ import { PermissionsContext } from '../context/permissionsContext';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const permissionsContext = useContext(PermissionsContext);
-  const { permissions, fetchPermissions } = permissionsContext;
+  const { permissions, fetchPermissions, setIsFolderClicked } = useContext(PermissionsContext);
+  // const { permissions, fetchPermissions } = permissionsContext;
   // const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Sidebar = () => {
           </li>
           {hasPermission('/dashboard') && (
             <li className="nav-item">
-              <Link to="/dashboard" className="nav-link active">
+              <Link to="/dashboard" className="nav-link active" onClick={() => setIsFolderClicked(false)}>
                 <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                   <i className="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                 </div>
@@ -87,7 +87,10 @@ const Sidebar = () => {
              <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#usersSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);
+                toggleSubmenu("#usersSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-single-02 text-primary text-sm opacity-10"></i>
@@ -100,7 +103,7 @@ const Sidebar = () => {
               {hasPermission('/user/add') && (
 
                 <li className="nav-item">
-                  <Link to="/user/add" className="nav-link">
+                  <Link to="/user/add" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Add Users</span>
                   </Link>
                 </li>
@@ -108,7 +111,7 @@ const Sidebar = () => {
                 {hasPermission('/user/manage') && (
 
                 <li className="nav-item">
-                  <Link to="/user/manage" className="nav-link">
+                  <Link to="/user/manage" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Manage Users</span>
                   </Link>
                 </li>
@@ -121,7 +124,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#institutionSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#institutionSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-building text-primary text-sm opacity-10"></i>
@@ -134,7 +139,7 @@ const Sidebar = () => {
               {hasPermission('/college/add') && (
 
                 <li className="nav-item">
-                  <Link to="/college/add" className="nav-link">
+                  <Link to="/college/add" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Add Institution</span>
                   </Link>
                 </li>
@@ -159,7 +164,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#mouSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#mouSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-paper-diploma text-primary text-sm opacity-10"></i>
@@ -172,7 +179,7 @@ const Sidebar = () => {
               {hasPermission('/mou/create') && (
 
                 <li className="nav-item">
-                  <Link to="/mou/create" className="nav-link">
+                  <Link to="/mou/create" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">MOU Create</span>
                   </Link>
                 </li>
@@ -180,7 +187,7 @@ const Sidebar = () => {
                 {hasPermission('/mou/confirm') && (
 
                 <li className="nav-item">
-                  <Link to="/mou/confirm" className="nav-link">
+                  <Link to="/mou/confirm" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">MOU Confirmation</span>
                   </Link>
                 </li>
@@ -188,7 +195,7 @@ const Sidebar = () => {
                 {hasPermission('/mou/manage') && (
 
                 <li className="nav-item">
-                  <Link to="/mou/manage" className="nav-link">
+                  <Link to="/mou/manage" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">MOU Manage</span>
                   </Link>
                 </li>
@@ -203,7 +210,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#TrainingSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true); toggleSubmenu("#TrainingSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-hat-3 text-primary text-sm opacity-10"></i>
@@ -215,7 +224,7 @@ const Sidebar = () => {
               <ul className="navbar-nav">
               {hasPermission('/curriculum/create') && (
                 <li className="nav-item">
-                  <Link to="/curriculum/create" className="nav-link">
+                  <Link to="/curriculum/create" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Create Curriculum</span>
                   </Link>
                 </li>
@@ -223,7 +232,7 @@ const Sidebar = () => {
                 {hasPermission('/curriculum/manage') && (
 
                 <li className="nav-item">
-                  <Link to="/curriculum/manage" className="nav-link">
+                  <Link to="/curriculum/manage" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Manage Curriculum</span>
                   </Link>
                 </li>
@@ -231,14 +240,14 @@ const Sidebar = () => {
                 {hasPermission('/module/create') && (
 
                 <li className="nav-item">
-                  <Link to="/module/create" className="nav-link">
+                  <Link to="/module/create" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Create Module</span>
                   </Link>
                 </li>
                 )}
                 {hasPermission('/module/manage') && (
                 <li className="nav-item">
-                  <Link to="/module/manage" className="nav-link">
+                  <Link to="/module/manage" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Manage Module</span>
                   </Link>
                 </li>
@@ -253,7 +262,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#moduleSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#moduleSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-books text-primary text-sm opacity-10"></i>
@@ -266,7 +277,7 @@ const Sidebar = () => {
               {hasPermission('/module/confirmation/create') && (
 
                 <li className="nav-item">
-                  <Link to="/module/confirmation/create" className="nav-link">
+                  <Link to="/module/confirmation/create" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">
                       Module Confirmation Sheet
                     </span>
@@ -276,7 +287,7 @@ const Sidebar = () => {
                 {hasPermission('/module/confirmation/manage') && (
 
                 <li className="nav-item">
-                  <Link to="/module/confirmation/manage" className="nav-link">
+                  <Link to="/module/confirmation/manage" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">
                       Manage Module Sheet
                     </span>
@@ -286,7 +297,7 @@ const Sidebar = () => {
                 {hasPermission('/module/status') && (
 
                 <li className="nav-item">
-                  <Link to="/module/status" className="nav-link">
+                  <Link to="/module/status" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">
                       Verify Module Sheet
                     </span>
@@ -303,7 +314,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#BatchSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#BatchSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-building text-primary text-sm opacity-10"></i>
@@ -316,7 +329,7 @@ const Sidebar = () => {
               {hasPermission('/batch/create') && (
 
                 <li className="nav-item">
-                  <Link to="/batch/create" className="nav-link">
+                  <Link to="/batch/create" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Create Batch</span>
                   </Link>
                 </li>
@@ -324,7 +337,7 @@ const Sidebar = () => {
                 {hasPermission('/batch/manage') && (
 
                 <li className="nav-item">
-                  <Link to="/batch/manage" className="nav-link">
+                  <Link to="/batch/manage" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Manage Batch</span>
                   </Link>
                 </li>
@@ -332,7 +345,7 @@ const Sidebar = () => {
                 {hasPermission('/batch/allocate') && (
 
                 <li className="nav-item">
-                  <Link to="/batch/allocate" className="nav-link">
+                  <Link to="/batch/allocate" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Allocate Batch</span>
                   </Link>
                 </li>
@@ -347,7 +360,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#SessionSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#SessionSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-ruler-pencil text-primary text-sm opacity-10"></i>
@@ -360,7 +375,7 @@ const Sidebar = () => {
               {hasPermission('/session/details') && (
 
                 <li className="nav-item">
-                  <Link to="/session/details" className="nav-link">
+                  <Link to="/session/details" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Session Details</span>
                   </Link>
                 </li>
@@ -368,7 +383,7 @@ const Sidebar = () => {
                 {hasPermission('/session/attendance') && (
 
                 <li className="nav-item">
-                  <Link to="/session/attendance" className="nav-link">
+                  <Link to="/session/attendance" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">
                       Session Attendance
                     </span>
@@ -378,7 +393,7 @@ const Sidebar = () => {
                 {hasPermission('/session/report') && (
 
                 <li className="nav-item">
-                  <Link to="/session/report" className="nav-link">
+                  <Link to="/session/report" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Session Report</span>
                   </Link>
                 </li>
@@ -393,7 +408,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#ReportSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#ReportSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-collection text-primary text-sm opacity-10"></i>
@@ -405,7 +422,7 @@ const Sidebar = () => {
               <ul className="navbar-nav">
               {hasPermission('/report/curriculum') && (
                 <li className="nav-item">
-                  <Link to="/report/curriculum" className="nav-link">
+                  <Link to="/report/curriculum" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">
                       Curriculum Report
                     </span>
@@ -415,7 +432,7 @@ const Sidebar = () => {
                 {hasPermission('/report/colleges') && (
 
                 <li className="nav-item">
-                  <Link to="/report/colleges" className="nav-link">
+                  <Link to="/report/colleges" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Colleges Report</span>
                   </Link>
                 </li>
@@ -423,7 +440,7 @@ const Sidebar = () => {
                 {hasPermission('/report/module') && (
 
                 <li className="nav-item">
-                  <Link to="/report/module" className="nav-link">
+                  <Link to="/report/module" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Module Report</span>
                   </Link>
                 </li>
@@ -431,7 +448,7 @@ const Sidebar = () => {
                 {hasPermission('/report/trainer') && (
 
                 <li className="nav-item">
-                  <Link to="/report/trainer" className="nav-link">
+                  <Link to="/report/trainer" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Trainer Report</span>
                   </Link>
                 </li>
@@ -439,7 +456,7 @@ const Sidebar = () => {
                 {hasPermission('/report/session') && (
 
                 <li className="nav-item">
-                  <Link to="/report/session" className="nav-link">
+                  <Link to="/report/session" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Session Report</span>
                   </Link>
                 </li>
@@ -447,7 +464,7 @@ const Sidebar = () => {
                 {hasPermission('/report/trainer-attendance') && (
 
                 <li className="nav-item">
-                  <Link to="/report/trainer-attendance" className="nav-link">
+                  <Link to="/report/trainer-attendance" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Trainer Attendance Report</span>
                   </Link>
                 </li>
@@ -455,7 +472,7 @@ const Sidebar = () => {
                 {hasPermission('/report/financial') && (
 
                 <li className="nav-item">
-                  <Link to="/report/financial" className="nav-link">
+                  <Link to="/report/financial" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                     <span className="nav-link-text ms-3">Financial Report</span>
                   </Link>
                 </li>
@@ -470,7 +487,9 @@ const Sidebar = () => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              onClick={() => toggleSubmenu("#SettingsSubmenu")}
+              onClick={(event) =>{
+                event.preventDefault(); 
+                setIsFolderClicked(true);toggleSubmenu("#SettingsSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="ni ni-settings text-primary text-sm opacity-10"></i>
@@ -482,14 +501,14 @@ const Sidebar = () => {
               <ul className="navbar-nav">
                 {hasPermission('/settings/system-set') && (
                   <li className="nav-item">
-                    <Link to="/settings/system-set" className="nav-link">
+                    <Link to="/settings/system-set" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                       <span className="nav-link-text ms-3">System Settings</span>
                     </Link>
                   </li>
                 )}
                 {hasPermission('/settings/api') && (
                   <li className="nav-item">
-                    <Link to="/settings/api" className="nav-link">
+                    <Link to="/settings/api" className="nav-link" onClick={() => setIsFolderClicked(false)}>
                       <span className="nav-link-text ms-3">Api Settings</span>
                     </Link>
                   </li>
