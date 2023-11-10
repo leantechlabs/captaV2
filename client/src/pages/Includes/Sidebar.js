@@ -12,18 +12,38 @@ const Sidebar = () => {
     fetchPermissions()
   }, []);
 
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>; 
-  // }
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = (event) => {
+    const openSubmenu = document.querySelector(".collapse.show");
+  
+    // Check if the clicked element is a nav-link or nav-item
+    const isNavLinkClicked = event.target.classList.contains("nav-link");
+    const isNavItemClicked = event.target.classList.contains("nav-item");
+  
+    if (!openSubmenu && !isNavLinkClicked && !isNavItemClicked) {
+      setIsSidebarOpen(!isSidebarOpen);
+    }
   };
 
   const toggleSubmenu = (submenuId) => {
     const submenu = document.querySelector(submenuId);
     if (submenu) {
+      const isCurrentSubmenuOpen = submenu.classList.contains("nav-link");
+      const allSubmenus = document.querySelectorAll(".collapse");
+      
+      // Close all submenus
+      allSubmenus.forEach((item) => {
+        if (item.id !== submenuId) {
+          item.classList.remove("show");
+        }
+      });
+  
+      // Toggle the current submenu
       submenu.classList.toggle("show");
+  
+      // If it's a new submenu, collapse the sidebar
+      if (!isCurrentSubmenuOpen) {
+        setIsSidebarOpen(false);
+      }
     }
   };
 
@@ -88,7 +108,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);
                 toggleSubmenu("#usersSubmenu")}}
             >
@@ -98,7 +118,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Users</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="usersSubmenu">
+            <div className="c" id="usersSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/user/add') && (
 
@@ -125,7 +145,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#institutionSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -134,7 +154,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Institution</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="institutionSubmenu">
+            <div className="c" id="institutionSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/college/add') && (
 
@@ -165,7 +185,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#mouSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -174,7 +194,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">MOU</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="mouSubmenu">
+            <div className="c" id="mouSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/mou/create') && (
 
@@ -211,7 +231,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true); toggleSubmenu("#TrainingSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -220,7 +240,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Training Curriculum</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="TrainingSubmenu">
+            <div className="c" id="TrainingSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/curriculum/create') && (
                 <li className="nav-item">
@@ -263,7 +283,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#moduleSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -272,7 +292,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Module Confirmation</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="moduleSubmenu">
+            <div className="c" id="moduleSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/module/confirmation/create') && (
 
@@ -315,7 +335,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#BatchSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -324,7 +344,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Batch Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="BatchSubmenu">
+            <div className="c" id="BatchSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/batch/create') && (
 
@@ -361,7 +381,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#SessionSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -370,7 +390,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Session Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="SessionSubmenu">
+            <div className="c" id="SessionSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/session/details') && (
 
@@ -409,7 +429,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#ReportSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -418,7 +438,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Report Management</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="ReportSubmenu">
+            <div className="c" id="ReportSubmenu">
               <ul className="navbar-nav">
               {hasPermission('/report/curriculum') && (
                 <li className="nav-item">
@@ -488,7 +508,7 @@ const Sidebar = () => {
             <Link
               className="nav-link"
               onClick={(event) =>{
-                event.preventDefault(); 
+                event.preventDefault();  
                 setIsFolderClicked(true);toggleSubmenu("#SettingsSubmenu")}}
             >
               <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -497,7 +517,7 @@ const Sidebar = () => {
               <span className="nav-link-text ms-1">Settings</span>
               <i className="fas fa-caret-down ms-auto"></i>
             </Link>
-            <div className="collapse" id="SettingsSubmenu">
+            <div className="c" id="SettingsSubmenu">
               <ul className="navbar-nav">
                 {hasPermission('/settings/system-set') && (
                   <li className="nav-item">

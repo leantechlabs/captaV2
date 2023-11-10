@@ -17,7 +17,7 @@ import ModuleManage from './pages/Module/ModuleManage';
 import ModuleConfirmation from './pages/Module/ModuleConfirmation';
 import Curriculumcreate from './pages/Curriculum/createCurriculum';
 import CurriculumManage from './pages/Curriculum/manageCurriculum';
-import ModuleCurriculumCreate from './pages/Curriculum/createCurriculum';
+import ModuleCurriculumCreate from './pages/Curriculum/createModuleCurriculum';
 import ModuleCurriculumManage from './pages/Curriculum/manageModuleCurriculum';
 import SessionDetails from './pages/Session/SessionDetails';
 import SessionAttendance from './pages/Session/SessionAttendance';

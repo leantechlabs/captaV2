@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
-import ApiUrls from '../Includes/corsUrls';
+import { Toaster,toast} from 'sonner';
+import CurriculumPage from './createCurriculum';
+
 
 const CurriculumManage = () => {
-  const [curriculumItems, setCurriculumItems] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [mouData, setMOUData] = useState([
+    {
+      MOUID: 1001,
+      Details: 'Sample MOU 1 Details',
+    },
+    {
+      MOUID: 1021,
+      Details: 'Sample MOU 2 Details',
+    },
+    {
+      MOUID: 3011,
+      Details: 'Sample MOU 3 Details',
+    },
+  ]);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+  const handleEdit = (mouID) => {
+    console.log(`Editing MOU with ID ${mouID}`);
   };
 
-  const handleEdit = (curriculumID) => {
-    console.log(`Editing Curriculum with ID ${curriculumID}`);
+  const handleDelete = (mouID) => {
+    console.log(`Deleting MOU with ID ${mouID}`);
   };
 
-  useEffect(() => {
-    fetch(ApiUrls['ManageCurriculum'], {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setCurriculumItems(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching curriculum details: ', error);
-      });
-  }, []);
-
-  const filteredCurriculumItems = curriculumItems.filter((item) =>
-    item.CurriculumName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleManage = (mouID) => {
+    console.log(`Managing MOU with ID ${mouID}`);
+  };
 
   return (
     <div className="bg-gray-100 g-sidenav-show">
@@ -44,41 +44,39 @@ const CurriculumManage = () => {
         <div className="container-fluid py-4">
           <div className="card">
             <div className="card-body">
-              <p className="text-uppercase text-sm">Curriculum Management</p>
-              <div>
-                <div className="form-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search Curriculum by Name"
-                    value={searchTerm}
-                    onChange={handleSearch}
-                  />
-                </div>
+              <p className="text-uppercase text-sm">MOU Management</p>
+
+              <div className="table-responsive">
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>Curriculum ID</th>
-                      <th>Curriculum Name</th>
-                      <th>Total Hours</th>
-                      <th>Total Days</th>
-                      <th>Edit</th>
+                      <th>MOU ID</th>
+                      <th>Details</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredCurriculumItems.map((item) => (
-                      <tr key={item._id}>
-                        <td>{item._id.substr(0, 7)}</td>
-                        <td>{item.CurriculumName}</td>
-                        <td>{item.TotalHours}</td>
-                        <td>{item.TotalDays}</td>
+                    {mouData.map((mou) => (
+                      <tr key={mou.MOUID}>
+                        <td>{mou.MOUID}</td>
+                        <td>{mou.Details}</td>
                         <td>
-                          <button
-                            className="btn btn-primary btn-sm"
-                            onClick={() => handleEdit(item.CurriculumID)}
-                          >
-                            Edit
-                          </button>
+                          <Dropdown>
+                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                              <i className="fas fa-ellipsis"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item onClick={() => handleEdit(mou.MOUID)}>
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleDelete(mou.MOUID)}>
+                                Delete
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleManage(mou.MOUID)}>
+                                Manage
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
                         </td>
                       </tr>
                     ))}
