@@ -5,13 +5,14 @@ import DOMPurify from 'dompurify';
 import { Toaster,toast} from 'sonner';
 import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
+import { useHistory } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import 'react-toastify/dist/ReactToastify.css';
 import {storage} from "./firebaseConfig";
 import {ref,uploadBytes,getDownloadURL,listAll} from "firebase/storage";
 import {v4} from "uuid";
 
-const AddUser = () => {
+const EditUser = () => {
     const [userType, setUserType] = useState('');
     const [showTrainerFields, setShowTrainerFields] = useState(false);
     const [message, setMessage] = useState('');
@@ -63,118 +64,6 @@ const AddUser = () => {
       setBankAccounts(updatedBankAccounts);
     };
 
-    const charOnly = /^[A-Za-z ]+$/;
-    const charNum= /^[a-zA-Z0-9]*$/;
-    const uppercaseNum=/^[A-Z0-9]*$/;
-    const nums=/^[0-9]*$/;
-    const mailCheck=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-    const handleSubmit = async () => {
-
-
-      if(!formData.username || !charNum.test(formData.username))
-      {
-        toast.error("Please enter a valid user name");
-        return;
-      }
-      if (!formData.email || !formData.email.match(mailCheck)) {
-        toast.error('Please enter a valid email address.');
-        return;
-      }
-
-      if(!formData.userId || !formData.userId.match(nums))
-      {
-        toast.error("Please enter a valid userId");
-        return;
-      }
-
-      if(!formData.phoneNumber || !formData.phoneNumber.match(nums))
-      {
-        toast.error("Please enter a valid phone number");
-        return;
-      }
-
-      if(!formData.address || !formData.address.length>3)
-      {
-        toast.error("Please enter a valid address");
-        return;
-      }
-      if(!formData.city || !formData.city.match(charOnly))
-      {
-        toast.error("Please enter a valid city");
-        return;
-      }
-      if(!formData.address || !formData.address.length>3)
-      {
-        toast.error("Please enter a valid address");
-        return;
-      }
-
-      if(!formData.address || !formData.address.length>3)
-      {
-        toast.error("Please enter a valid address");
-        return;
-      }
-
-      if(!formData.city || !formData.city.match(charOnly))
-      {
-        toast.error("Please enter a valid city");
-        return;
-      }
-      if(!formData.country || !formData.country.match(charOnly))
-      {
-        toast.error("Please enter a valid country");
-        return;
-      }
-      if(!formData.postalCode || !formData.postalCode.match(nums))
-      {
-        toast.error("Please enter a valid Postal code");
-        return;
-      }
-
-      if(!formData.salary)
-      {
-        toast.error("Salary can't be empty");
-        return;
-      }
-      //  const fileType = formData.resume.split('.').pop().toLowerCase();
-      // if (fileType !== 'pdf' || fileType !== 'doc' || fileType!=="docx") {
-      //   formData.resume=null;
-      //   toast.error("Please Select Valid Files");
-      //   return;
-      // }
-
-      // const adharFile=formData.adhar.split('.').pop().toLocaleLowerCase();
-      // if(adharFile!=="pdf" || adharFile!=='png' || adharFile!=='jpg' || adharFile!=='jpeg')
-      // {
-      //   formData.adhar=null;
-      //   toast.error("Adhar only accepted in pdf,jpg,png,jpeg");
-      //   return;
-      // }
-
-      // const panFile=formData.pan.split('.').pop().toLocaleLowerCase();
-      // if(panFile!=="pdf" || panFile!=='png' || panFile!=='jpg' || panFile!=='jpeg')
-      // {
-      //   formData.pan=null;
-      //   toast.error("Pan only accepted in pdf,jpg,png,jpeg");
-      //   return;
-      // }
-
-      // const photoFile=formData.photo.split('.').pop().toLocaleLowerCase();
-      // if(photoFile!=='png' || photoFile!=='jpg' || photoFile!=='jpeg')
-      // {
-      //   formData.photo=null;
-      //   toast.error("Photo only accepted in jpg,png,jpeg");
-      //   return;
-      // }
-      // const l=['adhar','resume','pan','photo'];
-      // l.forEach((element) => {
-      //   const resumeRef= ref(storage,`${element}/${formData.pan.name+v4()}`);
-      //   uploadBytes(resumeRef,formData.element);
-      //   console.log(element);
-
-      // });
-
       const userData = {
         username: DOMPurify.sanitize(formData.username).trim(),
         email: DOMPurify.sanitize(formData.email).trim(),
@@ -200,53 +89,41 @@ const AddUser = () => {
           })),
     
       };
-      let fileupload = async function () {
-        let photoRef = ref(storage, `photo/${formData.photo.name + v4()}`);
-        await uploadBytes(photoRef, formData.photo).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            userData.photo = url;
-          });
-        });
-        let resumeRef = ref(storage, `resume/${formData.resume.name + v4()}`);
-        await uploadBytes(resumeRef, formData.resume).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            userData.resume = url;
-          });
-        });
-        let adharRef = ref(storage, `adhar/${formData.adhar.name + v4()}`);
-        await uploadBytes(adharRef, formData.resume).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            userData.adhar = url;
-          });
-        });
+    
 
-        let panRef = ref(storage, `pan/${formData.pan.name + v4()}`);
-        await uploadBytes(panRef, formData.pan).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            userData.pan = url;
-          });
-        });
-
-        Axios.post(ApiUrls["addUser"], userData)
-          .then((response) => {
-            const successMessage = response.userData.message;
-            setMessage("Data submitted successfully");
-            toast.success(successMessage);
-          })
-          .catch((error) => {
-            const errorMessage = error.response ? error.response.data.message
-              :  ":";
-              if(errorMessage===":"){
-                toast.success("User Registered successfully");
-              }else{
-                toast.error(errorMessage);
-              }
-          });
-      };
-      fileupload()
+        // Axios.post(ApiUrls["addUser"], userData)
+        //   .then((response) => {
+        //     const successMessage = response.userData.message;
+        //     setMessage("Data submitted successfully");
+        //     toast.success(successMessage);
+        //   })
+        //   .catch((error) => {
+        //     const errorMessage = error.response ? error.response.data.message
+        //       :  ":";
+        //     toast.success("Data submitted successfully"+errorMessage)
+        //   });
+      
   
-  }
+          const [users, setUsers] = useState([]);
 
+  useEffect(() => {
+    fetch(ApiUrls['EditUser'], {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
+
+  
+  
     return (
       <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -797,9 +674,9 @@ const AddUser = () => {
                         className="btn btn-primary btn-sm ms-auto"
                         type="submit"
                         name="submit"
-                        onClick={handleSubmit}
+                        // onClick={handleSubmit}
                       >
-                        Submit
+                        Update
                       </button>
                     </div>
                   </div>
@@ -813,4 +690,4 @@ const AddUser = () => {
     );
 };
 
-export default AddUser;
+export default EditUser;

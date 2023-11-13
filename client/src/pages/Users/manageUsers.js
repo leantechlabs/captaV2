@@ -3,17 +3,16 @@ import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 import { FaUserEdit } from 'react-icons/fa';
 import ApiUrls from '../Includes/corsUrls';
-
+import { useNavigate } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
 const ManageUser = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleUserClick = (user) => {
     setSelectedUser(user);
-  };
-
-  const handleEditClick = (user) => {
   };
 
   useEffect(() => {
@@ -33,6 +32,17 @@ const ManageUser = () => {
       });
   }, []);
 
+  const handleEdit = (data) => {
+    navigate(`/user/edit?email=${data}`);
+  };
+
+  const handleDelete = (mouID) => {
+    console.log(`Deleting MOU with ID ${mouID}`);
+  };
+
+  const handleManage = (mouID) => {
+    console.log(`Managing MOU with ID ${mouID}`);
+  };
   return (
     <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -81,12 +91,22 @@ const ManageUser = () => {
                         </td>
                         <td>{user.phoneNumber}</td>
                         <td>
-                          <button
-                            className="btn btn-primary btn-sm"
-                            onClick={() => handleEditClick(user)}
-                          >
-                            <FaUserEdit />
-                          </button>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                              <i className="fas fa-ellipsis"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item onClick={() => handleEdit(user.email)}>
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleDelete(user.email)}>
+                                Delete
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleManage(user.email)}>
+                                Manage
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
                         </td>
                       </tr>
                     ))}
@@ -122,12 +142,22 @@ const ManageUser = () => {
                       <tr>
                         <th>Actions:</th>
                         <td>
-                          <button
-                            className="btn btn-primary edit-button"
-                            onClick={() => handleEditClick(selectedUser)}
-                          >
-                            Update
-                          </button>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                              <i className="fas fa-ellipsis"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item onClick={() => handleEdit(selectedUser.email)}>
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleDelete(selectedUser.email)}>
+                                Delete
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleManage(selectedUser.email)}>
+                                Manage
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
                         </td>
                       </tr>
                     </tbody>

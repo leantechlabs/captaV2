@@ -11,6 +11,7 @@ const ApiUrls= {
     'register':Api+'/register',
     'addUser':Api+'/user/add',
     'ManageUser':Api+'/user/manage',
+    'EditUser':Api+'/user/edit',
     'AddInstitution':Api+'/college/add',
     'ManageInstitution':Api+'/college/manage',
     'MouCreate':Api+'/mou/create',

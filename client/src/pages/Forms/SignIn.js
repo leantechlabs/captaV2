@@ -3,7 +3,6 @@ import axios from 'axios';
 import ApiUrls from '../Includes/corsUrls';
 import { Toaster,toast} from 'sonner';
 import DOMPurify from 'dompurify';
-import { redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { PermissionsContext } from '../context/permissionsContext'; 
@@ -11,7 +10,7 @@ import { PermissionsContext } from '../context/permissionsContext';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { fetchPermissions } = useContext(PermissionsContext); // Use useContext to get the context
+  const { fetchPermissions } = useContext(PermissionsContext); 
 
   const [state, setState] = useState({
     email: '',
@@ -49,14 +48,9 @@ const SignIn = () => {
 
     axios.post(ApiUrls['login'], data)
       .then((response) => {
-        const successMessage = response.data.message;
-        setState({ ...state, message: successMessage });
-        Cookies.set('token', response.data.token, { expires: 1 / 24 });
-        toast.success(successMessage);
-        console.log(response.data.token,response);
-        // fetchPermissions();
-        navigate('/dashboard');
 
+        Cookies.set('token', response.data.token, { expires: 1 / 24 });
+        navigate('/dashboard');
       })
       .catch((error) => {
         const errorMessage = error.response ? error.response.data.message : 'Error: Unable to log in.';

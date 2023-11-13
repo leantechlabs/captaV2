@@ -34,11 +34,7 @@ import Register from './pages/Forms/Register';
 import CreateBatch from './pages/Batch/CreateBatch';
 import ManageBatch from './pages/Batch/ManageBatch';
 import AllocateBatch from './pages/Batch/AllocateBatch';
-// import CreateCurriculum from './pages/Training_Curriculum-module/CreateCurriculum';
-// import ManageCurriculum from './pages/Training_Curriculum-module/ManageCurriculum';
-// import Module from './pages/Training_Curriculum-module/CreateModule';
-// import ManageModule from './pages/Training_Curriculum-module/ManageCurriculumModule';
-
+import EditUser from './pages/Users/updateUsers';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {
@@ -71,6 +67,7 @@ function App() {
           <Route path="/report/trainer" element={<ProtectedRoute element={<TrainersReport />} />} />
           <Route path="/settings/system-set" element={<ProtectedRoute element={<SystemSettings />} />} />
           <Route path="/settings/api" element={<ProtectedRoute element={<Api />} />} />
+          <Route path="/user/edit"  element={<EditUser />}  />
           {/* <Route path="/report/session" element={<SessionReport />} /> */}
           <Route path='/batch/create' element = {<ProtectedRoute element={<CreateBatch />} />} />
           <Route path='/batch/manage' element = {<ProtectedRoute element={<ManageBatch />} />} />

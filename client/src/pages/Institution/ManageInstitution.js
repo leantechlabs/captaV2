@@ -3,23 +3,20 @@ import Sidebar from '../Includes/Sidebar';
 import Navbar from '../Includes/Navbar';
 import { FaUserEdit } from 'react-icons/fa';
 import ApiUrls from '../Includes/corsUrls';
-
-const ManageInstitution = () => {
+import Dropdown from 'react-bootstrap/Dropdown';
+const ManageUser = () => {
   const [Institution, setInstitution] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedInstitution, setSelectedInstitution] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const handlecollegeClick = (college) => {
-    setSelectedInstitution(college);
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
   };
 
-  const handleEditClick = (college) => {
-    // Handle edit action here
-    // You can open a modal or navigate to an edit page
+  const handleEditClick = (user) => {
   };
 
   useEffect(() => {
-    // Fetch college data from the server
     fetch(ApiUrls['ManageInstitution'], {
       method: 'POST',
       headers: {
@@ -32,9 +29,20 @@ const ManageInstitution = () => {
         setInstitution(data);
       })
       .catch((error) => {
-        console.error('Error fetching college data:', error);
+        console.error('Error fetching user data:', error);
       });
   }, []);
+  const handleEdit = (mouID) => {
+    // navigate('/user/edit?email=');
+  };
+
+  const handleDelete = (mouID) => {
+    console.log(`Deleting MOU with ID ${mouID}`);
+  };
+
+  const handleManage = (mouID) => {
+    console.log(`Managing MOU with ID ${mouID}`);
+  };
 
   return (
     <div className="bg-gray-100 g-sidenav-show">
@@ -59,8 +67,8 @@ const ManageInstitution = () => {
                 <thead>
                   <tr>
                     <th>College Name</th>
-                    <th>EAMCET</th>
                     <th>Email</th>
+                    <th>Eamcet Code</th>
                     <th>Phone Number</th>
                     <th>Actions</th>
                   </tr>
@@ -68,66 +76,88 @@ const ManageInstitution = () => {
                 <tbody>
                   {Institution
                     .filter(
-                      (college) =>
-                        college.collegeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        college.eamcetCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        college.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        college.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase())
+                      (user) =>
+                      user.collegeName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                      user.eamcetCode?.toLowerCase().includes(searchTerm.toLowerCase())
+
                     )
-                    .map((college) => (
-                      <tr key={college.id}>
-                        <td>{college.collegeName}</td>
-                        <td>{college.eamcetCode}</td>
-                        <td>{college.email}</td>
-                        <td>{college.phoneNumber}</td>
+                    .map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.collegeName}</td>
+                        <td>{user.email}</td>
                         <td>
-                          <button
-                            className="btn btn-primary btn-sm"
-                            onClick={() => handleEditClick(college)}
-                          >
-                            <FaUserEdit />
-                          </button>
+                          {user.eamcetCode}
+                        </td>
+                        <td>{user.phoneNumber}</td>
+                        <td>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                              <i className="fas fa-ellipsis"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item onClick={() => handleEdit(selectedUser.userId)}>
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleDelete(selectedUser.userId)}>
+                                Delete
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleManage(selectedUser.userId)}>
+                                Manage
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
                         </td>
                       </tr>
                     ))}
                 </tbody>
               </table>
-              {selectedInstitution && (
+              {selectedUser && (
                 <div>
-                  <p>Selected college: {selectedInstitution.collegename}</p>
+                  <p>Selected User: {selectedUser.collegeName}</p>
                   <table className="table">
                     <tbody>
                       <tr>
-                        <th>collegename:</th>
-                        <td>{selectedInstitution.collegename}</td>
+                        <th>collegeName:</th>
+                        <td>{selectedUser.collegeName}</td>
                       </tr>
                       <tr>
                         <th>Email:</th>
-                        <td>{selectedInstitution.email}</td>
+                        <td>{selectedUser.email}</td>
                       </tr>
                       <tr>
-                        <th>college ID:</th>
-                        <td>{selectedInstitution.collegeId}</td>
+                        <th>User ID:</th>
+                        <td>{selectedUser.userId}</td>
                       </tr>
                       <tr>
                         <th>Phone Number:</th>
-                        <td>{selectedInstitution.phoneNumber}</td>
+                        <td>{selectedUser.phoneNumber}</td>
                       </tr>
                       <tr>
-                        <th>Role:</th>
+                        <th>eamcetCode:</th>
                         <td>
-                          {selectedInstitution.role === '1' ? 'Moderator' : 'Trainer'}
+                          {selectedUser.eamcetCode}
                         </td>
                       </tr>
                       <tr>
                         <th>Actions:</th>
                         <td>
-                          <button
-                            className="btn btn-primary edit-button"
-                            onClick={() => handleEditClick(selectedInstitution)}
-                          >
-                            Update
-                          </button>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                              <i className="fas fa-ellipsis"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item onClick={() => handleEdit(selectedUser.userId)}>
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleDelete(selectedUser.userId)}>
+                                Delete
+                              </Dropdown.Item>
+                              <Dropdown.Item onClick={() => handleManage(selectedUser.userId)}>
+                                Manage
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
                         </td>
                       </tr>
                     </tbody>
@@ -142,4 +172,4 @@ const ManageInstitution = () => {
   );
 };
 
-export default ManageInstitution;
+export default ManageUser;
