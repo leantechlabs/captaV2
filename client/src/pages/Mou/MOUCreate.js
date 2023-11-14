@@ -8,8 +8,6 @@ import Sidebar from '../Includes/Sidebar';
 import ApiUrls from '../Includes/corsUrls';
 import DOMPurify from 'dompurify';
 import { Toaster, toast } from 'sonner';
-import { Editor } from '@tinymce/tinymce-react';
-
 const MouCreate = () => {
   const initialMOUData = {
     Date: '',
