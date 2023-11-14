@@ -13,8 +13,8 @@ jobs:
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.server_IP}}
-          username: ${{secrets.server_username}}
-          key: ${{secrets.server_KEY}}
+          host: ${{secrets.SERVER_IP}}
+          username: ${{secrets.SERVER_USERNAME}}
+          key: ${{secrets.SERVER_KEY}}
           script: |
             ./update_frontend.sh
