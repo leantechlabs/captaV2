@@ -77,7 +77,7 @@ function App() {
           <Route path='/batch/allocate'  element={<AllocateBatch />} />
         </Routes>
       </Router>
-       
+       {/* update */}
     </div>
   );
 }
