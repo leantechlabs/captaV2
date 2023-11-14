@@ -6,7 +6,7 @@ import Navbar from '../Includes/Navbar';
 import ApiUrls from '../Includes/corsUrls';
 import { Toaster,toast} from 'sonner';
 import DOMPurify from 'dompurify';
-import MouConfirmation from '../Mou/MOUConfirmation';
+import MouConfirmation from '../mou/MOUConfirmation';
 
 const ModuleCurriculumCreate = () => {
   const initialModuleCurriculumData = {
