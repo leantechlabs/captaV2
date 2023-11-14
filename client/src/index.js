@@ -27,7 +27,7 @@ import ModuleReport from './pages/Report/ModuleReport';
 import TrainersReport from './pages/Report/TrainerReport';
 import SystemSettings from './pages/Settings/SystemSettings';
 import Api from './pages/Settings/Api'
-import MouCreate from './pages/mou/mouCreate';
+// import MouCreate from './pages/mou/mouCreate';
 import MouConfirmation from './pages/mou/MOUConfirmation';
 import MouManage from './pages/mou/MOUManage';
 import Register from './pages/Forms/Register';
@@ -49,7 +49,7 @@ function App() {
           <Route path="/dashboard"  element={<Dashboard />} />
           <Route path="/user/add"  element={<AddUser />} />
           <Route path="/user/manage"  element={<ManageUser />} />
-          <Route path="/mou/create"  element={<MouCreate />} />
+          {/* <Route path="/mou/create"  element={<MouCreate />} /> */}
           <Route path="/mou/confirm"  element={<MouConfirmation />} />
           <Route path="/mou/manage"  element={<MouManage />} />
           <Route path="/college/add"  element={<AddInstitution />} />
