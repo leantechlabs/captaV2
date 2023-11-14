@@ -2,7 +2,7 @@ const flag= 'Dev'
 var Api= 'http://localhost:3001' //testAPi
 if (flag==='Dev'){
     //const Api= 'https://ap-south-1.console.aws.amazon.com/codesuite/codepipeline/pipeline/' //Production APi
-     Api= 'http://13.200.80.205:3001/'
+     Api= 'http://13.200.80.205:3001'
 }
 const ApiUrls= {
     'api':Api,
