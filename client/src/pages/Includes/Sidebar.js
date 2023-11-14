@@ -8,9 +8,9 @@ const Sidebar = () => {
   // const { permissions, fetchPermissions } = permissionsContext;
   // const [isLoading, setIsLoading] = useState(true); 
 
-  useEffect(() => {
-    fetchPermissions()
-  }, []);
+  // useEffect(() => {
+  //   fetchPermissions()
+  // }, []);
 
   const toggleSidebar = (event) => {
     const openSubmenu = document.querySelector(".collapse.show");
@@ -48,15 +48,17 @@ const Sidebar = () => {
   };
 
   const hasPermission = (page) => {
-    if (page) {
-      const permissionExists = permissions.includes(page);
-      return permissionExists;
-    }
-    return false;
+    // if (page) {
+    //   const permissionExists = permissions.includes(page);
+    //   return permissionExists;
+    // }
+    // return false;
+    return true;
   };
   const hasFolderPermission = (folderPages) => {
-    const folderPermissionExists = folderPages.some(page => hasPermission(page));
-    return folderPermissionExists;
+    // const folderPermissionExists = folderPages.some(page => hasPermission(page));
+    // return folderPermissionExists;
+    return true;
   };
   
 

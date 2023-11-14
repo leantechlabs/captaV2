@@ -35,6 +35,7 @@ import CreateBatch from './pages/Batch/CreateBatch';
 import ManageBatch from './pages/Batch/ManageBatch';
 import AllocateBatch from './pages/Batch/AllocateBatch';
 import EditUser from './pages/Users/updateUsers';
+import EditInstitution from './pages/Institution/EditInstitution';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {
@@ -42,36 +43,38 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+        {/* <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} /> */}
         <Route path="/register-x123lmopq" element={<Register />} />
           <Route path="/" element={<SignIn />} />
-          <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-          <Route path="/user/add" element={<ProtectedRoute element={<AddUser />} />} />
-          <Route path="/user/manage" element={<ProtectedRoute element={<ManageUser />} />} />
-          <Route path="/mou/create" element={<ProtectedRoute element={<MouCreate />} />} />
-          <Route path="/mou/confirm" element={<ProtectedRoute element={<MouConfirmation />} />} />
-          <Route path="/mou/manage" element={<ProtectedRoute element={<MouManage />} />} />
-          <Route path="/college/add" element={<ProtectedRoute element={<AddInstitution />} />} />
-          <Route path="/college/manage" element={<ProtectedRoute element={<ManageInstitution />} />} />
-          <Route path="/module/confirmation/create" element={<ProtectedRoute element={<ModuleConfirmationSheet />} />} />
-          <Route path="/module/confirmation/manage" element={<ProtectedRoute element={<ModuleManage />} />} />
-          <Route path='/curriculum/create' element={<ProtectedRoute element={<Curriculumcreate />} />} />
-          <Route path='/curriculum/manage' element={<ProtectedRoute element={<CurriculumManage />} />} />
-          <Route path='/module/create' element={<ProtectedRoute element={<ModuleCurriculumCreate />} />} />
-          <Route path='/module/manage' element={<ProtectedRoute element={<ModuleCurriculumManage />} />} />
-          <Route path="/module/status" element={<ProtectedRoute element={<ModuleConfirmation />} />} />
-          <Route path="/session/details" element={<ProtectedRoute element={<SessionDetails />} />} />
-          <Route path="/session/attendance" element={<ProtectedRoute element={<SessionAttendance />} />} />
-          <Route path="/report/curriculum" element={<ProtectedRoute element={<CurriculumReport />} />} />
-          <Route path="/report/colleges" element={<ProtectedRoute element={<CollegesReport />} />} />
-          <Route path="/report/module" element={<ProtectedRoute element={<ModuleReport />} />} />
-          <Route path="/report/trainer" element={<ProtectedRoute element={<TrainersReport />} />} />
-          <Route path="/settings/system-set" element={<ProtectedRoute element={<SystemSettings />} />} />
-          <Route path="/settings/api" element={<ProtectedRoute element={<Api />} />} />
+          <Route path="/dashboard"  element={<Dashboard />} />
+          <Route path="/user/add"  element={<AddUser />} />
+          <Route path="/user/manage"  element={<ManageUser />} />
+          <Route path="/mou/create"  element={<MouCreate />} />
+          <Route path="/mou/confirm"  element={<MouConfirmation />} />
+          <Route path="/mou/manage"  element={<MouManage />} />
+          <Route path="/college/add"  element={<AddInstitution />} />
+          <Route path="/college/manage"  element={<ManageInstitution />} />
+          <Route path="/module/confirmation/create"  element={<ModuleConfirmationSheet />} />
+          <Route path="/module/confirmation/manage"  element={<ModuleManage />} />
+          <Route path='/curriculum/create'  element={<Curriculumcreate />} />
+          <Route path='/curriculum/manage'  element={<CurriculumManage />} />
+          <Route path='/module/create'  element={<ModuleCurriculumCreate />} />
+          <Route path='/module/manage'  element={<ModuleCurriculumManage />} />
+          <Route path="/module/status"  element={<ModuleConfirmation />} />
+          <Route path="/session/details"  element={<SessionDetails />} />
+          <Route path="/session/attendance"  element={<SessionAttendance />} />
+          <Route path="/report/curriculum"  element={<CurriculumReport />} />
+          <Route path="/report/colleges"  element={<CollegesReport />} />
+          <Route path="/report/module"  element={<ModuleReport />} />
+          <Route path="/report/trainer"  element={<TrainersReport />} />
+          <Route path="/settings/system-set"  element={<SystemSettings />} />
+          <Route path="/settings/api"  element={<Api />} />
           <Route path="/user/edit"  element={<EditUser />}  />
+          <Route path="/college/edit"  element={<EditInstitution />}  />
           {/* <Route path="/report/session" element={<SessionReport />} /> */}
-          <Route path='/batch/create' element = {<ProtectedRoute element={<CreateBatch />} />} />
-          <Route path='/batch/manage' element = {<ProtectedRoute element={<ManageBatch />} />} />
-          <Route path='/batch/allocate' element = {<ProtectedRoute element={<AllocateBatch />} />} />
+          <Route path='/batch/create'  element={<CreateBatch />} />
+          <Route path='/batch/manage'  element={<ManageBatch />} />
+          <Route path='/batch/allocate'  element={<AllocateBatch />} />
         </Routes>
       </Router>
        
@@ -80,15 +83,11 @@ function App() {
 }
 
 root.render(
-  <React.StrictMode>
-   <PermissionsProvider>
-    <Layout/>
+  <PermissionsProvider>
+    <Layout />
     <App />
-    {/* <Footer/> */}
-    <ScriptSection/>
-   </PermissionsProvider>
-  </React.StrictMode>
-
+    <ScriptSection />
+  </PermissionsProvider>
 );
 
 

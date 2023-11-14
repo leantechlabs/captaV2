@@ -4,11 +4,12 @@ import Navbar from '../Includes/Navbar';
 import { FaUserEdit } from 'react-icons/fa';
 import ApiUrls from '../Includes/corsUrls';
 import Dropdown from 'react-bootstrap/Dropdown';
-const ManageUser = () => {
+import { useNavigate } from 'react-router-dom';
+const ManageInstitution = () => {
   const [Institution, setInstitution] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
-
+  const navigate = useNavigate();
   const handleUserClick = (user) => {
     setSelectedUser(user);
   };
@@ -32,8 +33,8 @@ const ManageUser = () => {
         console.error('Error fetching user data:', error);
       });
   }, []);
-  const handleEdit = (mouID) => {
-    // navigate('/user/edit?email=');
+  const handleEdit = (data) => {
+    navigate(`/college/edit?ins=${data}`);
   };
 
   const handleDelete = (mouID) => {
@@ -96,14 +97,11 @@ const ManageUser = () => {
                               <i className="fas fa-ellipsis"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                              <Dropdown.Item onClick={() => handleEdit(selectedUser.userId)}>
+                              <Dropdown.Item onClick={() => handleEdit(user.email)}>
                                 Edit
                               </Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleDelete(selectedUser.userId)}>
+                              <Dropdown.Item onClick={() => handleDelete(user.email)}>
                                 Delete
-                              </Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleManage(selectedUser.userId)}>
-                                Manage
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
@@ -147,15 +145,13 @@ const ManageUser = () => {
                               <i className="fas fa-ellipsis"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                              <Dropdown.Item onClick={() => handleEdit(selectedUser.userId)}>
+                              <Dropdown.Item onClick={() => handleEdit(selectedUser.email)}>
                                 Edit
                               </Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleDelete(selectedUser.userId)}>
+                              <Dropdown.Item onClick={() => handleDelete(selectedUser.email)}>
                                 Delete
                               </Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleManage(selectedUser.userId)}>
-                                Manage
-                              </Dropdown.Item>
+                             
                             </Dropdown.Menu>
                           </Dropdown>
                         </td>
@@ -172,4 +168,4 @@ const ManageUser = () => {
   );
 };
 
-export default ManageUser;
+export default ManageInstitution;

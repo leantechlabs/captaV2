@@ -17,7 +17,7 @@ const ManageUser = () => {
 
   useEffect(() => {
     fetch(ApiUrls['ManageUser'], {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -102,9 +102,7 @@ const ManageUser = () => {
                               <Dropdown.Item onClick={() => handleDelete(user.email)}>
                                 Delete
                               </Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleManage(user.email)}>
-                                Manage
-                              </Dropdown.Item>
+                             
                             </Dropdown.Menu>
                           </Dropdown>
                         </td>
@@ -153,9 +151,7 @@ const ManageUser = () => {
                               <Dropdown.Item onClick={() => handleDelete(selectedUser.email)}>
                                 Delete
                               </Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleManage(selectedUser.email)}>
-                                Manage
-                              </Dropdown.Item>
+                           
                             </Dropdown.Menu>
                           </Dropdown>
                         </td>
