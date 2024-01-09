@@ -72,19 +72,8 @@ const AddUser = () => {
     const handleSubmit = async () => {
 
 
-      if(!formData.username || !charNum.test(formData.username))
-      {
-        toast.error("Please enter a valid user name");
-        return;
-      }
       if (!formData.email || !formData.email.match(mailCheck)) {
         toast.error('Please enter a valid email address.');
-        return;
-      }
-
-      if(!formData.userId || !formData.userId.match(nums))
-      {
-        toast.error("Please enter a valid userId");
         return;
       }
 
