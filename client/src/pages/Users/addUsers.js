@@ -215,12 +215,12 @@ const AddUser = () => {
             userData.pan = url;
           });
         });
-        let adharRef2 = ref(storage, `adhar/${formData.adhar.name + v4()}`);
-        await uploadBytes(adharRef, formData.resume).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            userData.adhar = url;
-          });
-        });
+        // let adharRef2 = ref(storage, `adhar/${formData.adhar.name + v4()}`);
+        // await uploadBytes(adharRef, formData.resume).then((snapshot) => {
+        //   getDownloadURL(snapshot.ref).then((url) => {
+        //     userData.adhar = url;
+        //   });
+        // });
 
         Axios.post(ApiUrls["addUser"], userData)
           .then((response) => {

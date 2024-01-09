@@ -446,7 +446,7 @@ const EditUser = () => {
                               className="form-control"
                               type="text"
                               name="skills"
-                              placeholder="Enter postal code"
+                              placeholder="Enter Skills"
                               value={formData.skills}
                               onChange={(e) =>
                                 setFormData({
