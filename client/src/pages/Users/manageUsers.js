@@ -4,6 +4,7 @@ import Navbar from '../Includes/Navbar';
 import { FaUserEdit } from 'react-icons/fa';
 import ApiUrls from '../Includes/corsUrls';
 import { useNavigate } from 'react-router-dom';
+import Axios from 'axios'; // Make sure to import Axios
 import Dropdown from 'react-bootstrap/Dropdown';
 const ManageUser = () => {
   const navigate = useNavigate();
@@ -32,17 +33,29 @@ const ManageUser = () => {
       });
   }, []);
 
-  const handleEdit = (data) => {
+  const handleEdit =(data) => {
     navigate(`/user/edit?email=${data}`);
   };
 
-  const handleDelete = (mouID) => {
-    console.log(`Deleting MOU with ID ${mouID}`);
+  const handleDelete = async (email) => {
+    try {
+      const response = await Axios.delete(`${ApiUrls['deleteUser']}?email=${email}`);
+
+      if (response.status === 200) {
+        // Refresh the page after successful deletion
+        window.location.reload();
+      } else {
+        console.error('Error deleting user:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error.message);
+    }
   };
 
   const handleManage = (mouID) => {
     console.log(`Managing MOU with ID ${mouID}`);
   };
+
   return (
     <div className="bg-gray-100 g-sidenav-show">
       <div className="min-height-300 bg-primary position-absolute w-100"></div>

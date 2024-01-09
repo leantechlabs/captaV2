@@ -11,6 +11,7 @@ const ApiUrls= {
     'logout':Api+'/auth/logout',
     'register':Api+'/register',
     'addUser':Api+'/user/add',
+    'deleteUser':Api+'/user/delete',
     'ManageUser':Api+'/user/manage',
     'EditUser':Api+'/user/edit',
     'UpdateUser':Api+'/user/update',
