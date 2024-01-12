@@ -53,10 +53,10 @@ const ModuleCurriculumCreate = () => {
   const handleSubmit = async () => {
     try {
 
-      if(!moduleCurriculumData.ModuleName || moduleCurriculumData.ModuleName.match(charOnly))
-      {
-        toast.error("Please a valid Module name")
-      }
+      // if(!moduleCurriculumData.ModuleName || moduleCurriculumData.ModuleName.match(charOnly))
+      // {
+      //   toast.error("Please a valid Module name")
+      // }
       if(moduleCurriculumData.TotalHours==='0')
       {
         toast.error("Total Hours can't be zero");
