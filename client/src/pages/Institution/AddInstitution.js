@@ -58,19 +58,19 @@ const AddInstitution = () => {
       toast.error('Please enter a valid college name.');
       return;
     }
-    if (!sanitizedeamcetCode || !charNum.test(sanitizedeamcetCode)) {
-      toast.error('Please enter a valid EAMCET code.');
-      return;
-    }
-    if (!sanitizedgstNumber || !uppercaseNum.test(sanitizedgstNumber)) {
-      toast.error('Please enter a valid GST number.');
-      return;
-    }
+    // if (!sanitizedeamcetCode || !charNum.test(sanitizedeamcetCode)) {
+    //   toast.error('Please enter a valid EAMCET code.');
+    //   return;
+    // }
+    // if (!sanitizedgstNumber || !uppercaseNum.test(sanitizedgstNumber)) {
+    //   toast.error('Please enter a valid GST number.');
+    //   return;
+    // }
 
-    if (!sanitizedpanNumber || !sanitizedpanNumber.match(uppercaseNum) || sanitizedpanNumber.length!=10) {
-      toast.error('Please enter a valid PAN card number.');
-      return;
-    }
+    // if (!sanitizedpanNumber || !sanitizedpanNumber.match(uppercaseNum) || sanitizedpanNumber.length!=10) {
+    //   toast.error('Please enter a valid PAN card number.');
+    //   return;
+    // }
     if (!sanitizedEmail || !sanitizedEmail.match(mailCheck)) {
       toast.error('Please enter a valid email address.');
       return;
