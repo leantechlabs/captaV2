@@ -1,4 +1,4 @@
-const flag= 'Dev'
+const flag= 'Test'
 var Api= 'http://localhost:3001' //testAPi
 if (flag==='Dev'){
     //const Api= 'https://ap-south-1.console.aws.amazon.com/codesuite/codepipeline/pipeline/' //Production APi
